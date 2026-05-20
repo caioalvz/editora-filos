@@ -1,0 +1,176 @@
+---
+import books from '../data/books.json';
+import site from '../data/site.json';
+
+// Generates a minimal, elegant book cover SVG from book.cover data
+function bookCoverSvg(book: any): string {
+  const { title, author, cover } = book;
+  const { bgStart, bgEnd, accent, pattern } = cover;
+
+  // Short title for display (max ~20 chars)
+  const shortTitle = title.length > 22 ? title.substring(0, 20) + '…' : title;
+
+  const base = `
+  <defs>
+    <linearGradient id="cg-${book.id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${bgStart}"/>
+      <stop offset="100%" stop-color="${bgEnd}"/>
+    </linearGradient>
+  </defs>
+  <rect width="210" height="315" fill="url(#cg-${book.id})"/>`;
+
+  // Determine if bg is light (for text color)
+  const isDark = bgStart < '#888888';
+  const textColor = isDark ? 'white' : '#111111';
+  const subColor = isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.45)';
+  const lineColor = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)';
+
+  const patterns: Record<string, string> = {
+    moon: `
+  <circle cx="155" cy="60" r="40" fill="${accent}" opacity="0.7"/>
+  <circle cx="172" cy="48" r="32" fill="${bgStart}"/>
+  <circle cx="30"  cy="40" r="2"  fill="${textColor}" opacity="0.6"/>
+  <circle cx="60"  cy="20" r="1.5" fill="${textColor}" opacity="0.5"/>
+  <circle cx="90"  cy="50" r="2.5" fill="${textColor}" opacity="0.6"/>
+  <circle cx="185" cy="110" r="2" fill="${textColor}" opacity="0.5"/>`,
+
+    quill: `
+  <path d="M105 240 Q80 180 120 100 Q140 150 105 240Z" fill="${textColor}" opacity="0.7"/>
+  <path d="M105 240 Q120 190 130 120" fill="none" stroke="${bgEnd}" stroke-width="2"/>
+  <ellipse cx="105" cy="248" rx="8" ry="5" fill="${textColor}" opacity="0.5"/>`,
+
+    planet: `
+  <circle cx="105" cy="115" r="60" fill="${accent}" opacity="0.6"/>
+  <ellipse cx="105" cy="115" rx="85" ry="20" fill="none" stroke="${accent}" stroke-width="5" opacity="0.35"/>
+  <ellipse cx="80"  cy="103" rx="16" ry="9" fill="${bgEnd}" opacity="0.4"/>
+  <ellipse cx="125" cy="128" rx="20" ry="11" fill="${bgEnd}" opacity="0.3"/>`,
+
+    arrow: `
+  <circle cx="105" cy="110" r="50" fill="${accent}" opacity="0.15"/>
+  <circle cx="105" cy="110" r="35" fill="${accent}" opacity="0.2"/>
+  <circle cx="105" cy="88"  r="13" fill="${textColor}"/>
+  <rect   x="98"  y="101" width="14" height="32" rx="7" fill="${textColor}"/>
+  <line x1="98"  y1="115" x2="78"  y2="106" stroke="${textColor}" stroke-width="5" stroke-linecap="round"/>
+  <line x1="112" y1="115" x2="132" y2="106" stroke="${textColor}" stroke-width="5" stroke-linecap="round"/>
+  <line x1="105" y1="56"  x2="105" y2="28"  stroke="${accent}"    stroke-width="3" stroke-linecap="round"/>
+  <polyline points="96,38 105,26 114,38" fill="none" stroke="${accent}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`,
+
+    sun: `
+  <circle cx="105" cy="85" r="32" fill="${accent}" opacity="0.7"/>
+  <line x1="105" y1="43" x2="105" y2="34" stroke="${accent}" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <line x1="137" y1="56" x2="144" y2="49" stroke="${accent}" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <line x1="148" y1="85" x2="158" y2="85" stroke="${accent}" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <line x1="73"  y1="56" x2="66"  y2="49" stroke="${accent}" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <line x1="62"  y1="85" x2="52"  y2="85" stroke="${accent}" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <circle cx="97" cy="81" r="4" fill="${textColor}"/>
+  <circle cx="113" cy="81" r="4" fill="${textColor}"/>
+  <path d="M97 93 Q105 100 113 93" fill="none" stroke="${textColor}" stroke-width="3" stroke-linecap="round"/>`,
+
+    lines: `
+  <rect x="20"  y="60"  width="170" height="10" rx="5" fill="${accent}" opacity="0.4"/>
+  <rect x="20"  y="80"  width="140" height="8"  rx="4" fill="${accent}" opacity="0.3"/>
+  <rect x="20"  y="98"  width="160" height="8"  rx="4" fill="${accent}" opacity="0.25"/>
+  <rect x="20"  y="116" width="120" height="8"  rx="4" fill="${accent}" opacity="0.2"/>
+  <rect x="20"  y="134" width="155" height="8"  rx="4" fill="${accent}" opacity="0.2"/>
+  <rect x="20"  y="152" width="130" height="8"  rx="4" fill="${accent}" opacity="0.15"/>`,
+
+    stars: `
+  <circle cx="40"  cy="40"  r="3"   fill="${textColor}" opacity="0.9"/>
+  <circle cx="80"  cy="70"  r="3.5" fill="${accent}"    opacity="0.9"/>
+  <circle cx="130" cy="50"  r="3"   fill="${textColor}" opacity="0.8"/>
+  <circle cx="170" cy="90"  r="4"   fill="${accent}"    opacity="0.9"/>
+  <circle cx="60"  cy="110" r="3"   fill="${textColor}" opacity="0.7"/>
+  <circle cx="100" cy="140" r="4.5" fill="${accent}"/>
+  <circle cx="150" cy="120" r="3"   fill="${textColor}" opacity="0.8"/>
+  <line x1="40"  y1="40"  x2="80"  y2="70"  stroke="${textColor}" stroke-width="0.8" opacity="0.3"/>
+  <line x1="80"  y1="70"  x2="130" y2="50"  stroke="${textColor}" stroke-width="0.8" opacity="0.3"/>
+  <line x1="130" y1="50"  x2="170" y2="90"  stroke="${textColor}" stroke-width="0.8" opacity="0.3"/>
+  <line x1="80"  y1="70"  x2="60"  y2="110" stroke="${textColor}" stroke-width="0.8" opacity="0.3"/>
+  <line x1="60"  y1="110" x2="100" y2="140" stroke="${textColor}" stroke-width="0.8" opacity="0.3"/>
+  <line x1="100" y1="140" x2="150" y2="120" stroke="${textColor}" stroke-width="0.8" opacity="0.3"/>`,
+  };
+
+  const decoration = patterns[pattern] || patterns.lines;
+
+  // Title block at bottom
+  const titleBlock = `
+  <rect x="16" y="192" width="178" height="108" rx="6" fill="${isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)'}"/>
+  <line x1="24" y1="192" x2="24" y2="300" stroke="${accent}" stroke-width="3"/>
+  <text x="112" y="220" font-size="13" font-weight="bold" fill="${textColor}" text-anchor="middle" font-family="Georgia,serif">${shortTitle}</text>
+  <line x1="30" y1="232" x2="186" y2="232" stroke="${lineColor}" stroke-width="1"/>
+  <text x="112" y="252" font-size="9" fill="${subColor}" text-anchor="middle" font-family="Georgia,serif">${author}</text>`;
+
+  return base + decoration + titleBlock;
+}
+---
+
+<section class="vitrine-section" id="vitrine">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Nossos autores</span>
+      <h2 class="section-title">Vitrine de Publicações</h2>
+      <p class="section-sub">Conheça alguns dos títulos que nasceram em parceria com a Filos Editora — cada livro, uma história de dedicação.</p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="vitrine-filters fade-up">
+      <button class="filter-btn active" onclick="filterBooks('todos', this)">Todos</button>
+      <button class="filter-btn" onclick="filterBooks('romance', this)">Romance</button>
+      <button class="filter-btn" onclick="filterBooks('poesia', this)">Poesia</button>
+      <button class="filter-btn" onclick="filterBooks('ficcao', this)">Ficção Científica</button>
+      <button class="filter-btn" onclick="filterBooks('autoajuda', this)">Autoajuda</button>
+      <button class="filter-btn" onclick="filterBooks('infantil', this)">Infantil</button>
+      <button class="filter-btn" onclick="filterBooks('academico', this)">Acadêmico</button>
+    </div>
+
+    <!-- Grid de livros — gerado a partir de src/data/books.json -->
+    <div class="vitrine-grid" id="vitrineGrid">
+      {books.map((book, i) => (
+        <div class="book-card fade-up" data-genre={book.genre}>
+          <div class="book-card-cover">
+            <svg viewBox="0 0 210 315" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" set:html={bookCoverSvg(book)}></svg>
+          </div>
+          <div class="book-card-body">
+            {book.badge && (
+              <span class="book-card-new" style={"background:" + book.badge.bg}>{book.badge.label}</span>
+            )}
+            <div class="book-card-title">{book.title}</div>
+            <div class="book-card-author">{book.author}</div>
+            <div class="book-card-meta">
+              {book.tags.map(tag => (
+                <span class="book-card-tag" style={"color:" + book.cover.accent}>{tag}</span>
+              ))}
+              <span class="book-card-pages">{book.pages} págs.</span>
+            </div>
+            <a
+              href={"https://wa.me/" + site.whatsapp + "?text=" + encodeURIComponent(book.waMessage)}
+              class="book-card-btn"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              Saber Mais
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Strip CTA -->
+    <div class="vitrine-cta-strip fade-up">
+      <p>Seu livro também pode estar aqui. <span>Publique com a Filos.</span></p>
+      <a
+        href={"https://wa.me/" + site.whatsapp + "?text=Quero%20publicar%20meu%20livro%20com%20a%20Filos%20Editora!"}
+        class="btn-white"
+        target="_blank"
+        rel="noopener"
+        style="flex-shrink:0;"
+      >
+        Quero Publicar
+        <span class="btn-icon" style="background:var(--accent);">
+          <svg viewBox="0 0 24 24" style="stroke:white;"><path d="m9 18 6-6-6-6"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

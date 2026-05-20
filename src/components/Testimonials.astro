@@ -1,0 +1,33 @@
+---
+import testimonials from '../data/testimonials.json';
+---
+<section class="testimonials-section" id="depoimentos">
+  <div class="testimonials-bg-deco"></div>
+  <div class="testimonials-bg-deco2"></div>
+  <div class="container">
+    <div class="fade-up" style="margin-bottom:3rem;">
+      <span class="section-label">Depoimentos</span>
+      <h2 class="section-title">O que dizem nossos autores</h2>
+      <p class="section-sub">Cada livro publicado é uma parceria. Veja o que os autores que confiaram na Filos têm a dizer.</p>
+    </div>
+    <div class="testi-grid">
+      {testimonials.map((t, i) => (
+        <div class={"testi-card fade-up" + (t.featured ? " featured" : "") + " d" + ((i % 3) + 1)}>
+          <div class="testi-quote-mark">"</div>
+          <div class="stars">
+            <div class="star"></div><div class="star"></div><div class="star"></div>
+            <div class="star"></div><div class="star"></div>
+          </div>
+          <p class="testi-text">"{t.text}"</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style={"background:"+t.avatarBg+";color:"+t.avatarColor}>{t.initials}</div>
+            <div>
+              <span class="testi-name">{t.name}</span>
+              <span class="testi-role">{t.role}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

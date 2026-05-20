@@ -1,0 +1,38 @@
+---
+import site from '../data/site.json';
+const waHref = `https://wa.me/${site.whatsapp}?text=Ol%C3%A1,%20vim%20pelo%20site!`;
+---
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">F</div>
+      <span class="logo-text">Filos <span>Editora</span></span>
+    </a>
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#vitrine">Vitrine</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a href={waHref} class="btn-primary header-cta" target="_blank" rel="noopener">
+      Fale Conosco
+      <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#servicos" onclick="closeMobileNav()">Serviços</a>
+  <a href="#vitrine" onclick="closeMobileNav()">Vitrine</a>
+  <a href="#sobre" onclick="closeMobileNav()">Sobre</a>
+  <a href="#depoimentos" onclick="closeMobileNav()">Depoimentos</a>
+  <a href="#contato" onclick="closeMobileNav()">Contato</a>
+  <a href={waHref} class="btn-primary" target="_blank" rel="noopener" style="text-align:center;justify-content:center;">
+    Fale no WhatsApp
+    <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+  </a>
+</div>

@@ -1,0 +1,50 @@
+---
+import site from '../data/site.json';
+const waHref = `https://wa.me/${site.whatsapp}`;
+const igHref = `https://instagram.com/${site.instagram}`;
+---
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:12px;">
+        <div class="logo-mark">F</div>
+        <span class="logo-text">Filos <span>Editora</span></span>
+      </a>
+      <p class="footer-tagline">{site.footerTagline}</p>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#servicos">Revisão Textual</a></li>
+        <li><a href="#servicos">Diagramação</a></li>
+        <li><a href="#servicos">Design de Capa</a></li>
+        <li><a href="#servicos">ISBN e Registro</a></li>
+        <li><a href="#servicos">E-book</a></li>
+        <li><a href="#servicos">Consultoria</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#sobre">Sobre Nós</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="#">Portfólio</a></li>
+        <li><a href="#">Blog Editorial</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href={waHref} target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href={"mailto:"+site.email}>{site.email}</a></li>
+        <li><a href={igHref} target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>{site.copyright}</span>
+    <span>Desenvolvido com ♥ para autores brasileiros</span>
+  </div>
+</footer>
