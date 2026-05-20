@@ -24,6 +24,7 @@ const {
 </head>
 <body>
   <slot />
-  <script src="/js/main.js"></script>
+  <!-- is:inline → Astro não processa/bundla; carregado diretamente do public/ -->
+  <script src="/js/main.js" is:inline></script>
 </body>
 </html>

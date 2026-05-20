@@ -1,11 +1,51 @@
 /**
  * Filos Editora — Scripts de interatividade
  * Centralizado aqui para fácil edição no Claude Code.
- * Inicializado no DOMContentLoaded.
+ *
+ * Funções chamadas via onclick devem estar em window.* (fora do DOMContentLoaded).
+ * Funções internas ao DOM ficam dentro do DOMContentLoaded.
  */
+
+// ─── Funções globais (acessíveis via onclick="...") ───────────────────────────
+
+window.closeMobileNav = function () {
+  const mobileNav = document.getElementById('mobileNav');
+  if (mobileNav) mobileNav.classList.remove('open');
+};
+
+window.sendToWhatsApp = function () {
+  const nome    = document.querySelector('input[placeholder="Seu nome completo"]')?.value || 'não informado';
+  const servico = document.querySelector('select')?.value || 'não especificado';
+  const msg     = document.querySelector('textarea')?.value || '';
+  const text    = encodeURIComponent(`Olá! Sou ${nome} e tenho interesse em: ${servico}.\n\n${msg}`);
+  window.open(`https://wa.me/5581999999999?text=${text}`, '_blank');
+};
+
+window.filterBooks = function (genre, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.book-card').forEach(card => {
+    const match = genre === 'todos' || card.dataset.genre === genre;
+    card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+    if (match) {
+      card.style.opacity   = '1';
+      card.style.transform = '';
+      card.style.display   = '';
+    } else {
+      card.style.opacity   = '0';
+      card.style.transform = 'scale(0.92)';
+      setTimeout(() => {
+        if (card.style.opacity === '0') card.style.display = 'none';
+      }, 350);
+    }
+  });
+};
+
+// ─── Inicialização DOM ────────────────────────────────────────────────────────
+
 document.addEventListener('DOMContentLoaded', () => {
 
-// ===== HERO SLIDES =====
+  // ── Hero slides ──────────────────────────────────────────────────────────────
   let currentSlide = 0;
   const totalSlides = 3;
   let autoplay;
@@ -20,110 +60,46 @@ document.addEventListener('DOMContentLoaded', () => {
     currentSlide = index;
   }
 
-  function nextSlide() {
-    goToSlide((currentSlide + 1) % totalSlides);
-    resetAutoplay();
-  }
+  function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); resetAutoplay(); }
+  function prevSlide() { goToSlide((currentSlide - 1 + totalSlides) % totalSlides); resetAutoplay(); }
+  function startAutoplay() { autoplay = setInterval(nextSlide, 5000); }
+  function resetAutoplay() { clearInterval(autoplay); startAutoplay(); }
 
-  function prevSlide() {
-    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-    resetAutoplay();
-  }
-
-  function startAutoplay() {
-    autoplay = setInterval(nextSlide, 5000);
-  }
-
-  function resetAutoplay() {
-    clearInterval(autoplay);
-    startAutoplay();
-  }
-
-  document.getElementById('nextSlide').addEventListener('click', nextSlide);
-  document.getElementById('prevSlide').addEventListener('click', prevSlide);
-
+  document.getElementById('nextSlide')?.addEventListener('click', nextSlide);
+  document.getElementById('prevSlide')?.addEventListener('click', prevSlide);
   document.querySelectorAll('.slide-dot').forEach(dot => {
-    dot.addEventListener('click', () => {
-      goToSlide(parseInt(dot.dataset.slide));
-      resetAutoplay();
-    });
+    dot.addEventListener('click', () => { goToSlide(parseInt(dot.dataset.slide)); resetAutoplay(); });
   });
-
   startAutoplay();
 
-  // ===== HAMBURGER =====
+  // ── Hamburger ────────────────────────────────────────────────────────────────
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
+  hamburger?.addEventListener('click', () => mobileNav?.classList.toggle('open'));
 
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-  });
-
-  function closeMobileNav() {
-    mobileNav.classList.remove('open');
-  }
-
-  // ===== SCROLL ANIMATIONS =====
+  // ── Scroll animations (Intersection Observer) ────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up, .pop-in').forEach(el => observer.observe(el));
 
-  document.querySelectorAll('.fade-up, .pop-in').forEach(el => {
-    observer.observe(el);
-  });
-
-  // ===== PARALLAX =====
+  // ── Parallax hero decorations ────────────────────────────────────────────────
   const heroCircle = document.querySelector('.hero-deco-circle');
-  const heroTri = document.querySelector('.hero-deco-triangle');
-  const heroPill = document.querySelector('.hero-deco-pill');
-
+  const heroTri    = document.querySelector('.hero-deco-triangle');
+  const heroPill   = document.querySelector('.hero-deco-pill');
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     if (heroCircle) heroCircle.style.transform = `translateY(calc(-50% + ${y * 0.12}px))`;
-    if (heroTri) heroTri.style.transform = `translateY(${y * 0.08}px) rotate(${y * 0.02}deg)`;
-    if (heroPill) heroPill.style.transform = `translateY(${-y * 0.06}px)`;
+    if (heroTri)    heroTri.style.transform    = `translateY(${y * 0.08}px) rotate(${y * 0.02}deg)`;
+    if (heroPill)   heroPill.style.transform   = `translateY(${-y * 0.06}px)`;
   }, { passive: true });
 
-  // ===== WHATSAPP FORM =====
-  function sendToWhatsApp() {
-    const nome = document.querySelector('input[placeholder="Seu nome completo"]').value || 'não informado';
-    const servico = document.querySelector('select').value || 'não especificado';
-    const msg = document.querySelector('textarea').value || '';
-    const text = encodeURIComponent(
-      `Olá! Sou ${nome} e tenho interesse em: ${servico}.\n\n${msg}`
-    );
-    window.open(`https://wa.me/5581999999999?text=${text}`, '_blank');
-  }
-
-  // ===== VITRINE FILTER =====
-  function filterBooks(genre, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.book-card').forEach(card => {
-      const match = genre === 'todos' || card.dataset.genre === genre;
-      card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-      if (match) {
-        card.style.opacity = '1';
-        card.style.transform = '';
-        card.style.display = '';
-      } else {
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.92)';
-        setTimeout(() => {
-          if (card.style.opacity === '0') card.style.display = 'none';
-        }, 350);
-      }
-    });
-  }
-
-  // ===== HEADER SCROLL =====
+  // ── Header shadow on scroll ──────────────────────────────────────────────────
   const header = document.querySelector('header');
   window.addEventListener('scroll', () => {
-    header.style.boxShadow = window.scrollY > 30
+    if (header) header.style.boxShadow = window.scrollY > 30
       ? '0 4px 20px rgba(30,41,59,0.08)'
       : 'none';
   }, { passive: true });
