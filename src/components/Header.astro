@@ -1,38 +1,266 @@
 ---
-import site from '../data/site.json';
-const waHref = `https://wa.me/${site.whatsapp}?text=Ol%C3%A1,%20vim%20pelo%20site!`;
 ---
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <div class="logo-mark">F</div>
-      <span class="logo-text">Filos <span>Editora</span></span>
+<header id="site-header">
+  <div class="header-inner container">
+    <a href="#" class="logo-link" aria-label="Filos Editora — página inicial">
+      <img class="logo logo-white" src="/images/logo-white.webp" alt="Filos Editora" width="120" height="44" />
+      <img class="logo logo-gold"  src="/images/logo-gold.webp"  alt="Filos Editora" width="120" height="44" />
     </a>
-    <nav>
+
+    <nav class="desktop-nav" aria-label="Navegação principal">
       <a href="#servicos">Serviços</a>
-      <a href="#vitrine">Vitrine</a>
       <a href="#sobre">Sobre</a>
       <a href="#depoimentos">Depoimentos</a>
+      <a href="#vitrine">Vitrine</a>
+      <a href="#faq">FAQ</a>
       <a href="#contato">Contato</a>
     </nav>
-    <a href={waHref} class="btn-primary header-cta" target="_blank" rel="noopener">
-      Fale Conosco
-      <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
-    </a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+
+    <div class="header-actions">
+      <button
+        id="theme-toggle"
+        class="theme-btn"
+        aria-label="Alternar tema claro/escuro"
+        title="Alternar tema"
+      >
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+
+      <a
+        href="https://wa.me/5581999999999?text=Olá%2C%20quero%20publicar%20meu%20livro%20com%20a%20Filos!"
+        class="btn-primary header-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        <span>Publicar meu livro</span>
+        <span class="btn-icon"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+
+      <button
+        id="hamburger"
+        class="hamburger"
+        aria-label="Abrir menu de navegação"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Menu mobile">
+    <a href="#servicos"    class="mobile-link">Serviços</a>
+    <a href="#sobre"       class="mobile-link">Sobre</a>
+    <a href="#depoimentos" class="mobile-link">Depoimentos</a>
+    <a href="#vitrine"     class="mobile-link">Vitrine</a>
+    <a href="#faq"         class="mobile-link">FAQ</a>
+    <a href="#contato"     class="mobile-link">Contato</a>
+    <a
+      href="https://wa.me/5581999999999?text=Olá%2C%20quero%20publicar%20meu%20livro%20com%20a%20Filos!"
+      class="btn-primary mobile-cta"
+      target="_blank"
+      rel="noopener"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 12.6a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Publicar meu livro
+    </a>
+  </nav>
 </header>
 
-<div class="mobile-nav" id="mobileNav">
-  <a href="#servicos" onclick="closeMobileNav()">Serviços</a>
-  <a href="#vitrine" onclick="closeMobileNav()">Vitrine</a>
-  <a href="#sobre" onclick="closeMobileNav()">Sobre</a>
-  <a href="#depoimentos" onclick="closeMobileNav()">Depoimentos</a>
-  <a href="#contato" onclick="closeMobileNav()">Contato</a>
-  <a href={waHref} class="btn-primary" target="_blank" rel="noopener" style="text-align:center;justify-content:center;">
-    Fale no WhatsApp
-    <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
-  </a>
-</div>
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(27,24,20,.88);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    transition: background .35s var(--ease), box-shadow .35s var(--ease);
+  }
+
+  [data-theme="light"] header { background: rgba(248,244,238,.92); }
+
+  header.scrolled {
+    box-shadow: 0 4px 24px rgba(0,0,0,.25);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 68px;
+  }
+
+  /* Logo */
+  .logo-link { display: flex; align-items: center; flex-shrink: 0; }
+  .logo { height: 40px; width: auto; display: block; transition: opacity .3s; }
+  .logo-white { display: block; }
+  .logo-gold  { display: none; }
+  [data-theme="light"] .logo-white { display: none; }
+  [data-theme="light"] .logo-gold  { display: block; }
+
+  /* Desktop nav */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+  }
+
+  .desktop-nav a {
+    font-family: var(--f-titles);
+    font-weight: 500;
+    font-size: 0.84rem;
+    letter-spacing: 0.03em;
+    color: var(--text2);
+    padding: 6px 12px;
+    border-radius: var(--r-sm);
+    transition: color var(--dur), background var(--dur);
+  }
+
+  .desktop-nav a:hover {
+    color: var(--text);
+    background: var(--bg3);
+  }
+
+  /* Header actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .header-cta { font-size: 0.84rem; padding: 11px 22px; min-height: 44px; }
+
+  /* Theme toggle */
+  .theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text2);
+    border: 1px solid var(--border2);
+    background: var(--bg3);
+    transition: all var(--dur) var(--ease);
+    flex-shrink: 0;
+  }
+
+  .theme-btn:hover { color: var(--text); background: var(--bg4); }
+
+  .theme-btn svg {
+    width: 17px; height: 17px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .icon-sun  { display: none; }
+  .icon-moon { display: block; }
+  [data-theme="light"] .icon-sun  { display: block; }
+  [data-theme="light"] .icon-moon { display: none; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border-radius: var(--r-sm);
+    transition: background var(--dur);
+  }
+
+  .hamburger:hover { background: var(--bg3); }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all var(--dur) var(--ease);
+  }
+
+  /* Mobile nav */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    padding: 12px 20px 20px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    gap: 2px;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-link {
+    font-family: var(--f-titles);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text2);
+    padding: 12px 16px;
+    border-radius: var(--r-md);
+    transition: all var(--dur);
+  }
+
+  .mobile-link:hover { color: var(--text); background: var(--bg3); }
+
+  .mobile-cta {
+    margin-top: 10px;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .desktop-nav { display: none; }
+    .hamburger   { display: flex; }
+  }
+
+  @media (max-width: 480px) {
+    .header-cta { display: none; }
+  }
+</style>
+
+<script>
+  const hamburger  = document.getElementById('hamburger')!;
+  const mobileNav  = document.getElementById('mobile-nav')!;
+  const themeBtn   = document.getElementById('theme-toggle')!;
+  const html       = document.documentElement;
+
+  // ── Hamburger ──
+  hamburger.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(open));
+    const spans = hamburger.querySelectorAll('span');
+    if (open) {
+      spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+      spans[1].style.opacity   = '0';
+      spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  });
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.mobile-link, .mobile-cta').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    });
+  });
+
+  // ── Theme toggle ──
+  themeBtn.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next    = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('filos-theme', next);
+  });
+</script>

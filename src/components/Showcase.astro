@@ -1,0 +1,352 @@
+---
+const books = [
+  { title: 'Entre Linhas e Mundos', author: 'Carlos Eduardo Lima', genre: 'ficcao', tag: 'Ficção Científica', pages: 324, isNew: true },
+  { title: 'Raízes do Silêncio', author: 'Fernanda Rocha', genre: 'ficcao', tag: 'Romance', pages: 280 },
+  { title: 'Metodologia Aplicada', author: 'Dr. Paulo Mendes', genre: 'academico', tag: 'Pesquisa', pages: 412 },
+  { title: 'O Tempo das Andorinhas', author: 'Maria Luísa Ferreira', genre: 'ficcao', tag: 'Conto', pages: 188, isNew: true },
+  { title: 'Gestão Estratégica 4.0', author: 'Roberto Alves', genre: 'naofic', tag: 'Negócios', pages: 256 },
+  { title: 'Vozes da Terra', author: 'Ana Paula Santos', genre: 'naofic', tag: 'Memórias', pages: 220 },
+  { title: 'Física Quântica para Todos', author: 'Prof. Sérgio Costa', genre: 'academico', tag: 'Divulgação', pages: 300 },
+  { title: 'Janelas para o Infinito', author: 'Beatriz Oliveira', genre: 'ficcao', tag: 'Poesia', pages: 148 },
+];
+
+const filters = [
+  { id: 'todos',   label: 'Todos' },
+  { id: 'ficcao',  label: 'Ficção' },
+  { id: 'naofic',  label: 'Não-Ficção' },
+  { id: 'academico', label: 'Acadêmico' },
+];
+
+const genreColors = {
+  ficcao:   '#7aaee8',
+  naofic:   '#6ecfb5',
+  academico:'#d4b85a',
+};
+---
+
+<section class="vitrine-section" id="vitrine">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-eyebrow">Obras publicadas</span>
+      <h2>VITRINE DE<br /><span class="highlight">LIVROS FILOS</span></h2>
+      <p class="section-sub">Obras reais publicadas pela Filos Editora. Cada título representa uma jornada editorial completa.</p>
+    </div>
+
+    <div class="filter-row" role="group" aria-label="Filtrar por gênero">
+      {filters.map(f => (
+        <button
+          class={`filter-btn ${f.id === 'todos' ? 'active' : ''}`}
+          data-filter={f.id}
+          aria-pressed={f.id === 'todos' ? 'true' : 'false'}
+        >
+          {f.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="books-grid" id="books-grid" role="list">
+      {books.map((b, i) => (
+        <article
+          class="book-card animate-on-scroll"
+          data-genre={b.genre}
+          role="listitem"
+          style={`transition-delay:${(i % 4) * 0.08}s`}
+          aria-label={`${b.title} por ${b.author}`}
+        >
+          <div class="book-cover" style={`background: linear-gradient(145deg, ${genreColors[b.genre]}18, ${genreColors[b.genre]}30)`}>
+            <div class="book-spine" aria-hidden="true"></div>
+            <div class="book-cover-inner" aria-hidden="true">
+              <div class="book-cover-title">{b.title}</div>
+              <div class="book-cover-author">{b.author}</div>
+              <div class="book-cover-tag" style={`color: ${genreColors[b.genre]}`}>{b.tag}</div>
+            </div>
+          </div>
+          <div class="book-body">
+            {b.isNew && <span class="book-new">Novo</span>}
+            <h3 class="book-title">{b.title}</h3>
+            <span class="book-author">{b.author}</span>
+            <div class="book-meta">
+              <span class="book-tag" style={`color: ${genreColors[b.genre]}`}>{b.tag}</span>
+              <span class="book-pages">{b.pages} págs.</span>
+            </div>
+            <a
+              href={`https://wa.me/5581999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20livro%20"${encodeURIComponent(b.title)}".`}
+              class="book-btn"
+              target="_blank"
+              rel="noopener"
+              aria-label={`Ver detalhes do livro ${b.title}`}
+            >
+              Ver detalhes
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="vitrine-footer animate-on-scroll">
+      <p>Quer ver <span>seu livro aqui?</span></p>
+      <a
+        href="https://wa.me/5581999999999?text=Olá!%20Quero%20publicar%20meu%20livro%20com%20a%20Filos!"
+        class="btn-primary"
+        target="_blank"
+        rel="noopener"
+      >
+        Publicar meu livro
+        <span class="btn-icon"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vitrine-section {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 { margin-bottom: 1rem; }
+  .section-header .section-sub { margin: 0 auto; text-align: center; }
+
+  /* Filters */
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .filter-btn {
+    padding: 8px 18px;
+    border-radius: var(--r-pill);
+    font-family: var(--f-titles);
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--bg3);
+    color: var(--text3);
+    border: 1px solid var(--border);
+    transition: all var(--dur);
+    min-height: 36px;
+    cursor: pointer;
+  }
+
+  .filter-btn.active,
+  .filter-btn:hover {
+    background: var(--bg4);
+    color: var(--text);
+    border-color: var(--border2);
+    box-shadow: var(--sh-sm);
+  }
+
+  .filter-btn.active { color: var(--gold); border-color: var(--gold-bd); }
+
+  /* Grid */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .book-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--sh-sm);
+    transition: all var(--dur) var(--ease);
+  }
+
+  .book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sh-lg);
+    border-color: var(--border2);
+  }
+
+  .book-card.hidden {
+    opacity: 0.15;
+    transform: scale(0.97);
+    pointer-events: none;
+  }
+
+  /* Book cover */
+  .book-cover {
+    width: 100%;
+    aspect-ratio: 2/3;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .book-spine {
+    width: 10px;
+    background: rgba(0,0,0,.25);
+    flex-shrink: 0;
+    box-shadow: inset -2px 0 6px rgba(0,0,0,.2);
+  }
+
+  .book-cover-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    gap: 4px;
+  }
+
+  .book-cover-title {
+    font-family: var(--f-titles);
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .book-cover-author {
+    font-family: var(--f-body);
+    font-size: 0.65rem;
+    color: var(--text2);
+  }
+
+  .book-cover-tag {
+    font-family: var(--f-titles);
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Book body */
+  .book-body { padding: 16px; }
+
+  .book-new {
+    font-family: var(--f-titles);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #1a1208;
+    padding: 2px 8px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .book-title {
+    font-family: var(--f-titles);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .book-author {
+    display: block;
+    font-family: var(--f-body);
+    font-size: 0.75rem;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  .book-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .book-tag {
+    font-family: var(--f-titles);
+    font-size: 0.68rem;
+    font-weight: 600;
+  }
+
+  .book-pages {
+    font-family: var(--f-titles);
+    font-size: 0.68rem;
+    color: var(--text3);
+  }
+
+  .book-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--f-titles);
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--gold);
+    transition: gap var(--dur);
+    min-height: 32px;
+  }
+
+  .book-btn:hover { gap: 10px; }
+
+  .book-btn svg {
+    width: 13px; height: 13px;
+    fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* Footer CTA */
+  .vitrine-footer {
+    margin-top: 2.5rem;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: var(--sh-sm);
+  }
+
+  .vitrine-footer p {
+    font-family: var(--f-titles);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .vitrine-footer p span { color: var(--gold); }
+
+  /* Responsive */
+  @media (max-width: 1024px) { .books-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 768px)  { .books-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px)  {
+    .books-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .vitrine-footer { flex-direction: column; text-align: center; }
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const bookCards  = document.querySelectorAll('.book-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter!;
+
+      // Update button states
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      // Filter cards
+      bookCards.forEach(card => {
+        const genre = (card as HTMLElement).dataset.genre!;
+        const show  = filter === 'todos' || genre === filter;
+        card.classList.toggle('hidden', !show);
+      });
+    });
+  });
+</script>

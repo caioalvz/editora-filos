@@ -1,54 +1,43 @@
-# Filos Editora — Site Institucional
+# Astro Starter Kit: Minimal
 
-Site da Filos Editora, construído com [Astro](https://astro.build).
-Identidade visual em escala de cinza, com tipografia editorial e interatividade via JavaScript puro.
-
-## Início rápido
-
-```bash
-# Instalar dependências
-npm install
-
-# Iniciar servidor de desenvolvimento
-npm run dev
-# → http://localhost:4321
-
-# Build de produção
-npm run build
-
-# Preview do build
-npm run preview
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-## Editar conteúdo
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-Todo o conteúdo editável está na pasta `src/data/`:
+## 🚀 Project Structure
 
-| Arquivo | O que controla |
-|---|---|
-| `site.json` | WhatsApp, e-mail, Instagram, estatísticas |
-| `books.json` | Livros na vitrine |
-| `services.json` | Serviços oferecidos |
-| `testimonials.json` | Depoimentos de autores |
+Inside of your Astro project, you'll see the following folders and files:
 
-> Para instruções detalhadas de edição, consulte o [CLAUDE.md](./CLAUDE.md).
-
-## Estrutura
-
-```
-src/
-├── components/   # Uma seção por arquivo .astro
-├── data/         # Conteúdo em JSON — edite aqui
-├── layouts/      # Base.astro (HTML shell)
-├── pages/        # index.astro (página principal)
-└── styles/       # global.css (todo o CSS)
-public/
-└── js/main.js    # Toda a interatividade
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-## Deploy
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Conecte o repositório GitHub no dashboard da Vercel.
-Build command: `npm run build` · Output: `dist/`
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

@@ -1,0 +1,83 @@
+---
+const platforms = [
+  'Amazon', 'Google Books', 'Apple Books', 'Kobo', 'Rakuten',
+  'Livraria Cultura', 'Saraiva', 'Barnes & Noble', 'Scribd', 'OverDrive',
+  'Fnac', 'Estante Virtual', 'Clube de Autores', 'Smashwords', 'Draft2Digital',
+];
+---
+
+<div class="trust-bar">
+  <div class="trust-inner container">
+    <span class="trust-label">Distribuição global em +40 plataformas</span>
+    <div class="trust-track-wrap" aria-hidden="true">
+      <div class="trust-track">
+        {platforms.map(p => <span class="trust-item">{p}</span>)}
+        {platforms.map(p => <span class="trust-item" aria-hidden="true">{p}</span>)}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .trust-bar {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+
+  .trust-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .trust-label {
+    font-family: var(--f-titles);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .trust-track-wrap {
+    overflow: hidden;
+    flex: 1;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .trust-track {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+    animation: scroll-track 30s linear infinite;
+  }
+
+  .trust-item {
+    font-family: var(--f-titles);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding: 4px 16px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    transition: color var(--dur);
+  }
+
+  @keyframes scroll-track {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 600px) {
+    .trust-label { display: none; }
+  }
+</style>

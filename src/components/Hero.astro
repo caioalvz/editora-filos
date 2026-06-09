@@ -1,248 +1,335 @@
 ---
-import site from '../data/site.json';
-const waStart = `https://wa.me/${site.whatsapp}?text=Quero%20publicar%20meu%20livro!`;
-const waCapa  = `https://wa.me/${site.whatsapp}?text=Quero%20uma%20capa%20para%20meu%20livro!`;
-const waDist  = `https://wa.me/${site.whatsapp}?text=Quero%20distribuir%20meu%20livro!`;
 ---
-<section class="hero-section" id="hero">
-  <div class="hero-dots"></div>
-  <div class="hero-deco-circle"></div>
-  <div class="hero-deco-triangle"></div>
-  <div class="hero-deco-pill"></div>
-  <div class="hero-deco-sq"></div>
+<section class="hero-section" id="inicio">
+  <div class="container hero-inner">
+    <div class="hero-text animate-on-scroll">
+      <span class="section-eyebrow">Editora especializada em autores brasileiros</span>
 
-  <div class="hero-slides-wrapper">
-    <div class="slides-container">
+      <h1>
+        DO MANUSCRITO<br />
+        AO LIVRO<br />
+        <span class="highlight">PUBLICADO</span>
+      </h1>
 
-      <!-- SLIDE 1 — Manuscrito ao livro -->
-      <div class="slide active" id="slide-0">
-        <div class="slide-text">
-          <div class="slide-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 Z"/></svg>
-            Editora Independente
-          </div>
-          <h1>Do <span class="highlight">manuscrito</span><br />ao livro publicado</h1>
-          <p>Somos parceiros editoriais de autores que levam a escrita a sério. Cada projeto recebe atenção, cuidado e o suporte técnico que ele merece.</p>
-          <div class="slide-actions">
-            <a href={waStart} class="btn-primary" target="_blank" rel="noopener">
-              Começar Agora
-              <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
-            </a>
-            <a href="#servicos" class="btn-secondary">Ver Serviços</a>
-          </div>
+      <p class="hero-subtitle">
+        Seu manuscrito transformado em obra global.<br />
+        Sem barreiras, sem burocracia.
+      </p>
+
+      <div class="hero-actions">
+        <a
+          href="https://wa.me/5581999999999?text=Olá%2C%20quero%20publicar%20meu%20livro%20com%20a%20Filos!"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 12.6a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Publicar meu livro
+        </a>
+        <a href="#servicos" class="btn-ghost">
+          Ver serviços
+          <span class="btn-icon"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </a>
+      </div>
+
+      <div class="hero-proof">
+        <div class="proof-badge">
+          <span class="proof-icon">📚</span>
+          <span class="proof-text"><strong>+40</strong> plataformas globais</span>
         </div>
-        <div class="slide-visual">
-          <div class="book-mockup-wrap">
-            <div class="book-mockup">
-              <!-- Livro aberto — ilustração editorial -->
-              <svg viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="display:block;">
-                <defs>
-                  <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#F5F5F2"/>
-                    <stop offset="100%" stop-color="#FAFAF8"/>
-                  </linearGradient>
-                </defs>
-                <rect width="280" height="380" fill="url(#pg1)"/>
-                <rect x="0" y="270" width="280" height="110" fill="#AAAAAA" opacity="0.15"/>
-                <rect x="28" y="95" width="224" height="168" rx="4" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1.5"/>
-                <line x1="140" y1="95" x2="140" y2="263" stroke="#CCCCCC" stroke-width="2.5"/>
-                <!-- left page lines -->
-                <line x1="46" y1="118" x2="128" y2="118" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="131" x2="128" y2="131" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="144" x2="128" y2="144" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="157" x2="110" y2="157" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="170" x2="128" y2="170" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="183" x2="128" y2="183" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="196" x2="100" y2="196" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="209" x2="128" y2="209" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="222" x2="118" y2="222" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="46" y1="235" x2="128" y2="235" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <!-- right page lines -->
-                <line x1="152" y1="118" x2="238" y2="118" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="131" x2="238" y2="131" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="144" x2="238" y2="144" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="157" x2="215" y2="157" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="170" x2="238" y2="170" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="183" x2="238" y2="183" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="196" x2="205" y2="196" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="209" x2="238" y2="209" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="222" x2="228" y2="222" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="152" y1="235" x2="238" y2="235" stroke="#DDDDDD" stroke-width="1.5" stroke-linecap="round"/>
-                <!-- bookmark -->
-                <polygon points="208,95 220,95 220,120 214,114 208,120" fill="#666666"/>
-                <!-- pen -->
-                <g transform="rotate(-28 200 300)">
-                  <rect x="192" y="258" width="9" height="55" rx="4.5" fill="#333333"/>
-                  <polygon points="192,313 201,313 196.5,328" fill="#999999"/>
-                </g>
-                <!-- mug -->
-                <rect x="28" y="278" width="38" height="34" rx="7" fill="#333333" opacity="0.85"/>
-                <path d="M66,286 Q80,286 80,293 Q80,300 66,300" fill="none" stroke="#333333" stroke-width="3.5" opacity="0.85"/>
-                <rect x="32" y="273" width="30" height="7" rx="3.5" fill="#EEEEEE"/>
-                <!-- deco shapes -->
-                <circle cx="244" cy="46" r="22" fill="#999999" opacity="0.35"/>
-                <circle cx="18" cy="340" r="14" fill="#666666" opacity="0.25"/>
-                <rect x="240" y="300" width="22" height="22" rx="5" fill="#AAAAAA" opacity="0.35" transform="rotate(15 251 311)"/>
-              </svg>
-            </div>
-            <div class="book-badge">
-              <span class="num">+200</span>
-              livros publicados
-            </div>
-          </div>
-          <div class="float-card pos1">✏️ Revisão profissional</div>
-          <div class="float-card pos2">📐 Diagramação premium</div>
+        <div class="proof-badge">
+          <span class="proof-icon">🏆</span>
+          <span class="proof-text"><strong>98%</strong> de satisfação</span>
+        </div>
+        <div class="proof-badge">
+          <span class="proof-icon">🌍</span>
+          <span class="proof-text"><strong>DOI</strong> Internacional</span>
         </div>
       </div>
 
-      <!-- SLIDE 2 — Design de capa -->
-      <div class="slide" id="slide-1">
-        <div class="slide-text">
-          <div class="slide-badge" style="background:var(--secondary);">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
-            Capas que Vendem
-          </div>
-          <h1>Design que faz<br />o leitor <span class="highlight">parar</span></h1>
-          <p>A capa do seu livro é a primeira conversa com o leitor. Criamos projetos gráficos únicos, com identidade visual forte e alinhados ao seu gênero literário.</p>
-          <div class="slide-actions">
-            <a href={waCapa} class="btn-primary" target="_blank" rel="noopener" style="background:var(--secondary);">
-              Pedir Orçamento
-              <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
-            </a>
-            <a href="#servicos" class="btn-secondary">Ver Exemplos</a>
-          </div>
-        </div>
-        <div class="slide-visual">
-          <div class="book-mockup-wrap">
-            <div class="book-mockup" style="box-shadow:var(--shadow-pink);">
-              <svg viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="display:block;">
-                <defs>
-                  <linearGradient id="pg2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#111111"/>
-                    <stop offset="100%" stop-color="#2A2A2A"/>
-                  </linearGradient>
-                </defs>
-                <rect width="280" height="380" fill="url(#pg2)"/>
-                <!-- grid lines -->
-                <line x1="0" y1="95" x2="280" y2="95" stroke="#ffffff" stroke-width="0.4" opacity="0.08"/>
-                <line x1="0" y1="190" x2="280" y2="190" stroke="#ffffff" stroke-width="0.4" opacity="0.08"/>
-                <line x1="93" y1="0" x2="93" y2="380" stroke="#ffffff" stroke-width="0.4" opacity="0.08"/>
-                <line x1="187" y1="0" x2="187" y2="380" stroke="#ffffff" stroke-width="0.4" opacity="0.08"/>
-                <!-- book covers stacked -->
-                <rect x="70" y="60" width="100" height="150" rx="4" fill="#444444" stroke="#888888" stroke-width="1" opacity="0.9"/>
-                <rect x="70" y="60" width="8" height="150" rx="2" fill="#222222" opacity="0.8"/>
-                <line x1="84" y1="82" x2="160" y2="82" stroke="#ffffff" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-                <circle cx="120" cy="145" r="28" fill="#ffffff" opacity="0.06"/>
-                <circle cx="120" cy="145" r="18" fill="#ffffff" opacity="0.08"/>
-                <!-- abstract title text -->
-                <rect x="84" y="92" width="66" height="10" rx="3" fill="#AAAAAA" opacity="0.5"/>
-                <rect x="84" y="108" width="50" height="7" rx="2" fill="#888888" opacity="0.4"/>
-                <!-- stacked smaller books -->
-                <rect x="155" y="100" width="60" height="90" rx="3" fill="#333333" stroke="#777777" stroke-width="1" opacity="0.7"/>
-                <rect x="40" y="110" width="35" height="80" rx="3" fill="#555555" stroke="#999999" stroke-width="1" opacity="0.6"/>
-                <!-- floating star shapes -->
-                <polygon points="230,50 234,62 246,62 237,70 240,82 230,75 220,82 223,70 214,62 226,62" fill="#AAAAAA" opacity="0.4"/>
-                <circle cx="50" cy="60" r="8" fill="#BBBBBB" opacity="0.2"/>
-                <!-- title block bottom -->
-                <rect x="20" y="250" width="240" height="100" rx="6" fill="rgba(255,255,255,0.05)"/>
-                <text x="140" y="278" font-size="18" font-weight="bold" fill="white" text-anchor="middle" font-family="Georgia,serif">Identidade Visual</text>
-                <text x="140" y="298" font-size="12" fill="rgba(255,255,255,0.5)" text-anchor="middle" font-family="Georgia,serif">para o seu livro</text>
-                <line x1="40" y1="308" x2="240" y2="308" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                <text x="140" y="330" font-size="10" fill="#AAAAAA" text-anchor="middle" font-family="Georgia,serif">Filos Editora — Design Editorial</text>
-              </svg>
-            </div>
-            <div class="book-badge" style="background:#EEEEEE;">
-              <span class="num">3</span>
-              propostas
-            </div>
-          </div>
-          <div class="float-card pos1" style="background:#444444;color:white;">🎨 Arte autoral</div>
-          <div class="float-card pos2" style="background:#EEEEEE;">📱 E-book + físico</div>
-        </div>
-      </div>
-
-      <!-- SLIDE 3 — Distribuição -->
-      <div class="slide" id="slide-2">
-        <div class="slide-text">
-          <div class="slide-badge" style="background:var(--fg);">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 01 4 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-            Distribuição Global
-          </div>
-          <h1>Seu livro nas <span class="highlight">mãos</span><br />dos leitores</h1>
-          <p>Distribuímos seu título na Amazon, Kobo, Google Books, Estante Virtual e mais de 40 plataformas nacionais e internacionais. Tudo cuidado por nós.</p>
-          <div class="slide-actions">
-            <a href={waDist} class="btn-primary" target="_blank" rel="noopener">
-              Distribuir Meu Livro
-              <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
-            </a>
-            <a href="#servicos" class="btn-secondary">Saiba Mais</a>
-          </div>
-        </div>
-        <div class="slide-visual">
-          <div class="book-mockup-wrap">
-            <div class="book-mockup">
-              <svg viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="display:block;">
-                <rect width="280" height="380" fill="#F5F5F2"/>
-                <!-- world map dots suggestion -->
-                <circle cx="80" cy="140" r="3" fill="#AAAAAA" opacity="0.5"/>
-                <circle cx="120" cy="120" r="3" fill="#888888" opacity="0.5"/>
-                <circle cx="160" cy="130" r="3" fill="#AAAAAA" opacity="0.5"/>
-                <circle cx="200" cy="115" r="3" fill="#999999" opacity="0.5"/>
-                <circle cx="100" cy="170" r="3" fill="#BBBBBB" opacity="0.4"/>
-                <circle cx="150" cy="160" r="3" fill="#AAAAAA" opacity="0.4"/>
-                <circle cx="190" cy="155" r="3" fill="#888888" opacity="0.4"/>
-                <!-- connection lines -->
-                <line x1="80" y1="140" x2="120" y2="120" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="4,4"/>
-                <line x1="120" y1="120" x2="200" y2="115" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="4,4"/>
-                <line x1="100" y1="170" x2="190" y2="155" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="4,4"/>
-                <!-- platform chips -->
-                <rect x="30" y="200" width="80" height="26" rx="13" fill="#111111" stroke="#111111"/>
-                <text x="70" y="218" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">Amazon KDP</text>
-                <rect x="120" y="200" width="60" height="26" rx="13" fill="#333333" stroke="#333333"/>
-                <text x="150" y="218" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">Kobo</text>
-                <rect x="190" y="200" width="70" height="26" rx="13" fill="#555555" stroke="#555555"/>
-                <text x="225" y="218" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">Google Books</text>
-                <rect x="50" y="238" width="90" height="26" rx="13" fill="#777777" stroke="#777777"/>
-                <text x="95" y="256" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">Estante Virtual</text>
-                <rect x="150" y="238" width="80" height="26" rx="13" fill="#999999" stroke="#999999"/>
-                <text x="190" y="256" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">+ 40 canais</text>
-                <!-- central book icon -->
-                <rect x="110" y="50" width="60" height="80" rx="4" fill="#111111"/>
-                <rect x="110" y="50" width="8" height="80" rx="2" fill="#000000" opacity="0.4"/>
-                <line x1="122" y1="68" x2="162" y2="68" stroke="white" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
-                <line x1="122" y1="78" x2="158" y2="78" stroke="white" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
-                <line x1="122" y1="88" x2="160" y2="88" stroke="white" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
-                <!-- arrow down from book to chips -->
-                <line x1="140" y1="132" x2="140" y2="192" stroke="#CCCCCC" stroke-width="1.5" stroke-dasharray="3,3"/>
-                <polygon points="134,188 140,198 146,188" fill="#CCCCCC"/>
-              </svg>
-            </div>
-            <div class="book-badge" style="background:#EEEEEE;">
-              <span class="num">+40</span>
-              plataformas
-            </div>
-          </div>
-          <div class="float-card pos1" style="background:#333333;color:white;">🌍 Global</div>
-          <div class="float-card pos2">📊 Royalties mensais</div>
-        </div>
-      </div>
-
-    </div><!-- /slides-container -->
-
-    <!-- SLIDES NAV -->
-    <div class="slides-nav">
-      <span class="slide-dot active" data-slide="0"></span>
-      <span class="slide-dot" data-slide="1"></span>
-      <span class="slide-dot" data-slide="2"></span>
-      <div class="slide-arrows">
-        <button class="arrow-btn" id="prevSlide" aria-label="Anterior">
-          <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="arrow-btn" id="nextSlide" aria-label="Próximo">
-          <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
+      <a href="#servicos" class="scroll-hint" aria-label="Como funciona">
+        Como funciona
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
     </div>
 
-  </div><!-- /hero-slides-wrapper -->
+    <div class="hero-visual animate-on-scroll" style="transition-delay:.15s">
+      <div class="hero-image-wrap">
+        <img
+          src="/images/hero-photo.webp"
+          alt="Autor segurando livro publicado pela Filos Editora"
+          class="hero-photo"
+          width="560"
+          height="680"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hero-image-glow" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-card hero-card-1">
+        <span class="hcard-num">+40</span>
+        <span class="hcard-label">plataformas globais</span>
+      </div>
+
+      <div class="hero-card hero-card-2">
+        <span class="hcard-num">98%</span>
+        <span class="hcard-label">satisfação dos autores</span>
+      </div>
+    </div>
+  </div>
 </section>
+
+<style>
+  .hero-section {
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 65% at 70% 50%, rgba(200,169,110,.06) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 70% at 5% 60%,  rgba(122,174,232,.03) 0%, transparent 55%);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+    min-height: calc(95vh - 80px);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Text column ── */
+  .hero-text { padding-bottom: 60px; }
+
+  .hero-text h1 {
+    margin: 0 0 1.25rem;
+    line-height: 0.95;
+  }
+
+  .hero-subtitle {
+    font-family: var(--f-body);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text2);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  /* Social proof badges */
+  .hero-proof {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .proof-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    padding: 6px 14px 6px 10px;
+    box-shadow: var(--sh-sm);
+  }
+
+  .proof-icon { font-size: 0.9rem; line-height: 1; }
+
+  .proof-text {
+    font-family: var(--f-titles);
+    font-size: 0.78rem;
+    color: var(--text2);
+  }
+
+  .proof-text strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--f-titles);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text3);
+    transition: color var(--dur);
+  }
+
+  .scroll-hint:hover { color: var(--gold); }
+
+  .scroll-hint svg {
+    width: 16px; height: 16px;
+    fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(4px); }
+  }
+
+  /* ── Visual column ── */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    min-height: 500px;
+  }
+
+  .hero-image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    align-self: flex-end;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: bottom center;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,.5));
+    position: relative;
+    z-index: 2;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 85%, transparent 100%),
+                linear-gradient(to left, transparent 0%, black 15%, black 100%);
+    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 85%, transparent 100%),
+                        linear-gradient(to left, transparent 0%, black 15%, black 100%);
+    -webkit-mask-composite: destination-in;
+  }
+
+  [data-theme="light"] .hero-photo {
+    filter: drop-shadow(0 20px 40px rgba(80,50,20,.22));
+  }
+
+  .hero-image-glow {
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    right: 10%;
+    height: 60px;
+    background: radial-gradient(ellipse, var(--gold-bg) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Floating stat cards */
+  .hero-card {
+    position: absolute;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--r-lg);
+    padding: 12px 18px;
+    box-shadow: var(--sh-md);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hcard-num {
+    font-family: var(--f-titles);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hcard-label {
+    font-family: var(--f-titles);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .hero-card-1 {
+    top: 20%;
+    left: -20px;
+    animation: float1 6s ease-in-out infinite;
+  }
+
+  .hero-card-2 {
+    bottom: 25%;
+    right: -10px;
+    animation: float2 7s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-card { animation: none; }
+    .scroll-hint svg { animation: none; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      min-height: unset;
+      padding-top: 20px;
+      padding-bottom: 40px;
+      gap: 40px;
+    }
+
+    .hero-text { padding-bottom: 0; }
+
+    .hero-visual {
+      min-height: 360px;
+      order: -1;
+    }
+
+    .hero-image-wrap { max-width: 320px; }
+    .hero-card-1 { left: 0; }
+    .hero-card-2 { right: 0; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-section { min-height: unset; padding: 60px 0 0; }
+    .hero-text h1 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
+    .hero-visual { min-height: 280px; }
+    .hero-image-wrap { max-width: 260px; }
+    .hero-actions { flex-direction: column; }
+    .hero-card { padding: 10px 14px; }
+    .hcard-num { font-size: 1.3rem; }
+  }
+</style>

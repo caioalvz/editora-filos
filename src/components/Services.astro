@@ -1,42 +1,315 @@
 ---
-import services from '../data/services.json';
-import site from '../data/site.json';
+const services = [
+  {
+    phase: '01',
+    color: 'p1',
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`,
+    title: 'Design Premium',
+    desc: 'Identidade visual completa para sua obra. Capa profissional, diagramação editorial e tipografia que fazem seu livro se destacar em qualquer prateleira.',
+    feats: ['Capa exclusiva autoral', 'Diagramação editorial profissional', 'Tipografia e espaçamento precisos', 'Versões para impressão e digital', 'Revisão ilimitada até aprovação'],
+  },
+  {
+    phase: '02',
+    color: 'p2',
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+    title: 'ISBN, Ficha & DOI',
+    desc: 'Registro completo e legítimo da sua obra. ISBN, ficha catalográfica e DOI Internacional para garantir a identidade acadêmica e comercial do seu livro.',
+    feats: ['ISBN nacional e internacional', 'Ficha catalográfica oficial', 'DOI Internacional (Crossref)', 'Depósito legal junto à Biblioteca Nacional', 'Certificado de registro da obra'],
+  },
+  {
+    phase: '03',
+    color: 'p3',
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>`,
+    title: 'Impressão & Distribuição Global',
+    desc: 'Seu livro disponível para o mundo. Impressão sob demanda com qualidade editorial e distribuição simultânea em mais de 40 plataformas internacionais.',
+    feats: ['Impressão sob demanda (POD)', 'Distribuição em +40 plataformas', 'Amazon, Google Books, Apple Books', 'Kobo, Scribd, OverDrive e mais', 'Versões eBook (ePub) e impresso'],
+  },
+  {
+    phase: '04',
+    color: 'p4',
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>`,
+    title: 'Posicionamento & Lançamento',
+    desc: 'Estratégia de marketing editorial para ampliar o alcance da sua obra. Presença digital, relações com imprensa e suporte ao lançamento.',
+    feats: ['Estratégia de lançamento editorial', 'Press release e assessoria de imprensa', 'Posicionamento em mecanismos de busca', 'Perfil do autor nas plataformas', 'Suporte pós-publicação'],
+  },
+];
 ---
+
 <section class="services-section" id="servicos">
   <div class="container">
-    <div class="fade-up">
-      <span class="section-label">O que oferecemos</span>
-      <h2 class="section-title">Serviços Editoriais</h2>
-      <p class="section-sub">Cada serviço foi pensado para um momento específico da sua jornada como autor — do texto bruto à obra nas prateleiras.</p>
+    <div class="section-header animate-on-scroll">
+      <span class="section-eyebrow">Nossas fases</span>
+      <h2>A JORNADA COMPLETA<br /><span class="highlight">DO SEU LIVRO</span></h2>
+      <p class="section-sub">Do rascunho ao livro publicado globalmente. Cada fase foi desenhada para garantir qualidade, identidade e alcance para a sua obra.</p>
     </div>
+
+    <!-- Process timeline -->
+    <div class="timeline animate-on-scroll" aria-hidden="true">
+      {services.map((s, i) => (
+        <div class={`tl-step tl-${s.color}`}>
+          <div class="tl-dot"></div>
+          <span class="tl-label">{s.title}</span>
+          {i < services.length - 1 && <div class="tl-line"></div>}
+        </div>
+      ))}
+    </div>
+
+    <!-- Services grid -->
     <div class="services-grid">
       {services.map((s, i) => (
-        <div class="service-card fade-up" style={"box-shadow:" + ({"revisao":"6px 6px 0 #666666","diagramacao":"6px 6px 0 #999999","capa":"6px 6px 0 #AAAAAA","isbn":"6px 6px 0 #333333","ebook":"6px 6px 0 #666666","consultoria":"6px 6px 0 #999999"})[s.id]}>
-          <div class="service-card-tag" style={"background:"+s.tag.bg+";color:"+s.tag.color}>{s.tag.label}</div>
-          <div class="service-icon-ring" style={"background:"+s.iconColor}>
-            <svg viewBox="0 0 24 24" set:html={{"revisao":"<path d='M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7'/><path d='M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z'/>","diagramacao":"<rect x='3' y='3' width='18' height='18' rx='2'/><path d='M3 9h18M9 21V9'/>","capa":"<circle cx='12' cy='12' r='10'/><path d='M8 14s1.5 2 4 2 4-2 4-2'/>","isbn":"<path d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z'/><polyline points='14 2 14 8 20 8'/>","ebook":"<rect x='5' y='2' width='14' height='20' rx='2'/><line x1='9' y1='7' x2='15' y2='7'/>","consultoria":"<path d='M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z'/>"}[s.id]}></svg>
+        <article class={`service-card sc-${s.color} animate-on-scroll`} style={`transition-delay:${i * 0.1}s`}>
+          <div class="sc-header">
+            <div class={`sc-badge badge-${s.color}`}>Fase {s.phase}</div>
+            <div class={`sc-icon icon-${s.color}`} set:html={s.icon} />
           </div>
-          <h3>{s.title}</h3>
-          <p>{s.description}</p>
-          <ul class="service-features">
-            {s.features.map(f => (
-              <li>
-                <span class="feature-check" style={"background:"+s.iconColor}>
-                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-                </span>
+          <h3 class="sc-title">{s.title}</h3>
+          <p class="sc-desc">{s.desc}</p>
+          <ul class="sc-feats" role="list">
+            {s.feats.map(f => (
+              <li class={`sc-feat feat-${s.color}`}>
+                <span class={`sc-dot dot-${s.color}`} aria-hidden="true"></span>
                 {f}
               </li>
             ))}
           </ul>
-          <a href={"https://wa.me/"+site.whatsapp+"?text="+encodeURIComponent(s.waMessage)}
-             class="btn-primary" style={"font-size:14px;padding:10px 20px;background:"+s.iconColor}
-             target="_blank" rel="noopener">
-            {s.cta}
-            <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+          <a
+            href={`https://wa.me/5581999999999?text=Olá!%20Tenho%20interesse%20na%20${encodeURIComponent(s.title)}%20da%20Filos.`}
+            class={`sc-cta cta-${s.color}`}
+            target="_blank"
+            rel="noopener"
+            aria-label={`Saber mais sobre ${s.title}`}
+          >
+            Saber mais
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <div class="service-card-deco" style={"background:"+s.iconColor}></div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .services-section { background: var(--bg); }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 { margin-bottom: 1rem; }
+
+  .section-header .section-sub {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 3rem;
+    padding: 0 40px;
+    overflow-x: auto;
+  }
+
+  .tl-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    min-width: 120px;
+  }
+
+  .tl-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid;
+    background: var(--bg2);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .tl-label {
+    font-family: var(--f-titles);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+    margin-top: 8px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .tl-line {
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background: var(--border2);
+  }
+
+  .tl-p1 .tl-dot { border-color: var(--p1); background: var(--p1b); }
+  .tl-p2 .tl-dot { border-color: var(--p2); background: var(--p2b); }
+  .tl-p3 .tl-dot { border-color: var(--p3); background: var(--p3b); }
+  .tl-p4 .tl-dot { border-color: var(--p4); background: var(--p4b); }
+
+  .tl-p1 .tl-label { color: var(--p1); }
+  .tl-p2 .tl-label { color: var(--p2); }
+  .tl-p3 .tl-label { color: var(--p3); }
+  .tl-p4 .tl-label { color: var(--p4); }
+
+  /* Cards grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: var(--sh-sm);
+    transition: all var(--dur) var(--ease);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh-lg);
+    border-color: var(--border2);
+  }
+
+  .sc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sc-badge {
+    font-family: var(--f-titles);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    border: 1px solid;
+  }
+
+  .badge-p1 { background: var(--p1b); color: var(--p1); border-color: var(--p1e); }
+  .badge-p2 { background: var(--p2b); color: var(--p2); border-color: var(--p2e); }
+  .badge-p3 { background: var(--p3b); color: var(--p3); border-color: var(--p3e); }
+  .badge-p4 { background: var(--p4b); color: var(--p4); border-color: var(--p4e); }
+
+  .sc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+
+  .sc-icon :global(svg) {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .icon-p1 { background: var(--p1b); border-color: var(--p1e); }
+  .icon-p1 :global(svg) { stroke: var(--p1); }
+  .icon-p2 { background: var(--p2b); border-color: var(--p2e); }
+  .icon-p2 :global(svg) { stroke: var(--p2); }
+  .icon-p3 { background: var(--p3b); border-color: var(--p3e); }
+  .icon-p3 :global(svg) { stroke: var(--p3); }
+  .icon-p4 { background: var(--p4b); border-color: var(--p4e); }
+  .icon-p4 :global(svg) { stroke: var(--p4); }
+
+  .sc-title { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+
+  .sc-desc {
+    font-family: var(--f-body);
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.72;
+    flex: 1;
+  }
+
+  .sc-feats { display: flex; flex-direction: column; gap: 7px; }
+
+  .sc-feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-family: var(--f-titles);
+    font-size: 0.78rem;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .sc-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .dot-p1 { background: var(--p1); }
+  .dot-p2 { background: var(--p2); }
+  .dot-p3 { background: var(--p3); }
+  .dot-p4 { background: var(--p4); }
+
+  .sc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-titles);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: var(--r-pill);
+    border: 1px solid;
+    transition: all var(--dur) var(--ease);
+    width: fit-content;
+    min-height: 44px;
+  }
+
+  .sc-cta svg {
+    width: 14px; height: 14px;
+    fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    transition: transform var(--dur);
+  }
+
+  .sc-cta:hover svg { transform: translateX(4px); }
+
+  .cta-p1 { background: var(--p1b); color: var(--p1); border-color: var(--p1e); }
+  .cta-p1:hover { background: rgba(122,174,232,.22); }
+  .cta-p2 { background: var(--p2b); color: var(--p2); border-color: var(--p2e); }
+  .cta-p2:hover { background: rgba(110,207,181,.22); }
+  .cta-p3 { background: var(--p3b); color: var(--p3); border-color: var(--p3e); }
+  .cta-p3:hover { background: rgba(212,184,90,.22); }
+  .cta-p4 { background: var(--p4b); color: var(--p4); border-color: var(--p4e); }
+  .cta-p4:hover { background: rgba(180,138,224,.22); }
+
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .timeline { display: none; }
+  }
+</style>

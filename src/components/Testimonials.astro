@@ -1,33 +1,206 @@
 ---
-import testimonials from '../data/testimonials.json';
+const testimonials = [
+  {
+    quote: 'A Filos transformou meu manuscrito numa obra que me orgulha. O processo foi tranquilo, profissional e o resultado superou todas as minhas expectativas. Meu livro está hoje em 40 plataformas!',
+    name: 'Ana Carvalho',
+    role: 'Autora de Ficção Científica',
+    initials: 'AC',
+    stars: 5,
+    featured: true,
+  },
+  {
+    quote: 'Como pesquisador acadêmico, precisava de um parceiro que entendesse a seriedade do processo editorial. A Filos entregou tudo dentro do prazo, com DOI Internacional e ficha catalográfica impecável.',
+    name: 'Dr. Marcos Silveira',
+    role: 'Pesquisador — UFPE',
+    initials: 'MS',
+    stars: 5,
+    featured: false,
+  },
+  {
+    quote: 'Publiquei meu primeiro livro com a Filos e não poderia ter escolhido melhor. O design da capa é lindo, a distribuição é global e o suporte da equipe foi incrível durante todo o processo.',
+    name: 'Júlia Mendes',
+    role: 'Escritora — Gênero Romance',
+    initials: 'JM',
+    stars: 5,
+    featured: false,
+  },
+];
 ---
-<section class="testimonials-section" id="depoimentos">
-  <div class="testimonials-bg-deco"></div>
-  <div class="testimonials-bg-deco2"></div>
+
+<section class="testi-section" id="depoimentos">
   <div class="container">
-    <div class="fade-up" style="margin-bottom:3rem;">
-      <span class="section-label">Depoimentos</span>
-      <h2 class="section-title">O que dizem nossos autores</h2>
-      <p class="section-sub">Cada livro publicado é uma parceria. Veja o que os autores que confiaram na Filos têm a dizer.</p>
+    <div class="section-header animate-on-scroll">
+      <span class="section-eyebrow">Depoimentos</span>
+      <h2>O QUE NOSSOS<br /><span class="highlight">AUTORES DIZEM</span></h2>
+      <p class="section-sub">Autores reais, resultados reais. Conheça as histórias de quem já publicou com a Filos.</p>
     </div>
+
     <div class="testi-grid">
       {testimonials.map((t, i) => (
-        <div class={"testi-card fade-up" + (t.featured ? " featured" : "") + " d" + ((i % 3) + 1)}>
-          <div class="testi-quote-mark">"</div>
-          <div class="stars">
-            <div class="star"></div><div class="star"></div><div class="star"></div>
-            <div class="star"></div><div class="star"></div>
+        <article
+          class={`testi-card ${t.featured ? 'featured' : ''} animate-on-scroll`}
+          style={`transition-delay:${i * 0.12}s`}
+          aria-label={`Depoimento de ${t.name}`}
+        >
+          <div class="testi-quote" aria-hidden="true">"</div>
+
+          <div class="stars" role="img" aria-label={`${t.stars} estrelas`}>
+            {Array.from({ length: t.stars }).map(() => (
+              <span class="star" aria-hidden="true"></span>
+            ))}
           </div>
-          <p class="testi-text">"{t.text}"</p>
+
+          <blockquote class="testi-text">"{t.quote}"</blockquote>
+
           <div class="testi-author">
-            <div class="testi-avatar" style={"background:"+t.avatarBg+";color:"+t.avatarColor}>{t.initials}</div>
+            <div class="testi-avatar" aria-hidden="true">{t.initials}</div>
             <div>
               <span class="testi-name">{t.name}</span>
               <span class="testi-role">{t.role}</span>
             </div>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .testi-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 { margin-bottom: 1rem; }
+
+  .section-header .section-sub { margin: 0 auto; text-align: center; }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 3rem;
+  }
+
+  .testi-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 28px;
+    box-shadow: var(--sh-sm);
+    transition: all var(--dur) var(--ease);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .testi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sh-lg);
+    border-color: var(--border2);
+  }
+
+  .testi-card.featured {
+    border-color: var(--gold-bd);
+    background: var(--bg4);
+    position: relative;
+  }
+
+  .testi-card.featured::before {
+    content: 'Destaque';
+    position: absolute;
+    top: -1px;
+    right: 24px;
+    font-family: var(--f-titles);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #1a1208;
+    padding: 3px 10px;
+    border-radius: 0 0 var(--r-sm) var(--r-sm);
+  }
+
+  .testi-quote {
+    font-family: var(--f-titles);
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.35;
+    line-height: 1;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .stars { display: flex; gap: 4px; }
+
+  .star {
+    width: 13px;
+    height: 13px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    display: block;
+  }
+
+  .testi-text {
+    font-family: var(--f-body);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.78;
+    flex: 1;
+  }
+
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .testi-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-bg), var(--bg2));
+    border: 1px solid var(--gold-bd);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--f-titles);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .testi-name {
+    display: block;
+    font-family: var(--f-titles);
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+
+  .testi-role {
+    display: block;
+    font-family: var(--f-titles);
+    font-size: 0.72rem;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .testi-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .testi-grid { grid-template-columns: 1fr; }
+  }
+</style>

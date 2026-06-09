@@ -1,0 +1,263 @@
+---
+const faqs = [
+  {
+    q: 'Preciso ter meu manuscrito finalizado para iniciar o processo?',
+    a: 'Não é necessário ter o manuscrito 100% finalizado. Podemos iniciar com o design e o planejamento editorial enquanto você realiza os ajustes finais. Entre em contato e vamos avaliar juntos o estágio do seu projeto.',
+  },
+  {
+    q: 'Quanto tempo leva para publicar meu livro?',
+    a: 'O prazo varia conforme as fases contratadas. Em geral, o processo completo — do design à distribuição global — leva entre 30 e 60 dias. A fase de ISBN e DOI tem prazo independente dos órgãos reguladores, mas geralmente é concluída em até 15 dias úteis.',
+  },
+  {
+    q: 'Vocês trabalham com impressão sob demanda (POD)?',
+    a: 'Sim! Trabalhamos com impressão sob demanda, o que significa que não é necessário imprimir um grande estoque antecipadamente. Seu livro é impresso conforme os pedidos chegam, tanto no Brasil quanto no exterior.',
+  },
+  {
+    q: 'Quais plataformas recebem meu livro na distribuição?',
+    a: 'Distribuímos para mais de 40 plataformas globais, incluindo Amazon (Kindle e impresso), Google Books, Apple Books, Kobo, Scribd, OverDrive, Barnes & Noble, Livraria Cultura, Saraiva e muitas outras no Brasil e no mundo.',
+  },
+  {
+    q: 'Vocês fazem revisão do texto (correção gramatical)?',
+    a: 'Oferecemos parceria com revisores especializados mediante cotação adicional. O pacote padrão da Filos inclui revisão de diagramação e design, garantindo que o texto se apresente com excelência visual.',
+  },
+  {
+    q: 'Como funciona o DOI Internacional?',
+    a: 'O DOI (Digital Object Identifier) é um identificador único que garante a identidade digital permanente da sua obra na internet. Ele é essencial para obras acadêmicas, facilitando citações e localizações em bases de dados internacionais. A Filos realiza o registro junto à Crossref.',
+  },
+  {
+    q: 'Posso publicar um livro que já foi publicado anteriormente?',
+    a: 'Depende das condições do contrato anterior. Se você possui todos os direitos sobre a obra, é possível republicar com a Filos. Nos envie as informações sobre a situação atual do livro e nossa equipe avaliará o caso.',
+  },
+  {
+    q: 'Qual é o investimento para publicar com a Filos?',
+    a: 'O investimento varia conforme as fases contratadas e as especificidades do seu projeto. Trabalhamos com pacotes personalizados. Entre em contato para receber uma proposta adequada ao seu livro.',
+  },
+];
+---
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-photo-col animate-on-scroll">
+        <div class="faq-photo-stage">
+          <img
+            src="/images/faq-photo.webp"
+            alt="Equipe Filos Editora pronta para responder suas dúvidas"
+            class="faq-photo"
+            width="420"
+            height="520"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="faq-badge">
+            <span class="faq-badge-num">+8</span>
+            <span class="faq-badge-txt">Perguntas respondidas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-content animate-on-scroll" style="transition-delay:.15s">
+        <span class="section-eyebrow">Dúvidas frequentes</span>
+        <h2>PERGUNTAS<br /><span class="highlight">E RESPOSTAS</span></h2>
+        <p class="section-sub">Tire suas dúvidas sobre o processo editorial. Se não encontrar o que procura, estamos a uma mensagem de distância.</p>
+
+        <div class="faq-list" role="list">
+          {faqs.map((item, i) => (
+            <details class="faq-item" role="listitem">
+              <summary class="faq-trigger" aria-label={item.q}>
+                <span class="faq-q">{item.q}</span>
+                <span class="faq-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </summary>
+              <div class="faq-answer">
+                <p>{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="faq-cta">
+          <p>Ainda tem dúvidas?</p>
+          <a
+            href="https://wa.me/5581999999999?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20publicação."
+            class="btn-primary"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 12.6a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Perguntar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Photo column */
+  .faq-photo-col { position: relative; }
+
+  .faq-photo-stage {
+    position: sticky;
+    top: 90px;
+    position: -webkit-sticky;
+  }
+
+  .faq-photo {
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-xl);
+    object-fit: cover;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,.4));
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+
+  [data-theme="light"] .faq-photo {
+    filter: drop-shadow(0 12px 28px rgba(80,50,20,.18));
+  }
+
+  .faq-badge {
+    position: absolute;
+    bottom: 24px;
+    right: -16px;
+    background: var(--bg3);
+    border: 1px solid var(--gold-bd);
+    border-radius: var(--r-lg);
+    padding: 12px 18px;
+    box-shadow: var(--sh-md);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .faq-badge-num {
+    font-family: var(--f-titles);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .faq-badge-txt {
+    font-family: var(--f-titles);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+  }
+
+  /* FAQ content */
+  .faq-content h2 { margin-bottom: 1rem; }
+  .faq-content .section-sub { margin-bottom: 2rem; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+
+  /* Native details/summary */
+  .faq-item {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    transition: border-color var(--dur), box-shadow var(--dur);
+  }
+
+  .faq-item[open] {
+    border-color: var(--gold-bd);
+    box-shadow: var(--sh-sm);
+  }
+
+  .faq-trigger {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--dur);
+  }
+
+  .faq-trigger::-webkit-details-marker { display: none; }
+
+  .faq-trigger:hover { background: var(--bg4); }
+
+  .faq-q {
+    font-family: var(--f-titles);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold-bg);
+    border: 1px solid var(--gold-bd);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .faq-icon svg {
+    width: 14px; height: 14px;
+    fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  details[open] .faq-icon { transform: rotate(180deg); }
+
+  .faq-answer {
+    padding: 0 20px 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-answer p {
+    font-family: var(--f-body);
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.78;
+    padding-top: 14px;
+  }
+
+  /* Footer CTA */
+  .faq-cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-cta p {
+    font-family: var(--f-titles);
+    font-size: 0.9rem;
+    color: var(--text2);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .faq-layout { grid-template-columns: 1fr; gap: 40px; }
+    .faq-photo-col { display: none; }
+    .faq-photo-stage { position: static; }
+  }
+</style>
