@@ -1,89 +1,66 @@
 ---
 ---
-<section class="cta-section" aria-labelledby="cta-heading">
-  <div class="container">
-    <div class="cta-inner animate-on-scroll">
-      <div class="cta-glow" aria-hidden="true"></div>
-      <span class="section-eyebrow">Próximo passo</span>
-      <h2 id="cta-heading">SEU LIVRO ESTÁ<br /><span class="highlight">ESPERANDO POR VOCÊ</span></h2>
-      <p class="section-sub cta-sub">
-        Fale com nossa equipe. Conte sobre o seu projeto e vamos encontrar o caminho certo para a sua publicação global.
-      </p>
-      <div class="cta-actions">
-        <a
-          href="https://wa.me/5581999999999?text=Olá!%20Vim%20pelo%20site%20e%20quero%20publicar%20meu%20livro."
-          class="btn-primary"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 12.6a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Falar no WhatsApp
-        </a>
-        <a href="#contato" class="btn-ghost">
-          Enviar mensagem
-          <span class="btn-icon"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-        </a>
-      </div>
+<section class="cta" aria-labelledby="cta-heading">
+  <div class="container cta-inner reveal">
+    <h2 id="cta-heading">Seu manuscrito<br />merece ser <span class="cta-tone">publicado</span></h2>
+    <p class="prose cta-sub">
+      Fale com nossa equipe. Conte sobre o seu projeto e vamos encontrar o
+      caminho certo para a sua publicação global.
+    </p>
+    <div class="cta-actions">
+      <a
+        href="https://wa.me/5581999999999?text=Olá!%20Vim%20pelo%20site%20e%20quero%20publicar%20meu%20livro."
+        class="btn-fill"
+        target="_blank"
+        rel="noopener"
+      >
+        Falar no WhatsApp
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </a>
+      <a href="#contato" class="link-line">Enviar mensagem</a>
     </div>
   </div>
 </section>
 
 <style>
-  .cta-section {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    padding: 80px 0;
+  .cta {
+    background: var(--ink-8);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(89px, 13vw, 160px) 0;
   }
 
   .cta-inner {
-    background: var(--bg3);
-    border: 1px solid var(--gold-bd);
-    border-radius: var(--r-xl);
-    padding: 64px;
     text-align: center;
-    box-shadow: var(--sh-lg);
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
-  .cta-glow {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, var(--gold-bg) 0%, transparent 65%);
-    top: -200px;
-    right: -100px;
-    pointer-events: none;
-  }
-
-  .cta-inner .section-eyebrow { position: relative; z-index: 1; }
 
   .cta-inner h2 {
-    position: relative;
-    z-index: 1;
-    margin-bottom: 1rem;
+    font-size: clamp(2.3rem, 5.2vw, 4.2rem);
+    margin-bottom: var(--sp-3);
+  }
+
+  .cta-tone {
+    font-style: italic;
+    color: var(--tone);
   }
 
   .cta-sub {
-    margin: 0 auto 2rem;
-    text-align: center;
-    position: relative;
-    z-index: 1;
+    margin: 0 auto var(--sp-4);
+    max-width: 44ch;
   }
 
   .cta-actions {
     display: flex;
-    gap: 12px;
-    justify-content: center;
+    align-items: center;
+    gap: var(--sp-4);
     flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
+    justify-content: center;
   }
 
-  @media (max-width: 600px) {
-    .cta-inner { padding: 40px 24px; }
-    .cta-actions { flex-direction: column; align-items: stretch; }
-    .cta-actions .btn-primary,
-    .cta-actions .btn-ghost { justify-content: center; }
+  @media (max-width: 480px) {
+    .cta-actions { flex-direction: column; gap: var(--sp-3); }
   }
 </style>
