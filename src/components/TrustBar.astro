@@ -6,9 +6,9 @@ const platforms = [
 ];
 ---
 
-<div class="trust-bar">
+<div class="trust-strip">
   <div class="trust-inner container">
-    <span class="trust-label">Distribuição global em +40 plataformas</span>
+    <span class="trust-label meta">Distribuição em +40 plataformas&ensp;—</span>
     <div class="trust-track-wrap" aria-hidden="true">
       <div class="trust-track">
         {platforms.map(p => <span class="trust-item">{p}</span>)}
@@ -19,62 +19,61 @@ const platforms = [
 </div>
 
 <style>
-  .trust-bar {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 0;
+  .trust-strip {
+    border-bottom: 1px solid var(--line);
+    padding: 15px 0;
     overflow: hidden;
+    background: var(--ink-8);
   }
 
   .trust-inner {
     display: flex;
-    align-items: center;
-    gap: 32px;
+    align-items: baseline;
+    gap: 21px;
   }
 
   .trust-label {
-    font-family: var(--f-titles);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text3);
     white-space: nowrap;
     flex-shrink: 0;
+    font-style: italic;
   }
 
   .trust-track-wrap {
     overflow: hidden;
     flex: 1;
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
 
   .trust-track {
     display: flex;
-    gap: 32px;
+    align-items: baseline;
     width: max-content;
-    animation: scroll-track 30s linear infinite;
+    animation: scroll-track 38s linear infinite;
   }
 
   .trust-item {
-    font-family: var(--f-titles);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--text3);
-    letter-spacing: 0.05em;
+    font-family: var(--f-text);
+    font-style: italic;
+    font-size: 0.84rem;
+    color: var(--ink-3);
     white-space: nowrap;
-    padding: 4px 16px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--r-pill);
-    transition: color var(--dur);
+  }
+
+  .trust-item::after {
+    content: '·';
+    margin: 0 1.1em;
+    color: var(--ink-5);
+    font-style: normal;
   }
 
   @keyframes scroll-track {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trust-track { animation: none; }
   }
 
   @media (max-width: 600px) {

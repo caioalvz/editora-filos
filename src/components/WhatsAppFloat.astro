@@ -28,7 +28,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 20px rgba(37,211,102,.45), 0 0 0 4px rgba(37,211,102,.12);
-    transition: all var(--dur) var(--ease);
+    transition: all var(--dur) var(--ease-out);
     text-decoration: none;
   }
 
@@ -63,19 +63,18 @@
   .wa-tooltip {
     position: absolute;
     right: 68px;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    color: var(--text);
-    font-family: var(--f-titles);
+    background: var(--ink-7);
+    border: 1px solid var(--line-strong);
+    color: var(--ink-1);
+    font-family: var(--f-display);
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 500;
     padding: 7px 12px;
-    border-radius: var(--r-md);
+    border-radius: 2px;
     white-space: nowrap;
-    box-shadow: var(--sh-md);
     opacity: 0;
     transform: translateX(8px);
-    transition: all var(--dur) var(--ease);
+    transition: all var(--dur) var(--ease-out);
     pointer-events: none;
   }
 
@@ -86,7 +85,7 @@
     top: 50%;
     transform: translateY(-50%);
     border: 5px solid transparent;
-    border-left-color: var(--border2);
+    border-left-color: var(--line-strong);
   }
 
   .wa-float:hover .wa-tooltip,

@@ -1,165 +1,111 @@
 ---
-const stats = [
-  { num: '+40',  label: 'Plataformas globais' },
-  { num: '98%',  label: 'Taxa de satisfação' },
-  { num: 'ISBN', label: 'E DOI garantidos' },
-  { num: '5★',   label: 'Avaliação média' },
-];
 ---
 
-<section class="about-section" id="sobre">
-  <div class="container">
-    <div class="about-wrap">
-      <div class="about-photo-col animate-on-scroll">
-        <div class="about-photo-stage">
-          <img
-            src="/images/about-photo.webp"
-            alt="Equipe editorial da Filos Editora"
-            class="about-photo"
-            width="480"
-            height="580"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
+<section class="about" id="sobre">
+  <div class="container about-wrap">
+    <div class="about-photo-col reveal">
+      <img
+        src="/images/about-photo.webp"
+        alt="Equipe editorial da Filos Editora"
+        class="about-photo"
+        width="480"
+        height="580"
+        loading="lazy"
+        decoding="async"
+      />
+      <p class="meta about-caption">A equipe editorial da Filos</p>
+    </div>
 
-      <div class="about-text-col animate-on-scroll" style="transition-delay:.15s">
-        <span class="section-eyebrow">Sobre a Filos</span>
-        <h2>PARCEIROS EDITORIAIS<br /><span class="highlight">DE QUEM ESCREVE SÉRIO</span></h2>
+    <div class="about-text-col reveal" style="transition-delay:.1s">
+      <h2>Parceiros editoriais<br />de quem escreve sério</h2>
 
-        <p>A Filos Editora nasceu da convicção de que todo autor merece uma publicação à altura da sua história. Somos um time de especialistas editoriais dedicados a transformar manuscritos em obras que chegam ao mundo com qualidade, identidade e presença.</p>
+      <p class="prose about-lead">A Filos Editora nasceu da convicção de que todo autor merece uma publicação à altura da sua história. Somos um time de especialistas editoriais dedicados a transformar manuscritos em obras que chegam ao mundo com qualidade, identidade e presença.</p>
 
-        <p>Trabalhamos com autores de todas as áreas — do romance à pesquisa acadêmica — oferecendo uma jornada editorial completa, do design da capa ao lançamento digital. Cada livro que publicamos recebe atenção individual e tratamento profissional.</p>
+      <p class="prose">Trabalhamos com autores de todas as áreas, do romance à pesquisa acadêmica, oferecendo uma jornada editorial completa, do design da capa ao lançamento digital. Cada livro que publicamos recebe atenção individual e tratamento profissional.</p>
 
-        <p>Não somos uma plataforma de autopublicação automatizada. Somos parceiros editoriais que se importam com o impacto da sua obra.</p>
+      <p class="about-note">Não somos uma plataforma de autopublicação automatizada. Distribuímos em mais de 40 plataformas globais, com ISBN, DOI e 98% de satisfação dos nossos autores.</p>
 
-        <div class="about-stats">
-          {stats.map(s => (
-            <div class="stat-box">
-              <span class="stat-num">{s.num}</span>
-              <span class="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-
-        <a
-          href="https://wa.me/5581999999999?text=Olá!%20Quero%20conhecer%20melhor%20a%20Filos%20Editora."
-          class="btn-primary about-cta"
-          target="_blank"
-          rel="noopener"
-        >
-          Converse com nossa equipe
-          <span class="btn-icon"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-        </a>
-      </div>
+      <a
+        href="https://wa.me/5581999999999?text=Olá!%20Quero%20conhecer%20melhor%20a%20Filos%20Editora."
+        class="btn-fill about-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        Converse com nossa equipe
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
 <style>
-  .about-section {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
+  .about {
+    background: var(--ink-8);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(72px, 10vw, 123px) 0;
     overflow: hidden;
   }
 
   .about-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(34px, 7vw, 89px);
     align-items: center;
   }
 
-  /* Photo column */
-  .about-photo-col { position: relative; }
-
-  .about-photo-stage {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    height: 560px;
-    margin-left: -28px;
-  }
-
   .about-photo {
-    height: 100%;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    object-position: bottom center;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 24px 48px rgba(0,0,0,.45));
-    mask-image:
-      linear-gradient(to bottom, transparent 0%, black 8%, black 90%, transparent 100%),
-      linear-gradient(to right, black 70%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0%, black 8%, black 90%, transparent 100%),
-      linear-gradient(to right, black 70%, transparent 100%);
-    -webkit-mask-composite: destination-in;
+    width: 100%;
+    height: auto;
+    filter: grayscale(0.25) sepia(0.12) drop-shadow(0 21px 42px rgba(8,5,1,.55));
+    mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
   }
 
-  [data-theme="light"] .about-photo {
-    filter: drop-shadow(0 16px 32px rgba(80,50,20,.20));
+  .about-caption {
+    margin-top: var(--sp-2);
+    text-align: center;
   }
 
-  /* Text column */
-  .about-text-col { position: relative; z-index: 4; }
+  .about-text-col h2 { margin-bottom: var(--sp-4); }
 
-  .about-text-col h2 { margin-bottom: 1.5rem; }
+  .about-text-col .prose { margin-bottom: var(--sp-3); }
 
-  .about-text-col p {
-    color: var(--text2);
-    margin-bottom: 1.25rem;
-    line-height: 1.8;
-  }
-
-  /* Stats */
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 2rem 0;
-  }
-
-  .stat-box {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 20px;
-    box-shadow: var(--sh-sm);
-    transition: all var(--dur);
-  }
-
-  .stat-box:hover { transform: translateY(-3px); box-shadow: var(--sh-md); }
-
-  .stat-num {
-    display: block;
-    font-family: var(--f-titles);
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .stat-label {
-    display: block;
-    font-family: var(--f-titles);
-    font-size: 0.7rem;
+  /* capitular editorial no parágrafo de abertura */
+  .about-lead::first-letter {
+    font-family: var(--f-display);
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text3);
+    font-size: 3.4em;
+    line-height: 0.82;
+    float: left;
+    padding: 5px 12px 0 0;
+    color: var(--tone);
   }
 
-  .about-cta { margin-top: 0.5rem; }
+  /* nota editorial, recuada como citação */
+  .about-note {
+    font-style: italic;
+    color: var(--ink-1);
+    font-size: 1.02rem;
+    line-height: 1.78;
+    margin: var(--sp-4) 0;
+    padding-left: var(--sp-4);
+    max-width: 52ch;
+  }
 
-  /* Responsive */
+  .about-note::before {
+    content: '※';
+    display: block;
+    color: var(--ink-3);
+    font-style: normal;
+    margin-bottom: 5px;
+    margin-left: calc(-1 * var(--sp-4));
+  }
+
+  .about-cta { margin-top: var(--sp-2); }
+
   @media (max-width: 900px) {
-    .about-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .about-wrap { grid-template-columns: 1fr; }
     .about-photo-col { display: none; }
   }
 </style>

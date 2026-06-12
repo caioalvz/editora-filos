@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-09T00:00:00Z",
+  "title": "Design System: Filos Editora",
+  "extensions": {
+    "colorMeta": {
+      "ink-deep":      { "role": "neutral",  "displayName": "Ink Deep",        "canonical": "#1b1814", "tonalRamp": ["#0d0c0a","#1b1814","#2b2722","#3c3830","#4e4a40","#635850","#a09080","#f2ede6"] },
+      "ink-surface":   { "role": "neutral",  "displayName": "Ink Surface",     "canonical": "#221f1b", "tonalRamp": ["#0d0c0a","#1b1814","#221f1b","#2b2722","#3c3830","#4e4a40","#a09080","#f2ede6"] },
+      "ink-raised":    { "role": "neutral",  "displayName": "Ink Raised",      "canonical": "#2b2722", "tonalRamp": ["#0d0c0a","#1b1814","#221f1b","#2b2722","#333028","#4e4a40","#a09080","#f2ede6"] },
+      "ink-elevated":  { "role": "neutral",  "displayName": "Ink Elevated",    "canonical": "#333028", "tonalRamp": ["#0d0c0a","#1b1814","#2b2722","#333028","#4e4a40","#635850","#a09080","#f2ede6"] },
+      "gold":          { "role": "primary",  "displayName": "Aged Gold",       "canonical": "#c8a96e", "tonalRamp": ["#3d2e10","#5a4520","#7a5f30","#9a7a48","#c8a96e","#d9c090","#e8d8b4","#f5eed8"] },
+      "text-primary":  { "role": "neutral",  "displayName": "Parchment",       "canonical": "#f2ede6", "tonalRamp": ["#1b1814","#3c3830","#635850","#a09080","#c8b8a8","#ddd4c8","#ede8e2","#f2ede6"] },
+      "text-secondary":{ "role": "neutral",  "displayName": "Weathered Ochre", "canonical": "#a09080", "tonalRamp": ["#2a2020","#3d3028","#524038","#6b5548","#a09080","#b8a898","#d0c8c0","#f0ede8"] },
+      "text-muted":    { "role": "neutral",  "displayName": "Faded Sepia",     "canonical": "#635850", "tonalRamp": ["#1a1410","#2b2318","#3c3028","#504038","#635850","#8a7870","#b0a898","#e8e0d8"] },
+      "accent-blue":   { "role": "secondary","displayName": "Blueprint Blue",  "canonical": "#7aaee8", "tonalRamp": ["#0f2040","#1a3860","#2a5490","#4880c8","#7aaee8","#9ec4f0","#c0d8f8","#e8f2ff"] },
+      "accent-teal":   { "role": "secondary","displayName": "Archive Teal",    "canonical": "#6ecfb5", "tonalRamp": ["#0d2820","#186050","#228068","#44a888","#6ecfb5","#90ddc8","#b4ece0","#dff8f2"] },
+      "accent-amber":  { "role": "secondary","displayName": "Manuscript Amber","canonical": "#d4b85a", "tonalRamp": ["#302010","#504018","#706028","#987838","#d4b85a","#e0cc80","#ecd8a8","#f8f0d8"] },
+      "accent-violet": { "role": "tertiary", "displayName": "Colophon Violet", "canonical": "#b48ae0", "tonalRamp": ["#200838","#3a1060","#542888","#7848b8","#b48ae0","#caa8ec","#ddc8f4","#f2ecfc"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero h1 only. Maximum impact, minimum usage." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2. Primary structural marker per section." },
+      "title":    { "displayName": "Title", "purpose": "Card headings, service names, h3 within sections." },
+      "body":     { "displayName": "Body", "purpose": "All prose copy in Lora. The brand's literary register." },
+      "label":    { "displayName": "Label", "purpose": "Eyebrow chips, stat labels, nav links. Outfit only." }
+    },
+    "shadows": [
+      { "name": "shadow-sm", "value": "0 2px 12px rgba(0,0,0,.4)", "purpose": "Badges, chips, tight inline elements." },
+      { "name": "shadow-md", "value": "0 8px 32px rgba(0,0,0,.5)", "purpose": "Cards, floating panels, modals." },
+      { "name": "shadow-lg", "value": "0 20px 64px rgba(0,0,0,.6)", "purpose": "Hero sections, page-level overlays." },
+      { "name": "gold-glow", "value": "0 6px 24px rgba(200,169,110,.30)", "purpose": "Primary button only. Warm emanation from CTA." },
+      { "name": "gold-glow-hover", "value": "0 10px 32px rgba(200,169,110,.45)", "purpose": "Primary button hover state." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4,0,0.2,1)", "purpose": "Default easing for state transitions." },
+      { "name": "duration-fast", "value": "0.25s", "purpose": "Button/link hover, nav state changes." },
+      { "name": "duration-reveal", "value": "0.55s", "purpose": "Scroll-triggered fade-up entrance." },
+      { "name": "float-slow", "value": "6s ease-in-out infinite", "purpose": "Hero stat card 1 float loop." },
+      { "name": "float-medium", "value": "7s ease-in-out infinite", "purpose": "Hero stat card 2 float loop." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "480px" },
+      { "name": "tablet", "value": "768px" },
+      { "name": "desktop-sm", "value": "900px" },
+      { "name": "desktop", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main CTA. Gold background with dark ink text and a warm glow shadow.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"9 18 15 12 9 6\"/></svg>Publicar meu livro</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #c8a96e; color: #1a1208; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.03em; padding: 14px 28px; border-radius: 999px; border: none; box-shadow: 0 6px 24px rgba(200,169,110,.30); transition: all 0.25s cubic-bezier(0.4,0,0.2,1); white-space: nowrap; min-height: 48px; cursor: pointer; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(200,169,110,.45); filter: brightness(1.07); } .ds-btn-primary:focus-visible { outline: 2px solid #c8a96e; outline-offset: 3px; border-radius: 999px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action. Transparent with border; fills on hover.",
+      "html": "<button class=\"ds-btn-ghost\">Ver serviços <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"9 18 15 12 9 6\"/></svg></button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #f2ede6; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem; padding: 13px 26px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.13); transition: all 0.25s cubic-bezier(0.4,0,0.2,1); white-space: nowrap; min-height: 48px; cursor: pointer; } .ds-btn-ghost:hover { background: #2b2722; } .ds-btn-ghost:focus-visible { outline: 2px solid #c8a96e; outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Eyebrow",
+      "kind": "chip",
+      "refersTo": "button-secondary",
+      "description": "Uppercase gold pill label used sparingly as section context markers.",
+      "html": "<span class=\"ds-eyebrow\">Editora especializada</span>",
+      "css": ".ds-eyebrow { display: inline-block; font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #c8a96e; background: rgba(200,169,110,0.12); border: 1px solid rgba(200,169,110,0.26); padding: 5px 14px; border-radius: 999px; }"
+    },
+    {
+      "name": "Proof Badge",
+      "kind": "chip",
+      "refersTo": "button-secondary",
+      "description": "Compact inline stat chip. Appears in hero and trust bar.",
+      "html": "<div class=\"ds-proof-badge\"><span class=\"ds-proof-icon\">📚</span><span class=\"ds-proof-text\"><strong>+40</strong> plataformas globais</span></div>",
+      "css": ".ds-proof-badge { display: inline-flex; align-items: center; gap: 7px; background: #2b2722; border: 1px solid rgba(255,255,255,0.07); border-radius: 999px; padding: 6px 14px 6px 10px; box-shadow: 0 2px 12px rgba(0,0,0,.4); } .ds-proof-icon { font-size: 0.9rem; line-height: 1; } .ds-proof-text { font-family: 'Outfit', sans-serif; font-size: 0.78rem; color: #a09080; } .ds-proof-text strong { color: #c8a96e; font-weight: 700; }"
+    },
+    {
+      "name": "Floating Stat Card",
+      "kind": "card",
+      "refersTo": "button-secondary",
+      "description": "Elevated mini-card used as decorative data overlays on the hero image.",
+      "html": "<div class=\"ds-stat-card\"><span class=\"ds-stat-num\">+40</span><span class=\"ds-stat-label\">plataformas globais</span></div>",
+      "css": ".ds-stat-card { background: #2b2722; border: 1px solid rgba(255,255,255,0.13); border-radius: 16px; padding: 12px 18px; box-shadow: 0 8px 32px rgba(0,0,0,.5); display: flex; flex-direction: column; gap: 2px; backdrop-filter: blur(8px); } .ds-stat-num { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800; color: #c8a96e; line-height: 1; } .ds-stat-label { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 500; color: #a09080; text-transform: uppercase; letter-spacing: 0.06em; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "button-ghost",
+      "description": "Desktop nav link. Muted at rest, fills on hover.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">Serviços</a><a href=\"#\" class=\"ds-nav-link\">Sobre</a><a href=\"#\" class=\"ds-nav-link\">FAQ</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 2px; } .ds-nav-link { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.84rem; letter-spacing: 0.03em; color: #a09080; padding: 6px 12px; border-radius: 8px; text-decoration: none; transition: color 0.25s, background 0.25s; } .ds-nav-link:hover { color: #f2ede6; background: #2b2722; } .ds-nav-link:focus-visible { outline: 2px solid #c8a96e; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Author's Atelier",
+    "overview": "Filos Editora's visual system is a warm, professional studio where books are made with intention. The dark canvas is not a tech-dashboard dark mode; it is the deep brown of a wooden writing desk, the weight of a bookshelf at night. The gold accent is not a premium cliche; it is the foil on a spine, the glow of a lamp on paper.\n\nThe system serves two audiences simultaneously: first-time authors who need to feel that publishing is close and achievable, and academic authors who need to feel that their work will be handled with seriousness. Both are writers. Both respond to the same signal: this place understands what a book is.\n\nThe system explicitly rejects generic self-publishing platform UI, overproduced SaaS landing-page clichés, and stuffy legacy publisher formality that signals exclusivity over access.",
+    "keyCharacteristics": [
+      "Deep warm-brown backgrounds with layered ink surfaces for depth without gloom",
+      "Single gold accent used with restraint, earning luminosity by contrast",
+      "Serif body text (Lora) grounding the reading experience in literary tradition",
+      "Display headings (Outfit 800) providing contemporary weight and directness",
+      "Ambient shadow vocabulary building elevation without drama",
+      "Scroll-triggered fade-up entrances, purposeful floating animations, reduced-motion safe"
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Gold is used on ≤15% of any given screen's visible area. Its scarcity is its authority. The moment gold appears everywhere, it means nothing.", "section": "colors" },
+      { "name": "The Layered Depth Rule", "body": "Background depth increases in 4 steps (ink-deep → ink-surface → ink-raised → ink-elevated). Never skip layers or invent intermediate values; the stacking order must stay legible.", "section": "colors" },
+      { "name": "The Pairing Axis Rule", "body": "Outfit and Lora are the only font families. No third typeface. Weight contrast within Outfit covers hierarchy needs; a third family would dissolve the system.", "section": "typography" },
+      { "name": "The Eyebrow Restraint Rule", "body": "The uppercase label style is a deliberate design element, not a scaffold. Use once per page section at most. If it would appear on every section, remove it everywhere.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. Shadows respond to state: a button gains elevation on hover; a card may show its shadow to separate from the background. Decoration-only shadows are prohibited.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use gold exclusively as a signal — on CTAs, highlighted values, focus rings, and stat numbers. One element per visual cluster.",
+      "Do write body copy in Lora. The serif is the brand's literary identity.",
+      "Do use backdrop-filter blur on headers and floating UI elements purposefully.",
+      "Do check contrast on every --text2 and --text3 instance against the surface behind it.",
+      "Do test heading copy at mobile viewports for overflow.",
+      "Do follow the 4-step background layering sequence.",
+      "Do include @media (prefers-reduced-motion: reduce) for every float, bounce, and scroll-triggered transition."
+    ],
+    "donts": [
+      "Don't use Amazon KDP / Lulu / Blurb UI grammar: generic upload flows, commodity typography, illustrated clip-art icon diagrams.",
+      "Don't use gradient text (background-clip: text). Gold is a solid color accent.",
+      "Don't use glassmorphism decoratively. Header blur is structural, not decoration.",
+      "Don't use border-left greater than 1px as a colored stripe accent on cards or list items.",
+      "Don't apply the section-eyebrow label to every section.",
+      "Don't put hero metrics in a grid of big numbers with gradient accent.",
+      "Don't add a third font family.",
+      "Don't extend light-mode surfaces toward warmer near-white; move toward neutral or toward Filos's own hue."
+    ]
+  }
+}

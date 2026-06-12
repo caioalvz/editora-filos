@@ -3,38 +3,26 @@
 <header id="site-header">
   <div class="header-inner container">
     <a href="#" class="logo-link" aria-label="Filos Editora — página inicial">
-      <img class="logo logo-white" src="/images/logo-white.webp" alt="Filos Editora" width="120" height="44" />
-      <img class="logo logo-gold"  src="/images/logo-gold.webp"  alt="Filos Editora" width="120" height="44" />
+      <img class="logo" src="/images/logo-white.webp" alt="Filos Editora" width="120" height="44" />
     </a>
 
     <nav class="desktop-nav" aria-label="Navegação principal">
       <a href="#servicos">Serviços</a>
       <a href="#sobre">Sobre</a>
       <a href="#depoimentos">Depoimentos</a>
-      <a href="#vitrine">Vitrine</a>
-      <a href="#faq">FAQ</a>
+      <a href="#faq">Perguntas</a>
       <a href="#contato">Contato</a>
     </nav>
 
     <div class="header-actions">
-      <button
-        id="theme-toggle"
-        class="theme-btn"
-        aria-label="Alternar tema claro/escuro"
-        title="Alternar tema"
-      >
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun"  viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-
       <a
         href="https://wa.me/5581999999999?text=Olá%2C%20quero%20publicar%20meu%20livro%20com%20a%20Filos!"
-        class="btn-primary header-cta"
+        class="header-cta"
         target="_blank"
         rel="noopener"
       >
-        <span>Publicar meu livro</span>
-        <span class="btn-icon"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        Publicar meu livro
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
       </a>
 
       <button
@@ -46,7 +34,6 @@
       >
         <span></span>
         <span></span>
-        <span></span>
       </button>
     </div>
   </div>
@@ -55,16 +42,14 @@
     <a href="#servicos"    class="mobile-link">Serviços</a>
     <a href="#sobre"       class="mobile-link">Sobre</a>
     <a href="#depoimentos" class="mobile-link">Depoimentos</a>
-    <a href="#vitrine"     class="mobile-link">Vitrine</a>
-    <a href="#faq"         class="mobile-link">FAQ</a>
+    <a href="#faq"         class="mobile-link">Perguntas</a>
     <a href="#contato"     class="mobile-link">Contato</a>
     <a
       href="https://wa.me/5581999999999?text=Olá%2C%20quero%20publicar%20meu%20livro%20com%20a%20Filos!"
-      class="btn-primary mobile-cta"
+      class="btn-fill mobile-cta"
       target="_blank"
       rel="noopener"
     >
-      <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 12.6a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       Publicar meu livro
     </a>
   </nav>
@@ -75,192 +60,142 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(27,24,20,.88);
-    backdrop-filter: blur(20px) saturate(1.4);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    border-bottom: 1px solid var(--border);
-    transition: background .35s var(--ease), box-shadow .35s var(--ease);
-  }
-
-  [data-theme="light"] header { background: rgba(248,244,238,.92); }
-
-  header.scrolled {
-    box-shadow: 0 4px 24px rgba(0,0,0,.25);
+    background: rgba(21,17,12,.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
   }
 
   .header-inner {
     display: flex;
     align-items: center;
-    gap: 20px;
-    height: 68px;
+    gap: 21px;
+    height: 74px;
   }
 
-  /* Logo */
   .logo-link { display: flex; align-items: center; flex-shrink: 0; }
-  .logo { height: 40px; width: auto; display: block; transition: opacity .3s; }
-  .logo-white { display: block; }
-  .logo-gold  { display: none; }
-  [data-theme="light"] .logo-white { display: none; }
-  [data-theme="light"] .logo-gold  { display: block; }
+  .logo { height: 38px; width: auto; }
 
-  /* Desktop nav */
   .desktop-nav {
     display: flex;
-    align-items: center;
-    gap: 2px;
+    align-items: baseline;
+    gap: 34px;
     margin-left: auto;
   }
 
   .desktop-nav a {
-    font-family: var(--f-titles);
-    font-weight: 500;
-    font-size: 0.84rem;
-    letter-spacing: 0.03em;
-    color: var(--text2);
-    padding: 6px 12px;
-    border-radius: var(--r-sm);
-    transition: color var(--dur), background var(--dur);
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    transition: color var(--dur);
   }
 
-  .desktop-nav a:hover {
-    color: var(--text);
-    background: var(--bg3);
-  }
+  .desktop-nav a:hover { color: var(--ink-0); }
 
-  /* Header actions */
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 13px;
     flex-shrink: 0;
   }
 
-  .header-cta { font-size: 0.84rem; padding: 11px 22px; min-height: 44px; }
-
-  /* Theme toggle */
-  .theme-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
+  .header-cta {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    color: var(--text2);
-    border: 1px solid var(--border2);
-    background: var(--bg3);
-    transition: all var(--dur) var(--ease);
-    flex-shrink: 0;
+    gap: 9px;
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--tone);
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 2px;
+    transition: color var(--dur), border-color var(--dur);
   }
 
-  .theme-btn:hover { color: var(--text); background: var(--bg4); }
+  .header-cta:hover { color: var(--ink-0); border-color: var(--ink-0); }
 
-  .theme-btn svg {
-    width: 17px; height: 17px;
+  .header-cta svg {
+    width: 15px; height: 15px;
     fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
+    transition: transform var(--dur);
   }
 
-  .icon-sun  { display: none; }
-  .icon-moon { display: block; }
-  [data-theme="light"] .icon-sun  { display: block; }
-  [data-theme="light"] .icon-moon { display: none; }
+  .header-cta:hover svg { transform: translateX(3px); }
 
   /* Hamburger */
   .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-    border-radius: var(--r-sm);
-    transition: background var(--dur);
+    gap: 7px;
+    padding: 12px 8px;
   }
-
-  .hamburger:hover { background: var(--bg3); }
 
   .hamburger span {
     display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text);
-    border-radius: 2px;
-    transition: all var(--dur) var(--ease);
+    width: 26px;
+    height: 1.5px;
+    background: var(--ink-1);
+    transition: transform var(--dur) var(--ease-out), opacity var(--dur);
   }
 
   /* Mobile nav */
   .mobile-nav {
     display: none;
     flex-direction: column;
-    padding: 12px 20px 20px;
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    gap: 2px;
+    padding: 13px 22px 26px;
+    background: var(--ink-8);
+    border-top: 1px solid var(--line);
   }
 
   .mobile-nav.open { display: flex; }
 
   .mobile-link {
-    font-family: var(--f-titles);
-    font-weight: 500;
-    font-size: 1rem;
-    color: var(--text2);
-    padding: 12px 16px;
-    border-radius: var(--r-md);
-    transition: all var(--dur);
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--ink-2);
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    transition: color var(--dur);
   }
 
-  .mobile-link:hover { color: var(--text); background: var(--bg3); }
+  .mobile-link:hover { color: var(--ink-0); }
 
   .mobile-cta {
-    margin-top: 10px;
+    margin-top: 21px;
     justify-content: center;
-    font-size: 0.9rem;
   }
 
-  /* Responsive */
   @media (max-width: 900px) {
     .desktop-nav { display: none; }
     .hamburger   { display: flex; }
-  }
-
-  @media (max-width: 480px) {
-    .header-cta { display: none; }
+    .header-cta  { display: none; }
   }
 </style>
 
 <script>
-  const hamburger  = document.getElementById('hamburger')!;
-  const mobileNav  = document.getElementById('mobile-nav')!;
-  const themeBtn   = document.getElementById('theme-toggle')!;
-  const html       = document.documentElement;
+  const hamburger = document.getElementById('hamburger')!;
+  const mobileNav = document.getElementById('mobile-nav')!;
 
-  // ── Hamburger ──
   hamburger.addEventListener('click', () => {
     const open = mobileNav.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', String(open));
     const spans = hamburger.querySelectorAll('span');
     if (open) {
-      spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-      spans[1].style.opacity   = '0';
-      spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+      spans[0].style.transform = 'translateY(4.5px) rotate(45deg)';
+      spans[1].style.transform = 'translateY(-4.5px) rotate(-45deg)';
     } else {
-      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      spans.forEach(s => { s.style.transform = ''; });
     }
   });
 
-  // Close mobile nav on link click
   document.querySelectorAll('.mobile-link, .mobile-cta').forEach(link => {
     link.addEventListener('click', () => {
       mobileNav.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
-      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; });
     });
-  });
-
-  // ── Theme toggle ──
-  themeBtn.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    const next    = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('filos-theme', next);
   });
 </script>
