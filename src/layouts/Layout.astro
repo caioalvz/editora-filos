@@ -43,28 +43,27 @@ const {
 
   <style is:global>
     /* ════════════════════════════════════════════════
-       SISTEMA TONAL — um único matiz sépia-bronze,
-       do quase-preto à luz de papel envelhecido.
+       SISTEMA TONAL — branco, preto e tons de cinza.
     ════════════════════════════════════════════════ */
     :root {
-      /* escala de tinta (escuro → claro) */
-      --ink-9: #15110c;   /* fundo base — nunca #000 */
-      --ink-8: #1b1610;
-      --ink-7: #231d15;
-      --ink-6: #32291d;
-      --ink-5: #4a3e2c;   /* só decorativo, nunca texto pequeno */
-      --ink-3: #97876f;   /* metadados, fólios */
-      --ink-2: #c2b198;   /* texto secundário */
-      --ink-1: #eae1d1;   /* texto principal */
-      --ink-0: #f6f0e4;   /* realce máximo */
+      /* escala de tinta (claro → escuro) */
+      --ink-9: #ffffff;   /* fundo base */
+      --ink-8: #f6f5f3;
+      --ink-7: #ecebe8;
+      --ink-6: #d8d6d2;
+      --ink-5: #b4b1ac;   /* só decorativo, nunca texto pequeno */
+      --ink-3: #6c6964;   /* metadados, fólios */
+      --ink-2: #45423e;   /* texto secundário */
+      --ink-1: #1d1b19;   /* texto principal */
+      --ink-0: #0e0d0c;   /* realce máximo */
 
-      /* o "acento" é um tom claro da mesma escala */
-      --tone:  #d9bf90;
-      --tone-deep: #b89a64;
+      /* acentos na mesma escala */
+      --tone:  #161513;        /* preenchimento de botões */
+      --tone-deep: #6c6964;    /* realce tipográfico em cinza */
 
       /* filetes */
-      --line:        rgba(217,191,144,0.14);
-      --line-strong: rgba(217,191,144,0.32);
+      --line:        rgba(20,19,17,0.12);
+      --line-strong: rgba(20,19,17,0.30);
 
       /* tipografia */
       --f-display: 'Outfit', sans-serif;
