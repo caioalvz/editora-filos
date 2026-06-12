@@ -39,15 +39,17 @@ const faqs = [
   <div class="container faq-layout">
     <div class="faq-photo-col reveal">
       <div class="faq-photo-stage">
-        <img
-          src="/images/faq-photo.webp"
-          alt="Equipe Filos Editora pronta para responder suas dúvidas"
-          class="faq-photo"
-          width="420"
-          height="520"
-          loading="lazy"
-          decoding="async"
-        />
+        <div class="faq-photo-frame">
+          <img
+            src="/images/faq-photo.webp"
+            alt="Equipe Filos Editora pronta para responder suas dúvidas"
+            class="faq-photo"
+            width="420"
+            height="520"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </div>
 
@@ -101,12 +103,25 @@ const faqs = [
     top: 95px;
   }
 
-  .faq-photo {
+  /* Moldura na proporção exata da área opaca da imagem (441×504):
+     corta apenas o fundo transparente, nunca a pessoa. */
+  .faq-photo-frame {
+    position: relative;
     width: 100%;
-    height: auto;
-    filter: drop-shadow(0 21px 42px rgba(0,0,0,.18));
+    aspect-ratio: 441 / 504;
+    overflow: hidden;
     mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  }
+
+  .faq-photo {
+    position: absolute;
+    width: calc(100% * 600 / 441);
+    max-width: none;
+    height: auto;
+    left: calc(-100% * 59 / 441);
+    top: calc(-100% * 95 / 504);
+    filter: drop-shadow(0 21px 42px rgba(0,0,0,.18));
   }
 
   .faq-content h2 { margin-bottom: var(--sp-3); }

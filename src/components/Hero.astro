@@ -70,7 +70,6 @@ const glyphs = [
 <style>
   .hero {
     position: relative;
-    min-height: calc(100vh - 74px);
     display: flex;
     overflow: hidden;
     border-bottom: 1px solid var(--line);
@@ -110,7 +109,7 @@ const glyphs = [
   /* ── grade ── */
   .hero-inner {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 0.92fr 1.08fr;
     align-items: end;
     width: 100%;
     position: relative;
@@ -119,14 +118,14 @@ const glyphs = [
 
   .hero-text {
     align-self: center;
-    padding: var(--sp-6) var(--sp-5) var(--sp-6) 0;
+    padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
   }
 
   .hero-kicker { margin-bottom: var(--sp-3); }
 
   .hero-text h1 {
     margin-bottom: var(--sp-4);
-    font-size: clamp(2.6rem, 5.5vw, 4.7rem);
+    font-size: clamp(2.5rem, 4.4vw, 4.2rem);
   }
 
   .hero-tone { color: var(--tone-deep); }
@@ -154,18 +153,16 @@ const glyphs = [
   .hero-visual {
     align-self: end;
     min-width: 0;
-    display: flex;
-    align-items: flex-end;
-    height: 100%;
   }
 
   .hero-photo {
+    /* foto quadrada: margin-top de 25% da largura = 25% da altura da foto,
+       fazendo o hero medir exatamente 1.25× a altura da imagem */
+    margin-top: 25%;
     width: 100%;
     height: auto;
-    max-height: 86vh;
     object-fit: contain;
     object-position: bottom center;
-    margin-top: auto;
     filter: drop-shadow(0 28px 56px rgba(0,0,0,.22));
     mask-image:
       linear-gradient(to bottom, transparent 0%, black 14%),
@@ -196,7 +193,7 @@ const glyphs = [
       justify-content: center;
     }
 
-    .hero-photo { max-height: 64vh; }
+    .hero-photo { max-height: 64vh; margin-top: 0; }
   }
 
   @media (max-width: 480px) {
