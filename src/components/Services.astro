@@ -39,8 +39,8 @@ const services = [
 
     <div class="services-index">
       {services.map((s, i) => {
-        const variants = ['navy', 'light', 'dark', 'warm'] as const;
-        const v = variants[i % 4];
+        const variants = ['dark', 'light'] as const;
+        const v = variants[i % 2];
         return (
         <article class={`chapter reveal chapter--${v}`} style={`transition-delay:${i * 0.08}s`}>
           <div class="ch-meta">
@@ -100,43 +100,25 @@ const services = [
     transition: background var(--dur) var(--ease-out);
   }
 
-  /* ── variantes de cor ── */
-  .chapter--navy {
-    background: var(--navy);
-    border-bottom-color: rgba(255,255,255,0.1);
-  }
-  .chapter--navy .meta,
-  .chapter--navy .ch-title,
-  .chapter--navy .ch-desc,
-  .chapter--navy .ch-feats li,
-  .chapter--navy .ch-link { color: rgba(255,255,255,0.85); }
-  .chapter--navy .meta { color: var(--teal); }
-  .chapter--navy .ch-title { color: #fff; }
-  .chapter--navy .ch-feats li::before { color: rgba(255,255,255,0.35); }
-  .chapter--navy .ch-link { border-bottom-color: rgba(255,255,255,0.3); }
-  .chapter--navy .ch-link:hover { color: #fff; border-bottom-color: #fff; }
-  .chapter--navy:hover { background: var(--navy-light); }
-
+  /* ── variantes de cor: escuro / claro ── */
   .chapter--dark {
-    background: var(--ink-0);
+    background: var(--navy);
     border-bottom-color: rgba(255,255,255,0.08);
   }
   .chapter--dark .meta { color: var(--amber); }
   .chapter--dark .ch-title { color: #fff; }
   .chapter--dark .ch-desc,
-  .chapter--dark .ch-feats li { color: rgba(255,255,255,0.7); }
-  .chapter--dark .ch-feats li::before { color: rgba(255,255,255,0.3); }
-  .chapter--dark .ch-link { color: rgba(255,255,255,0.85); border-bottom-color: rgba(255,255,255,0.3); }
-  .chapter--dark .ch-link:hover { color: #fff; border-bottom-color: #fff; }
-  .chapter--dark:hover { background: #1a1917; }
+  .chapter--dark .ch-feats li { color: rgba(255,255,255,0.72); }
+  .chapter--dark .ch-feats li::before { color: rgba(255,255,255,0.28); }
+  .chapter--dark .ch-link { color: rgba(255,255,255,0.8); border-bottom-color: rgba(255,255,255,0.25); }
+  .chapter--dark .ch-link:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.7); }
+  .chapter--dark:hover { background: var(--navy-light); }
 
-  .chapter--warm {
-    background: var(--amber-mute);
-    border-bottom-color: rgba(180,130,60,0.2);
+  .chapter--light {
+    background: var(--ink-9);
+    border-bottom-color: var(--line);
   }
-  .chapter--warm .meta { color: var(--navy); }
-  .chapter--warm:hover { background: #eddfc5; }
-
+  .chapter--light .meta { color: var(--navy); }
   .chapter--light:hover { background: var(--ink-8); }
 
   .ch-meta { padding-top: 0.55rem; }

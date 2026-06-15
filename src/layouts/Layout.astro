@@ -33,11 +33,11 @@ const {
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
 
-  <!-- Fonts: Outfit (títulos) + Inter (texto) -->
+  <!-- Fonts: Spectral (títulos) + Manrope (UI e corpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400;1,14..32,500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
@@ -74,8 +74,9 @@ const {
       --line-strong: rgba(20,19,17,0.30);
 
       /* tipografia */
-      --f-display: 'Outfit', sans-serif;
-      --f-text:    'Inter', system-ui, sans-serif;
+      --f-head:    'Spectral', Georgia, serif;    /* títulos editoriais */
+      --f-display: 'Manrope', sans-serif;         /* UI: botões, labels, nav */
+      --f-text:    'Manrope', system-ui, sans-serif;
 
       /* ritmo: escala própria, não múltiplos de 8 */
       --sp-1: 0.4375rem;   /*  7px */
@@ -114,28 +115,31 @@ const {
     ::selection { background: var(--tone); color: var(--ink-9); }
 
     /* ════════ TIPOGRAFIA ════════ */
-    h1, h2, h3, h4 { font-family: var(--f-display); text-wrap: balance; }
+    h1, h2, h3, h4 {
+      font-family: var(--f-head);
+      text-wrap: balance;
+    }
 
     h1 {
-      font-size: clamp(2.7rem, 6.4vw, 5.4rem);
-      font-weight: 600;
-      line-height: 0.98;
-      letter-spacing: -0.028em;
+      font-size: clamp(2.6rem, 5.8vw, 5.2rem);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.018em;
       color: var(--ink-0);
     }
 
     h2 {
-      font-size: clamp(1.9rem, 4vw, 3.1rem);
-      font-weight: 500;
-      line-height: 1.04;
-      letter-spacing: -0.022em;
+      font-size: clamp(1.85rem, 3.8vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.012em;
       color: var(--ink-0);
     }
 
     h3 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 500;
-      letter-spacing: -0.012em;
+      letter-spacing: -0.006em;
       color: var(--ink-0);
     }
 
