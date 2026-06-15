@@ -114,6 +114,8 @@ const services = [
       </div>
 
     </div><!-- /book-sticky -->
+    <!-- Espaço de scroll para manter o sticky ativo durante as fases -->
+    <div class="book-scroll-spacer" id="book-scroll-spacer"></div>
   </div><!-- /book-scene -->
 
   <!-- ── MOBILE fallback ────────────────────────────────── -->
@@ -155,7 +157,7 @@ const services = [
   /* Cabeçalho */
   .book-intro {
     padding-top: clamp(72px, 10vw, 130px);
-    padding-bottom: clamp(34px, 5vw, 68px);
+    padding-bottom: clamp(16px, 2vw, 28px);
   }
 
   .book-head {
@@ -188,15 +190,16 @@ const services = [
     align-items: center;
     justify-content: center;
     gap: 18px;
-    padding: 0 clamp(22px, 5vw, 64px);
+    padding-bottom: 74px;
   }
 
   /* Livro aberto */
   .open-book {
     position: relative;
     display: flex;
-    width: 100%;
+    width: calc(100% - 2 * clamp(32px, 6vw, 80px));
     max-width: 1100px;
+    margin-inline: auto;
     height: clamp(420px, 65vh, 640px);
     perspective: 2800px;
     filter: drop-shadow(0 40px 80px rgba(0,0,0,0.28));
@@ -485,16 +488,10 @@ const services = [
 
   .mob-cta { font-size: 0.875rem; }
 
-  /* Spacer para o scroll do livro */
+  /* Spacer para o scroll do livro — altura definida por JS */
   .book-scroll-spacer {
     height: 0;
-  }
-
-  @media (min-width: 900px) {
-    .book-scroll-spacer {
-      /* cada fase ocupa 85vh de scroll = 4 × 85vh - 85vh (já exibida) */
-      height: calc(3 * 85vh);
-    }
+    pointer-events: none;
   }
 
   @media (max-width: 900px) {
@@ -505,9 +502,6 @@ const services = [
     .lp, .rp, .b-turning { transition: none !important; animation: none !important; }
   }
 </style>
-
-<!-- ── Scroll spacer (empurra o conteúdo abaixo do livro) ── -->
-<div class="book-scroll-spacer" id="book-scroll-spacer"></div>
 
 <!-- ─── SCRIPT ───────────────────────────────────────────── -->
 <script>
@@ -700,8 +694,6 @@ const services = [
       trigger: bScene,
       start: 'top top+=74',
       end: () => `+=${(TOTAL - 1) * PER_PH}`,
-      pin: bSticky,
-      pinSpacing: false,
       scrub: false,
       onUpdate(self) {
         // progress 0→1 mapeia para fases 0→3
