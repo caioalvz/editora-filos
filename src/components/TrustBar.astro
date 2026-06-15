@@ -1,18 +1,31 @@
 ---
-const platforms = [
-  'Amazon', 'Google Books', 'Apple Books', 'Kobo', 'Rakuten',
-  'Livraria Cultura', 'Saraiva', 'Barnes & Noble', 'Scribd', 'OverDrive',
-  'Fnac', 'Estante Virtual', 'Clube de Autores', 'Smashwords', 'Draft2Digital',
+const logos = [
+  { src: '/images/logos/amazon.svg',          alt: 'Amazon' },
+  { src: '/images/logos/google-books.svg',    alt: 'Google Books' },
+  { src: '/images/logos/apple-books.svg',     alt: 'Apple Books' },
+  { src: '/images/logos/kobo.svg',            alt: 'Kobo' },
+  { src: '/images/logos/scribd.svg',          alt: 'Scribd' },
+  { src: '/images/logos/overdrive.svg',       alt: 'OverDrive' },
+  { src: '/images/logos/barnes-noble.svg',    alt: 'Barnes & Noble' },
+  { src: '/images/logos/livraria-cultura.svg',alt: 'Livraria Cultura' },
+  { src: '/images/logos/saraiva.svg',         alt: 'Saraiva' },
+  { src: '/images/logos/fnac.svg',            alt: 'Fnac' },
+  { src: '/images/logos/estante-virtual.svg', alt: 'Estante Virtual' },
+  { src: '/images/logos/clube-autores.svg',   alt: 'Clube de Autores' },
 ];
 ---
 
 <div class="trust-strip">
   <div class="trust-inner container">
-    <span class="trust-label meta">Distribuição em +40 plataformas&ensp;—</span>
-    <div class="trust-track-wrap" aria-hidden="true">
+    <span class="trust-label">+40 plataformas</span>
+    <div class="trust-track-wrap" aria-label="Plataformas parceiras">
       <div class="trust-track">
-        {platforms.map(p => <span class="trust-item">{p}</span>)}
-        {platforms.map(p => <span class="trust-item" aria-hidden="true">{p}</span>)}
+        {logos.map(l => (
+          <img class="trust-logo" src={l.src} alt={l.alt} height="28" loading="lazy" decoding="async" />
+        ))}
+        {logos.map(l => (
+          <img class="trust-logo" src={l.src} alt="" height="28" aria-hidden="true" loading="lazy" decoding="async" />
+        ))}
       </div>
     </div>
   </div>
@@ -20,52 +33,53 @@ const platforms = [
 
 <style>
   .trust-strip {
-    border-bottom: 1px solid var(--line);
-    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 18px 0;
     overflow: hidden;
-    background: var(--ink-8);
+    background: var(--navy);
   }
 
   .trust-inner {
     display: flex;
-    align-items: baseline;
-    gap: 21px;
+    align-items: center;
+    gap: 34px;
   }
 
   .trust-label {
     white-space: nowrap;
     flex-shrink: 0;
+    font-family: var(--f-text);
+    font-size: 0.8rem;
     font-style: italic;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.01em;
   }
 
   .trust-track-wrap {
     overflow: hidden;
     flex: 1;
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   }
 
   .trust-track {
     display: flex;
-    align-items: baseline;
+    align-items: center;
+    gap: 55px;
     width: max-content;
-    animation: scroll-track 38s linear infinite;
+    animation: scroll-track 40s linear infinite;
   }
 
-  .trust-item {
-    font-family: var(--f-text);
-    font-style: italic;
-    font-size: 0.84rem;
-    color: var(--ink-3);
-    white-space: nowrap;
+  .trust-logo {
+    height: 28px;
+    width: auto;
+    opacity: 0.7;
+    filter: brightness(0) invert(1);
+    flex-shrink: 0;
+    transition: opacity 0.2s;
   }
 
-  .trust-item::after {
-    content: '·';
-    margin: 0 1.1em;
-    color: var(--ink-5);
-    font-style: normal;
-  }
+  .trust-logo:hover { opacity: 1; }
 
   @keyframes scroll-track {
     0%   { transform: translateX(0); }

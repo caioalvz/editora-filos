@@ -54,15 +54,17 @@ const glyphs = [
     </div>
 
     <div class="hero-visual">
-      <img
-        src="/images/hero-photo.webp"
-        alt="Autor segurando livro publicado pela Filos Editora"
-        class="hero-photo"
-        width="560"
-        height="680"
-        loading="eager"
-        decoding="async"
-      />
+      <div class="hero-frame">
+        <img
+          src="/images/hero-photo.webp"
+          alt="Autor segurando livro publicado pela Filos Editora"
+          class="hero-photo"
+          width="560"
+          height="680"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
     </div>
   </div>
 </section>
@@ -109,7 +111,7 @@ const glyphs = [
   /* ── grade ── */
   .hero-inner {
     display: grid;
-    grid-template-columns: 0.92fr 1.08fr;
+    grid-template-columns: 1.16fr 0.84fr;
     align-items: end;
     width: 100%;
     position: relative;
@@ -155,23 +157,28 @@ const glyphs = [
     min-width: 0;
   }
 
-  .hero-photo {
-    /* foto quadrada: margin-top de 25% da largura = 25% da altura da foto,
-       fazendo o hero medir exatamente 1.25× a altura da imagem */
-    margin-top: 25%;
+  /* Moldura na proporção da área opaca da imagem (368×502):
+     corta só o fundo transparente; o retrato fica mais alto que largo.
+     margin-top = 25% da altura da moldura (502/368 da largura),
+     mantendo o hero em 1.25× a altura da foto. */
+  .hero-frame {
+    position: relative;
     width: 100%;
+    aspect-ratio: 368 / 502;
+    overflow: hidden;
+    margin-top: calc(25% * 502 / 368);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%);
+  }
+
+  .hero-photo {
+    position: absolute;
+    width: calc(100% * 600 / 368);
+    max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: bottom center;
+    left: calc(-100% * 127 / 368);
+    top: calc(-100% * 97 / 502);
     filter: drop-shadow(0 28px 56px rgba(0,0,0,.22));
-    mask-image:
-      linear-gradient(to bottom, transparent 0%, black 14%),
-      linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0%, black 14%),
-      linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-    -webkit-mask-composite: source-in;
   }
 
   /* ── responsivo ── */
@@ -193,7 +200,7 @@ const glyphs = [
       justify-content: center;
     }
 
-    .hero-photo { max-height: 64vh; margin-top: 0; }
+    .hero-frame { margin-top: 0; }
   }
 
   @media (max-width: 480px) {
