@@ -74,7 +74,10 @@ const glyphs = [
     position: relative;
     display: flex;
     overflow: hidden;
-    border-bottom: 1px solid var(--line);
+    background: var(--navy);
+    border-bottom: none;
+    margin-top: -74px;
+    padding-top: 74px;
   }
 
   /* ── fundo animado ── */
@@ -87,9 +90,9 @@ const glyphs = [
 
   .glyph {
     position: absolute;
-    font-family: Georgia, 'Times New Roman', serif;
-    color: var(--ink-5);
-    opacity: 0.32;
+    font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+    color: #fff;
+    opacity: 0.05;
     line-height: 1;
     will-change: transform;
     animation-name: drift;
@@ -123,18 +126,26 @@ const glyphs = [
     padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
   }
 
-  .hero-kicker { margin-bottom: var(--sp-3); }
+  .hero-kicker {
+    margin-bottom: var(--sp-3);
+    color: rgba(255,255,255,0.5);
+  }
 
   .hero-text h1 {
     margin-bottom: var(--sp-4);
-    font-size: clamp(2.5rem, 4.4vw, 4.2rem);
+    font-size: clamp(2.6rem, 5vw, 4.8rem);
+    color: #fff;
   }
 
-  .hero-tone { color: var(--tone-deep); }
+  .hero-tone {
+    color: var(--amber);
+    font-style: italic;
+  }
 
   .hero-sub {
     max-width: 46ch;
     margin-bottom: var(--sp-4);
+    color: rgba(255,255,255,0.72);
   }
 
   .hero-actions {
@@ -145,10 +156,31 @@ const glyphs = [
     margin-bottom: var(--sp-5);
   }
 
+  /* botão branco sobre navy */
+  .hero-text .btn-fill {
+    background: #fff;
+    color: var(--navy);
+  }
+  .hero-text .btn-fill:hover {
+    background: rgba(255,255,255,0.88);
+    transform: translateY(-1px);
+  }
+
+  /* link branco sobre navy */
+  .hero-text .link-line {
+    color: rgba(255,255,255,0.8);
+    border-bottom-color: rgba(255,255,255,0.3);
+  }
+  .hero-text .link-line:hover {
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.7);
+  }
+
   .hero-foot {
     padding-top: var(--sp-2);
-    border-top: 1px solid var(--line);
+    border-top: 1px solid rgba(255,255,255,0.12);
     max-width: 46ch;
+    color: rgba(255,255,255,0.38);
   }
 
   /* ── foto: assentada na base da seção ── */
@@ -167,8 +199,8 @@ const glyphs = [
     aspect-ratio: 368 / 502;
     overflow: hidden;
     margin-top: calc(25% * 502 / 368);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 10%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 80%, transparent 100%);
   }
 
   .hero-photo {
@@ -178,7 +210,7 @@ const glyphs = [
     height: auto;
     left: calc(-100% * 127 / 368);
     top: calc(-100% * 97 / 502);
-    filter: drop-shadow(0 28px 56px rgba(0,0,0,.22));
+    filter: drop-shadow(0 28px 56px rgba(0,0,0,.55));
   }
 
   /* ── responsivo ── */
