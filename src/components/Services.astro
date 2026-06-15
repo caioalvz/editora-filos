@@ -2,171 +2,731 @@
 const services = [
   {
     phase: 'Primeira fase',
+    n: '1',
     title: 'Design Premium',
     desc: 'Identidade visual completa para sua obra. Capa profissional, diagramação editorial e tipografia que fazem seu livro se destacar em qualquer prateleira.',
     feats: ['Capa exclusiva autoral', 'Diagramação editorial profissional', 'Tipografia e espaçamento precisos', 'Versões para impressão e digital', 'Revisão ilimitada até aprovação'],
+    wa: 'Design+Premium',
   },
   {
     phase: 'Segunda fase',
+    n: '2',
     title: 'ISBN, Ficha & DOI',
     desc: 'Registro completo e legítimo da sua obra. ISBN, ficha catalográfica e DOI Internacional para garantir a identidade acadêmica e comercial do seu livro.',
     feats: ['ISBN nacional e internacional', 'Ficha catalográfica oficial', 'DOI Internacional (Crossref)', 'Depósito legal junto à Biblioteca Nacional', 'Certificado de registro da obra'],
+    wa: 'ISBN%2C+Ficha+%26+DOI',
   },
   {
     phase: 'Terceira fase',
+    n: '3',
     title: 'Impressão & Distribuição Global',
     desc: 'Seu livro disponível para o mundo. Impressão sob demanda com qualidade editorial e distribuição simultânea em mais de 40 plataformas internacionais.',
     feats: ['Impressão sob demanda (POD)', 'Distribuição em +40 plataformas', 'Amazon, Google Books, Apple Books', 'Kobo, Scribd, OverDrive e mais', 'Versões eBook (ePub) e impresso'],
+    wa: 'Impress%C3%A3o+%26+Distribui%C3%A7%C3%A3o',
   },
   {
     phase: 'Quarta fase',
+    n: '4',
     title: 'Posicionamento & Lançamento',
     desc: 'Estratégia de marketing editorial para ampliar o alcance da sua obra. Presença digital, relações com imprensa e suporte ao lançamento.',
     feats: ['Estratégia de lançamento editorial', 'Press release e assessoria de imprensa', 'Posicionamento em mecanismos de busca', 'Perfil do autor nas plataformas', 'Suporte pós-publicação'],
+    wa: 'Posicionamento+%26+Lan%C3%A7amento',
   },
 ];
 ---
 
-<section class="services" id="servicos">
-  <div class="container">
-    <header class="services-head reveal">
+<section id="servicos" class="book-section">
+
+  <!-- Cabeçalho antes do livro -->
+  <div class="container book-intro">
+    <header class="book-head reveal">
       <h2>A jornada completa<br />do seu livro</h2>
-      <p class="prose services-sub">
+      <p class="prose book-head-sub">
         Do rascunho ao livro publicado globalmente. Cada fase foi desenhada para
         garantir qualidade, identidade e alcance para a sua obra.
       </p>
     </header>
-
-    <div class="services-index">
-      {services.map((s, i) => {
-        const variants = ['dark', 'light'] as const;
-        const v = variants[i % 2];
-        return (
-        <article class={`chapter reveal chapter--${v}`} style={`transition-delay:${i * 0.08}s`}>
-          <div class="ch-meta">
-            <span class="meta">{s.phase}</span>
-          </div>
-
-          <div class="ch-body">
-            <h3 class="ch-title">{s.title}</h3>
-            <p class="prose ch-desc">{s.desc}</p>
-            <a
-              href={`https://wa.me/5581999999999?text=Olá!%20Tenho%20interesse%20na%20${encodeURIComponent(s.title)}%20da%20Filos.`}
-              class="link-line ch-link"
-              target="_blank"
-              rel="noopener"
-              aria-label={`Saber mais sobre ${s.title}`}
-            >
-              Saber mais
-            </a>
-          </div>
-
-          <ul class="ch-feats">
-            {s.feats.map(f => <li>{f}</li>)}
-          </ul>
-        </article>
-        );
-      })}
-    </div>
   </div>
+
+  <!-- ── LIVRO (desktop) ─────────────────────────────────── -->
+  <div class="book-scene" id="book-scene">
+    <div class="book-sticky" id="book-sticky">
+      <div class="open-book" id="open-book" aria-label="Fases editoriais da Filos">
+
+        <!-- Página esquerda — capítulo -->
+        <div class="b-page b-left" id="b-left" aria-hidden="true">
+          {services.map((s, i) => (
+            <div class={`lp${i === 0 ? ' lp-on' : ''}`} data-lp={i}>
+              <span class="lp-label">{s.phase}</span>
+              <span class="lp-num">{s.n}</span>
+              <span class="lp-foot">Filos Editora</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Lombada -->
+        <div class="b-spine" aria-hidden="true"></div>
+
+        <!-- Página direita — conteúdo -->
+        <div class="b-page b-right" id="b-right">
+          {services.map((s, i) => (
+            <div class={`rp${i === 0 ? ' rp-on' : ''}`} data-rp={i}
+                 role="region" aria-label={s.title}>
+              <p class="rp-phase">{s.phase}</p>
+              <h3 class="rp-title">{s.title}</h3>
+              <p class="rp-desc">{s.desc}</p>
+              <ul class="rp-feats">
+                {s.feats.map(f => <li>{f}</li>)}
+              </ul>
+              <a
+                href={`https://wa.me/5581999999999?text=Olá!%20Tenho%20interesse%20na%20${s.wa}%20da%20Filos.`}
+                class="rp-cta link-line"
+                target="_blank"
+                rel="noopener"
+                aria-label={`Saber mais sobre ${s.title}`}
+              >
+                Saber mais
+              </a>
+              <span class="rp-pgnum">{(i + 1) * 2}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Página girando (3-D) — conteúdo espelhado por JS -->
+        <div class="b-turning" id="b-turning" aria-hidden="true">
+          <div class="turn-face turn-front" id="turn-front"></div>
+          <div class="turn-face turn-back"  id="turn-back"></div>
+        </div>
+
+      </div><!-- /open-book -->
+
+      <!-- Indicadores de fase — abaixo do livro -->
+      <div class="book-dots" role="tablist" aria-label="Navegação entre fases">
+        {services.map((s, i) => (
+          <button
+            class={`book-dot${i === 0 ? ' dot-on' : ''}`}
+            data-go={i}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={s.phase}
+          ></button>
+        ))}
+      </div>
+
+    </div><!-- /book-sticky -->
+  </div><!-- /book-scene -->
+
+  <!-- ── MOBILE fallback ────────────────────────────────── -->
+  <div class="book-mob" aria-label="Fases editoriais">
+    {services.map((s, i) => (
+      <div class="mob-phase reveal" style={`transition-delay:${i * 0.07}s`}>
+        <div class="mob-head">
+          <span class="mob-n">{s.n}</span>
+          <div>
+            <p class="mob-label">{s.phase}</p>
+            <h3 class="mob-title">{s.title}</h3>
+          </div>
+        </div>
+        <p class="mob-desc">{s.desc}</p>
+        <ul class="mob-feats">
+          {s.feats.map(f => <li>{f}</li>)}
+        </ul>
+        <a
+          href={`https://wa.me/5581999999999?text=Olá!%20Tenho%20interesse%20na%20${s.wa}%20da%20Filos.`}
+          class="link-line mob-cta"
+          target="_blank"
+          rel="noopener"
+        >
+          Saber mais
+        </a>
+      </div>
+    ))}
+  </div>
+
 </section>
 
+<!-- ─── ESTILOS ─────────────────────────────────────────── -->
 <style>
-  .services {
-    padding: clamp(89px, 12vw, 144px) 0 clamp(55px, 9vw, 110px);
+  /* Seção */
+  .book-section {
+    padding-bottom: clamp(55px, 8vw, 110px);
   }
 
-  .services-head {
+  /* Cabeçalho */
+  .book-intro {
+    padding-top: clamp(72px, 10vw, 130px);
+    padding-bottom: clamp(34px, 5vw, 68px);
+  }
+
+  .book-head {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     gap: var(--sp-5);
-    margin-bottom: var(--sp-6);
   }
 
-  .services-sub { max-width: 42ch; }
+  .book-head-sub { max-width: 42ch; }
 
-  /* índice de capítulos */
-  .services-index {
-    border-top: 1px solid var(--line-strong);
+  /* ── Cena do livro (desktop) ── */
+  .book-scene {
+    display: none; /* revelado via media query */
+    position: relative;
   }
 
-  .chapter {
-    display: grid;
-    grid-template-columns: 150px 1fr 270px;
-    gap: var(--sp-5);
-    padding: var(--sp-5) var(--sp-4);
-    border-bottom: 1px solid var(--line);
-    transition: background var(--dur) var(--ease-out);
+  @media (min-width: 900px) {
+    .book-scene { display: block; }
+    .book-mob   { display: none; }
   }
 
-  /* ── variantes de cor: escuro / claro ── */
-  .chapter--dark {
-    background: var(--navy);
-    border-bottom-color: rgba(255,255,255,0.08);
+  /* Sticky wrapper — a altura define quanto scroll aciona o livro */
+  .book-sticky {
+    position: sticky;
+    top: calc(74px + 2vh);
+    height: calc(100vh - 74px - 4vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 0 clamp(22px, 5vw, 64px);
   }
-  .chapter--dark .meta { color: var(--amber); }
-  .chapter--dark .ch-title { color: #fff; }
-  .chapter--dark .ch-desc,
-  .chapter--dark .ch-feats li { color: rgba(255,255,255,0.72); }
-  .chapter--dark .ch-feats li::before { color: rgba(255,255,255,0.28); }
-  .chapter--dark .ch-link { color: rgba(255,255,255,0.8); border-bottom-color: rgba(255,255,255,0.25); }
-  .chapter--dark .ch-link:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.7); }
-  .chapter--dark:hover { background: var(--navy-light); }
 
-  .chapter--light {
-    background: var(--ink-9);
-    border-bottom-color: var(--line);
+  /* Livro aberto */
+  .open-book {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    height: clamp(420px, 65vh, 640px);
+    perspective: 2800px;
+    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.28));
   }
-  .chapter--light .meta { color: var(--navy); }
-  .chapter--light:hover { background: var(--ink-8); }
 
-  .ch-meta { padding-top: 0.55rem; }
+  /* Página genérica */
+  .b-page {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+  }
 
-  .ch-title {
-    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  /* ── Página esquerda ── cor definida por fase */
+  .b-left {
+    background: transparent;
+    border-radius: 4px 0 0 4px;
+  }
+
+  [data-lp="0"] { background: #0d344c; } /* Azul  — Design Premium    */
+  [data-lp="1"] { background: #6b1a26; } /* Vermelho — ISBN, Ficha & DOI */
+  [data-lp="2"] { background: #8a7210; } /* Ocre vivo — Impressão      */
+  [data-lp="3"] { background: #0e3d2a; } /* Verde — Posicionamento     */
+
+  .lp {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(28px, 5%, 56px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .lp.lp-on {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .lp-label {
+    font-family: var(--f-display);
+    font-size: 0.72rem;
     font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: var(--sp-3);
+  }
+
+  .lp-num {
+    font-family: var(--f-head);
+    font-weight: 300;
+    font-size: clamp(5rem, 14vw, 11rem);
+    line-height: 1;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  .lp-foot {
+    position: absolute;
+    bottom: clamp(16px, 3%, 28px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--f-head);
+    font-style: italic;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.2);
+    white-space: nowrap;
+  }
+
+  /* ── Lombada ── linha fina de separação, sem largura física */
+  .b-spine { display: none; }
+
+  /* Sombra sutil na borda direita da página esquerda */
+  .b-left { box-shadow: inset -4px 0 8px rgba(0,0,0,0.22); }
+
+  /* ── Página direita ── */
+  .b-right {
+    background: #faf8f4;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .rp {
+    position: absolute;
+    inset: 0;
+    padding: clamp(28px, 6%, 56px) clamp(28px, 6%, 52px);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .rp.rp-on {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .rp-phase {
+    font-family: var(--f-display);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     margin-bottom: var(--sp-2);
   }
 
-  .ch-desc {
-    font-size: 0.97rem;
+  /* Cor do label corresponde à fase */
+  [data-rp="0"] .rp-phase { color: #0d344c; }
+  [data-rp="1"] .rp-phase { color: #6b1a26; }
+  [data-rp="2"] .rp-phase { color: #8a7210; }
+  [data-rp="3"] .rp-phase { color: #0e3d2a; }
+
+  .rp-title {
+    font-family: var(--f-head);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink-0);
+    margin-bottom: var(--sp-3);
+    line-height: 1.15;
+  }
+
+  .rp-desc {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    line-height: 1.78;
     max-width: 52ch;
     margin-bottom: var(--sp-3);
   }
 
-  .ch-link { font-size: 0.875rem; }
-
-  .ch-feats {
-    padding-top: 0.55rem;
+  .rp-feats {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
+    margin-bottom: auto;
   }
 
-  .ch-feats li {
-    font-size: 0.84rem;
+  .rp-feats li {
+    font-size: 0.82rem;
     color: var(--ink-2);
-    line-height: 1.55;
-    padding-left: 19px;
+    padding-left: 18px;
     position: relative;
+    line-height: 1.5;
   }
 
-  .ch-feats li::before {
+  .rp-feats li::before {
     content: '—';
     position: absolute;
     left: 0;
-    color: var(--ink-3);
+    color: var(--ink-5);
   }
 
-  @media (max-width: 1000px) {
-    .chapter { grid-template-columns: 130px 1fr; }
-    .ch-feats { grid-column: 2; padding-top: var(--sp-3); }
+  .rp-cta {
+    margin-top: var(--sp-3);
+    font-size: 0.875rem;
+    align-self: flex-start;
   }
 
-  @media (max-width: 700px) {
-    .services-head { flex-direction: column; align-items: flex-start; gap: var(--sp-3); margin-bottom: var(--sp-5); }
-    .chapter { grid-template-columns: 1fr; gap: var(--sp-2); padding: var(--sp-4) var(--sp-3); }
-    .ch-feats { grid-column: 1; }
+  .rp-pgnum {
+    position: absolute;
+    bottom: clamp(14px, 2.5%, 24px);
+    right: clamp(18px, 4%, 36px);
+    font-family: var(--f-head);
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--ink-5);
+    user-select: none;
+  }
+
+  /* ── Página girando (3-D) ── posição/origin/border-radius controlados por JS */
+  .b-turning {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transform-style: preserve-3d;
+    pointer-events: none;
+    z-index: 10;
+    display: none;
+  }
+
+  .turn-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  /* ── Indicadores de fase — abaixo do livro ── */
+  .book-dots {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .book-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.18);
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+    padding: 0;
+  }
+
+  .book-dot.dot-on {
+    background: #111;
+    transform: scale(1.3);
+  }
+
+  /* ── Mobile fallback ── */
+  .book-mob {
+    padding: 0 clamp(22px, 5vw, 64px);
+  }
+
+  .mob-phase {
+    border-top: 1px solid var(--line);
+    padding: var(--sp-4) 0;
+  }
+
+  .mob-phase:first-child { border-top: 1px solid var(--line-strong); }
+
+  .mob-head {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-3);
+  }
+
+  .mob-n {
+    font-family: var(--f-head);
+    font-weight: 300;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--ink-6);
+    flex-shrink: 0;
+  }
+
+  .mob-label {
+    font-family: var(--f-display);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 5px;
+  }
+
+  .mob-title {
+    font-size: 1.45rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .mob-desc {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    line-height: 1.78;
+    margin-bottom: var(--sp-3);
+  }
+
+  .mob-feats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: var(--sp-3);
+  }
+
+  .mob-feats li {
+    font-size: 0.84rem;
+    color: var(--ink-2);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .mob-feats li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-5);
+  }
+
+  .mob-cta { font-size: 0.875rem; }
+
+  /* Spacer para o scroll do livro */
+  .book-scroll-spacer {
+    height: 0;
+  }
+
+  @media (min-width: 900px) {
+    .book-scroll-spacer {
+      /* cada fase ocupa 85vh de scroll = 4 × 85vh - 85vh (já exibida) */
+      height: calc(3 * 85vh);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .book-head { flex-direction: column; align-items: flex-start; gap: var(--sp-3); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lp, .rp, .b-turning { transition: none !important; animation: none !important; }
   }
 </style>
+
+<!-- ── Scroll spacer (empurra o conteúdo abaixo do livro) ── -->
+<div class="book-scroll-spacer" id="book-scroll-spacer"></div>
+
+<!-- ─── SCRIPT ───────────────────────────────────────────── -->
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const TOTAL = 4;
+  let current = 0;
+  let animating = false;
+
+  const PHASE_COLORS = ['#0d344c', '#6b1a26', '#8a7210', '#0e3d2a'];
+
+  const openBook  = document.getElementById('open-book')!;
+  const bScene    = document.getElementById('book-scene')!;
+  const bSticky   = document.getElementById('book-sticky')!;
+  const bTurning  = document.getElementById('b-turning') as HTMLElement;
+  const turnFront = document.getElementById('turn-front') as HTMLElement;
+  const turnBack  = document.getElementById('turn-back') as HTMLElement;
+
+  const lps  = Array.from(document.querySelectorAll<HTMLElement>('[data-lp]'));
+  const rps  = Array.from(document.querySelectorAll<HTMLElement>('[data-rp]'));
+  const dots = Array.from(document.querySelectorAll<HTMLElement>('[data-go]'));
+
+  /* ── Utilitários de clone ─────────────────────────────── */
+
+  // Clona o .lp inteiro (div + filhos com data-astro-cid)
+  function cloneLP(idx: number): HTMLElement {
+    const el = lps[idx].cloneNode(true) as HTMLElement;
+    el.classList.add('lp-on');
+    el.removeAttribute('data-lp');
+    el.style.cssText = `position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transform:none;background:${PHASE_COLORS[idx]};`;
+    return el;
+  }
+
+  // Clona o .rp inteiro
+  function cloneRP(idx: number): HTMLElement {
+    const el = rps[idx].cloneNode(true) as HTMLElement;
+    el.classList.add('rp-on');
+    el.removeAttribute('data-rp');
+    el.style.cssText = 'position:absolute;inset:0;opacity:1;transform:none;';
+    el.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
+    return el;
+  }
+
+  /* ── Estiliza uma face do elemento girando ─────────────── */
+  function styleFace(
+    face: HTMLElement,
+    bg: string,
+    faceTransform: string,
+    extraFlex = false,
+  ) {
+    face.style.position = 'absolute';
+    face.style.inset = '0';
+    face.style.overflow = 'hidden';
+    face.style.background = bg;
+    face.style.transform = faceTransform;
+    face.style.backfaceVisibility = 'hidden';
+    (face.style as any).webkitBackfaceVisibility = 'hidden';
+    if (extraFlex) {
+      face.style.display = 'flex';
+      face.style.flexDirection = 'column';
+      face.style.alignItems = 'center';
+      face.style.justifyContent = 'center';
+    } else {
+      face.style.display = 'block';
+    }
+  }
+
+  /* ── Atualiza estado estático pós-animação ─────────────── */
+  function commitSwap(from: number, next: number) {
+    lps[from].classList.remove('lp-on');
+    lps[next].classList.add('lp-on');
+    rps[from].classList.remove('rp-on');
+    rps[next].classList.add('rp-on');
+    // Restaura opacidade da página que estava "escondida"
+    lps[from].style.opacity = '';
+    rps[from].style.opacity = '';
+    dots.forEach((d, i) => {
+      d.classList.toggle('dot-on', i === next);
+      d.setAttribute('aria-selected', String(i === next));
+    });
+    current = next;
+    animating = false;
+  }
+
+  /* ── Animação principal ───────────────────────────────── */
+  function goTo(next: number, dir: 1 | -1 = 1) {
+    if (animating || next === current || next < 0 || next >= TOTAL) return;
+    animating = true;
+    const from = current;
+
+    if (dir === 1) {
+      /*
+       * AVANÇAR (1 → 2, 2 → 3 …)
+       * A página DIREITA vira para a esquerda (como folear um livro para frente).
+       * transform-origin: left center (borda da lombada)
+       * rotateY: 0 → +180  (pai e face-traseira no mesmo sentido → texto correto)
+       * Frente: conteúdo atual da direita (rp[from])
+       * Verso:  número do próximo capítulo (lp[next]) — pré-rotacionado +180 para ficar oculto no início
+       */
+      Object.assign(bTurning.style, {
+        left: '50%',
+        right: '0',
+        width: '',
+        transformOrigin: 'left center',
+        borderRadius: '0 4px 4px 0',
+      });
+
+      // Revela a próxima página direita ANTES da animação (já estava lá, sob a página girando)
+      rps[next].classList.add('rp-on');
+      // Esconde a atual (coberta pelo front face do bTurning, mas oculta para evitar flash nos 90°)
+      rps[from].style.opacity = '0';
+
+      turnFront.innerHTML = '';
+      turnFront.appendChild(cloneRP(from));
+      styleFace(turnFront, '#faf8f4', 'none');
+
+      turnBack.innerHTML = '';
+      turnBack.appendChild(cloneLP(next));
+      styleFace(turnBack, PHASE_COLORS[next], 'rotateY(180deg)', true);
+
+      gsap.set(bTurning, { rotateY: 0, display: 'block' });
+      gsap.to(bTurning, {
+        rotateY: 180,
+        duration: 0.82,
+        ease: 'power2.inOut',
+        onComplete() {
+          // Snapa conteúdo estático instantaneamente ANTES de ocultar o flip
+          commitSwap(from, next);
+          gsap.set(bTurning, { display: 'none', rotateY: 0 });
+        },
+      });
+
+    } else {
+      /*
+       * VOLTAR (2 → 1, 3 → 2 …)
+       * A página ESQUERDA vira para a direita (como folhear de volta).
+       * transform-origin: right center (borda da lombada)
+       * rotateY: 0 → -180  (e face-traseira pré-rotacionada -180 → texto correto)
+       * Frente: número do capítulo atual (lp[from])
+       * Verso:  conteúdo do capítulo anterior (rp[next])
+       */
+      Object.assign(bTurning.style, {
+        left: '0',
+        right: '50%',
+        width: '',
+        transformOrigin: 'right center',
+        borderRadius: '4px 0 0 4px',
+      });
+
+      // Revela lp[next] ANTES da animação — já estava lá, sob a página que levanta
+      lps[next].classList.add('lp-on');
+      // Esconde lp[from] — está coberto pelo front face do bTurning, mas oculta para os 90°
+      lps[from].style.opacity = '0';
+      // rp[from] permanece visível à direita — será coberto pelo bTurning ao completar a virada
+      // rp[next] NÃO é revelado antes: chega na face traseira da página girando
+
+      turnFront.innerHTML = '';
+      turnFront.appendChild(cloneLP(from));
+      styleFace(turnFront, PHASE_COLORS[from], 'none', true);
+
+      turnBack.innerHTML = '';
+      turnBack.appendChild(cloneRP(next));
+      styleFace(turnBack, '#faf8f4', 'rotateY(-180deg)');
+
+      gsap.set(bTurning, { rotateY: 0, display: 'block' });
+      gsap.to(bTurning, {
+        rotateY: -180,
+        duration: 0.82,
+        ease: 'power2.inOut',
+        onComplete() {
+          commitSwap(from, next);
+          gsap.set(bTurning, { display: 'none', rotateY: 0 });
+        },
+      });
+    }
+  }
+
+  /* ── ScrollTrigger ────────────────────────────────────── */
+  if (window.matchMedia('(min-width: 900px)').matches) {
+    const spacer  = document.getElementById('book-scroll-spacer')!;
+    const PER_PH  = window.innerHeight * 0.88;
+
+    // 3 transições × PER_PH de scroll (fase 0 já está visível ao entrar)
+    spacer.style.height = `${(TOTAL - 1) * PER_PH}px`;
+
+    ScrollTrigger.create({
+      trigger: bScene,
+      start: 'top top+=74',
+      end: () => `+=${(TOTAL - 1) * PER_PH}`,
+      pin: bSticky,
+      pinSpacing: false,
+      scrub: false,
+      onUpdate(self) {
+        // progress 0→1 mapeia para fases 0→3
+        const target = Math.min(
+          Math.floor(self.progress * TOTAL),
+          TOTAL - 1,
+        );
+        const dir: 1 | -1 = target > current ? 1 : -1;
+        if (target !== current && !animating) goTo(target, dir);
+      },
+    });
+  }
+
+  /* ── Dots ─────────────────────────────────────────────── */
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const target = Number(dot.getAttribute('data-go'));
+      goTo(target, target > current ? 1 : -1);
+    });
+  });
+
+  /* ── Teclado ──────────────────────────────────────────── */
+  openBook.setAttribute('tabindex', '0');
+  openBook.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goTo(current + 1, 1);
+    if (e.key === 'ArrowLeft')  goTo(current - 1, -1);
+  });
+</script>
