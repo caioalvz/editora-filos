@@ -1,30 +1,85 @@
 ---
 const logos = [
-  { src: '/images/logos/amazon.svg',          alt: 'Amazon' },
-  { src: '/images/logos/google-books.svg',    alt: 'Google Books' },
-  { src: '/images/logos/apple-books.svg',     alt: 'Apple Books' },
-  { src: '/images/logos/kobo.svg',            alt: 'Kobo' },
-  { src: '/images/logos/scribd.svg',          alt: 'Scribd' },
-  { src: '/images/logos/overdrive.svg',       alt: 'OverDrive' },
-  { src: '/images/logos/barnes-noble.svg',    alt: 'Barnes & Noble' },
-  { src: '/images/logos/livraria-cultura.svg',alt: 'Livraria Cultura' },
-  { src: '/images/logos/saraiva.svg',         alt: 'Saraiva' },
-  { src: '/images/logos/fnac.svg',            alt: 'Fnac' },
-  { src: '/images/logos/estante-virtual.svg', alt: 'Estante Virtual' },
-  { src: '/images/logos/clube-autores.svg',   alt: 'Clube de Autores' },
+  {
+    name: 'Amazon', w: 116, h: 38,
+    body: `<text x="0" y="26" font-family="Outfit,Arial Black,sans-serif" font-size="24" font-weight="800" fill="currentColor" letter-spacing="-0.5">amazon</text><path d="M8 34 Q58 44 104 34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/><polyline points="100,30 106,34 100,38" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`
+  },
+  {
+    name: 'Google Books', w: 112, h: 38,
+    body: `<rect x="0" y="4" width="18" height="24" rx="2" fill="currentColor"/><rect x="4" y="4" width="2.5" height="24" fill="currentColor" opacity="0.2"/><rect x="2" y="9" width="13" height="1.5" rx="0.75" fill="currentColor" opacity="0.3"/><rect x="2" y="13" width="11" height="1.5" rx="0.75" fill="currentColor" opacity="0.3"/><rect x="2" y="17" width="12" height="1.5" rx="0.75" fill="currentColor" opacity="0.3"/><text x="24" y="17" font-family="Outfit,Arial,sans-serif" font-size="12" font-weight="700" fill="currentColor">Google</text><text x="24" y="32" font-family="Outfit,Arial,sans-serif" font-size="12" font-weight="400" fill="currentColor">Books</text>`
+  },
+  {
+    name: 'Apple Books', w: 104, h: 38,
+    body: `<path d="M19 8 L19 30 Q11 28 3 31 L3 9 Q11 6 19 8Z" fill="currentColor"/><path d="M19 8 L19 30 Q27 28 35 31 L35 9 Q27 6 19 8Z" fill="currentColor" opacity="0.5"/><text x="41" y="20" font-family="Outfit,Arial,sans-serif" font-size="12" font-weight="600" fill="currentColor">Apple</text><text x="41" y="34" font-family="Outfit,Arial,sans-serif" font-size="12" font-weight="400" fill="currentColor">Books</text>`
+  },
+  {
+    name: 'Kobo', w: 80, h: 38,
+    body: `<text x="0" y="28" font-family="Outfit,Georgia,serif" font-size="26" font-weight="600" fill="currentColor" letter-spacing="0.5">kobo</text>`
+  },
+  {
+    name: 'Scribd', w: 82, h: 38,
+    body: `<text x="0" y="28" font-family="Outfit,Arial,sans-serif" font-size="24" font-weight="700" fill="currentColor" letter-spacing="-0.3">Scribd</text>`
+  },
+  {
+    name: 'OverDrive', w: 120, h: 38,
+    body: `<ellipse cx="15" cy="19" rx="12" ry="14" stroke="currentColor" stroke-width="2.8" fill="none"/><path d="M9 28 Q15 34 21 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><text x="32" y="26" font-family="Outfit,Arial,sans-serif" font-size="18" font-weight="700" fill="currentColor" letter-spacing="-0.2">verDrive</text>`
+  },
+  {
+    name: 'Barnes & Noble', w: 102, h: 38,
+    body: `<rect x="1" y="2" width="38" height="34" rx="2" stroke="currentColor" stroke-width="2.5" fill="none"/><text x="5" y="28" font-family="Georgia,serif" font-size="20" font-weight="700" fill="currentColor">B&amp;N</text><text x="45" y="17" font-family="Outfit,Arial,sans-serif" font-size="9.5" font-weight="400" fill="currentColor">Barnes</text><text x="45" y="30" font-family="Outfit,Arial,sans-serif" font-size="9.5" font-weight="400" fill="currentColor">&amp; Noble</text>`
+  },
+  {
+    name: 'Livraria Cultura', w: 104, h: 38,
+    body: `<text x="0" y="18" font-family="Outfit,Georgia,serif" font-size="13" font-weight="700" fill="currentColor">Livraria</text><line x1="0" y1="22" x2="80" y2="22" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><text x="0" y="36" font-family="Outfit,Georgia,serif" font-size="13" font-weight="400" fill="currentColor">Cultura</text>`
+  },
+  {
+    name: 'Saraiva', w: 98, h: 38,
+    body: `<text x="0" y="28" font-family="Outfit,Arial,sans-serif" font-size="24" font-weight="600" fill="currentColor" letter-spacing="-0.2">saraiva</text>`
+  },
+  {
+    name: 'Fnac', w: 70, h: 38,
+    body: `<rect x="1" y="1" width="68" height="36" rx="3" stroke="currentColor" stroke-width="2.5" fill="none"/><text x="8" y="28" font-family="Outfit,Arial Black,sans-serif" font-size="21" font-weight="900" fill="currentColor" letter-spacing="1">fnac</text>`
+  },
+  {
+    name: 'Estante Virtual', w: 136, h: 38,
+    body: `<rect x="0" y="9" width="9" height="22" rx="1" fill="currentColor"/><rect x="11" y="14" width="9" height="17" rx="1" fill="currentColor"/><rect x="22" y="6" width="9" height="25" rx="1" fill="currentColor"/><rect x="0" y="32" width="31" height="3" rx="1" fill="currentColor"/><text x="38" y="19" font-family="Outfit,Arial,sans-serif" font-size="11.5" font-weight="700" fill="currentColor">Estante</text><text x="38" y="34" font-family="Outfit,Arial,sans-serif" font-size="11.5" font-weight="400" fill="currentColor">Virtual</text>`
+  },
+  {
+    name: 'Clube de Autores', w: 140, h: 38,
+    body: `<path d="M4 30 L12 6 L20 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="7" y1="23" x2="17" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><text x="28" y="19" font-family="Outfit,Arial,sans-serif" font-size="11.5" font-weight="700" fill="currentColor">Clube de</text><text x="28" y="34" font-family="Outfit,Arial,sans-serif" font-size="11.5" font-weight="400" fill="currentColor">Autores</text>`
+  },
 ];
 ---
 
 <div class="trust-strip">
   <div class="trust-inner container">
     <span class="trust-label">+40 plataformas</span>
-    <div class="trust-track-wrap" aria-label="Plataformas parceiras">
+    <div class="trust-track-wrap" aria-label="Plataformas de distribuição parceiras">
       <div class="trust-track">
         {logos.map(l => (
-          <img class="trust-logo" src={l.src} alt={l.alt} height="28" loading="lazy" decoding="async" />
+          <span class="trust-logo" title={l.name}>
+            <svg
+              viewBox={`0 0 ${l.w} ${l.h}`}
+              height="28"
+              style="display:block;width:auto;flex-shrink:0"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              set:html={l.body}
+            />
+          </span>
         ))}
+        {/* duplicate set for seamless loop */}
         {logos.map(l => (
-          <img class="trust-logo" src={l.src} alt="" height="28" aria-hidden="true" loading="lazy" decoding="async" />
+          <span class="trust-logo" aria-hidden="true">
+            <svg
+              viewBox={`0 0 ${l.w} ${l.h}`}
+              height="28"
+              style="display:block;width:auto;flex-shrink:0"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              set:html={l.body}
+            />
+          </span>
         ))}
       </div>
     </div>
@@ -49,9 +104,9 @@ const logos = [
     white-space: nowrap;
     flex-shrink: 0;
     font-family: var(--f-text);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-style: italic;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.4);
     letter-spacing: 0.01em;
   }
 
@@ -67,19 +122,20 @@ const logos = [
     align-items: center;
     gap: 55px;
     width: max-content;
-    animation: scroll-track 40s linear infinite;
+    animation: scroll-track 44s linear infinite;
+    /* color herdado pelos SVGs via fill="currentColor" */
+    color: rgba(255,255,255,0.65);
   }
 
   .trust-logo {
-    height: 28px;
-    width: auto;
-    opacity: 0.7;
-    filter: brightness(0) invert(1);
+    display: inline-flex;
+    align-items: center;
     flex-shrink: 0;
-    transition: opacity 0.2s;
+    transition: color 0.2s;
+    cursor: default;
   }
 
-  .trust-logo:hover { opacity: 1; }
+  .trust-logo:hover { color: rgba(255,255,255,1); }
 
   @keyframes scroll-track {
     0%   { transform: translateX(0); }
