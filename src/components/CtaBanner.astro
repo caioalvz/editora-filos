@@ -10,23 +10,21 @@
     <div class="cta-actions">
       <a
         href="https://wa.me/5581999999999?text=Olá!%20Vim%20pelo%20site%20e%20quero%20publicar%20meu%20livro."
-        class="btn-fill"
+        class="btn-white"
         target="_blank"
         rel="noopener"
       >
         Falar no WhatsApp
         <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
       </a>
-      <a href="#contato" class="link-line">Enviar mensagem</a>
+      <a href="#contato" class="link-white">Enviar mensagem</a>
     </div>
   </div>
 </section>
 
 <style>
   .cta {
-    background: var(--ink-8);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    background: var(--amber);
     padding: clamp(89px, 13vw, 160px) 0;
   }
 
@@ -40,16 +38,18 @@
   .cta-inner h2 {
     font-size: clamp(2.3rem, 5.2vw, 4.2rem);
     margin-bottom: var(--sp-3);
+    color: #fff;
   }
 
   .cta-tone {
     font-style: italic;
-    color: var(--tone-deep);
+    color: rgba(255,255,255,0.75);
   }
 
   .cta-sub {
     margin: 0 auto var(--sp-4);
     max-width: 44ch;
+    color: rgba(255,255,255,0.88);
   }
 
   .cta-actions {
@@ -59,6 +59,44 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  /* botão branco sobre âmbar */
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    background: #fff;
+    color: var(--amber);
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    padding: 17px 34px;
+    border-radius: 2px;
+    transition: background var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+    white-space: nowrap;
+  }
+  .btn-white:hover { background: var(--amber-mute); transform: translateY(-1px); }
+  .btn-white svg {
+    width: 17px; height: 17px;
+    fill: none; stroke: currentColor; stroke-width: 2.2;
+    stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
+  }
+
+  /* link branco sobre âmbar */
+  .link-white {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.9);
+    border-bottom: 1px solid rgba(255,255,255,0.45);
+    padding-bottom: 3px;
+    transition: color var(--dur), border-color var(--dur);
+  }
+  .link-white:hover { color: #fff; border-color: #fff; }
 
   @media (max-width: 480px) {
     .cta-actions { flex-direction: column; gap: var(--sp-3); }
