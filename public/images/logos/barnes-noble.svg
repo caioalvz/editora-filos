@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40" fill="none">
+  <!-- B&N monogram -->
+  <rect x="0" y="3" width="36" height="34" rx="3" fill="#0d0d0d"/>
+  <text x="3" y="28" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#ffffff">B&amp;N</text>
+  <text x="42" y="16" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="400" fill="#0d0d0d">Barnes</text>
+  <text x="42" y="27" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="400" fill="#0d0d0d">&amp; Noble</text>
+</svg>

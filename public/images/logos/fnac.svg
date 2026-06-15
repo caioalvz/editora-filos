@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 40" fill="none">
+  <!-- Fnac box -->
+  <rect x="0" y="2" width="62" height="36" rx="0" fill="#0d0d0d"/>
+  <text x="5" y="30" font-family="Arial Black,Arial,sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="1">fnac</text>
+</svg>
