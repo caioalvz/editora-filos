@@ -89,6 +89,7 @@ const faqs = [
 <style>
   .faq {
     padding: clamp(72px, 10vw, 123px) 0;
+    background: var(--amber-mute);
   }
 
   .faq-layout {
@@ -112,6 +113,9 @@ const faqs = [
     overflow: hidden;
     mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+    outline: 2px solid var(--amber);
+    outline-offset: -2px;
+    border-radius: 2px;
   }
 
   .faq-photo {
@@ -128,11 +132,11 @@ const faqs = [
   .faq-sub { margin-bottom: var(--sp-5); max-width: 48ch; }
 
   .faq-list {
-    border-top: 1px solid var(--line-strong);
+    border-top: 2px solid var(--amber);
   }
 
   .faq-item {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
   }
 
   .faq-trigger {
@@ -157,16 +161,18 @@ const faqs = [
     transition: color var(--dur);
   }
 
-  .faq-trigger:hover .faq-q { color: var(--tone); }
+  .faq-trigger:hover .faq-q { color: var(--navy); }
+
+  details[open] .faq-q { color: var(--navy); }
 
   .faq-mark {
     font-family: var(--f-display);
     font-weight: 300;
     font-size: 1.4rem;
     line-height: 1;
-    color: var(--ink-3);
+    color: var(--amber);
     flex-shrink: 0;
-    transition: transform var(--dur) var(--ease-out);
+    transition: transform var(--dur) var(--ease-out), color var(--dur);
   }
 
   details[open] .faq-mark { transform: rotate(45deg); }

@@ -88,7 +88,7 @@
 
 <style>
   .contact {
-    background: var(--ink-8);
+    background: var(--ink-9);
     border-top: 1px solid var(--line);
     padding: clamp(72px, 11vw, 130px) 0;
   }
@@ -102,14 +102,23 @@
     align-items: start;
   }
 
+  /* Navy panel for the info column */
+  .contact-info {
+    background: var(--navy);
+    border-radius: 4px;
+    padding: var(--sp-5);
+    color: rgba(255,255,255,0.85);
+  }
+
   .contact-lede {
     font-size: 0.97rem;
     margin-bottom: var(--sp-4);
     max-width: 40ch;
+    color: rgba(255,255,255,0.72);
   }
 
   .contact-list {
-    border-top: 1px solid var(--line-strong);
+    border-top: 1px solid rgba(255,255,255,0.15);
   }
 
   .contact-list li {
@@ -118,20 +127,27 @@
     justify-content: space-between;
     gap: 21px;
     padding: 17px 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .contact-list .meta {
+    color: rgba(255,255,255,0.45);
   }
 
   .contact-value {
     font-family: var(--f-display);
     font-weight: 500;
     font-size: 1rem;
-    color: var(--ink-1);
+    color: rgba(255,255,255,0.9);
     transition: color var(--dur);
   }
 
-  .contact-value:hover { color: var(--tone); }
+  .contact-value:hover { color: var(--amber); }
 
-  .contact-hours { margin-top: var(--sp-3); }
+  .contact-hours {
+    margin-top: var(--sp-3);
+    color: rgba(255,255,255,0.4);
+  }
 
   /* formulário editorial: campos de filete */
   .form-kicker {
