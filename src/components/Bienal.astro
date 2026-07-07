@@ -1,0 +1,199 @@
+---
+---
+<section class="bienal" aria-label="Filos Editora na 28ª Bienal Internacional do Livro">
+  <div class="bienal-inner container">
+    <div class="bienal-text reveal">
+      <span class="bienal-tag">Novidade 2026</span>
+      <h2 class="bienal-titulo">
+        A Filos estará na<br />
+        <em>28ª Bienal Internacional</em><br />
+        do Livro de São Paulo
+      </h2>
+      <p class="bienal-sub">
+        O maior evento literário da América Latina recebe a Filos Editora. Um encontro entre
+        histórias, autores e leitores de todo o mundo. Venha nos encontrar no Pavilhão do
+        Distrito Anhembi, em setembro de 2026.
+      </p>
+      <a
+        href="https://wa.me/5581999999999?text=Olá%2C%20quero%20saber%20mais%20sobre%20a%20Filos%20na%20Bienal!"
+        class="bienal-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        Quero participar
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </a>
+    </div>
+
+    <div class="bienal-badge reveal" style="transition-delay:.12s" aria-hidden="true">
+      <div class="badge-frame">
+        <!-- Emblema Bienal SVG -->
+        <svg class="badge-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Círculo externo -->
+          <circle cx="80" cy="80" r="74" stroke="rgba(201,144,30,0.5)" stroke-width="1" fill="none"/>
+          <!-- Círculo interno -->
+          <circle cx="80" cy="80" r="62" stroke="rgba(201,144,30,0.3)" stroke-width="0.8" fill="none"/>
+          <!-- Livros estilizados -->
+          <rect x="54" y="60" width="12" height="40" rx="1" fill="rgba(201,144,30,0.7)"/>
+          <rect x="68" y="55" width="12" height="45" rx="1" fill="rgba(201,144,30,0.9)"/>
+          <rect x="82" y="62" width="12" height="38" rx="1" fill="rgba(201,144,30,0.6)"/>
+          <rect x="96" y="58" width="12" height="42" rx="1" fill="rgba(201,144,30,0.8)"/>
+          <!-- Asa superior -->
+          <path d="M80 45 C60 35, 35 40, 30 55 C45 48, 60 50, 80 55 C100 50, 115 48, 130 55 C125 40, 100 35, 80 45Z" fill="rgba(201,144,30,0.35)" stroke="rgba(201,144,30,0.6)" stroke-width="0.8"/>
+          <!-- Texto circular -->
+          <path id="arc-top" d="M 20,80 A 60,60 0 0,1 140,80" fill="none"/>
+          <text font-family="Spectral,Georgia,serif" font-size="9" font-weight="400" fill="rgba(201,144,30,0.9)" letter-spacing="3">
+            <textPath href="#arc-top" startOffset="15%">BIENAL INTERNACIONAL DO LIVRO</textPath>
+          </text>
+          <path id="arc-bot" d="M 30,95 A 55,55 0 0,0 130,95" fill="none"/>
+          <text font-family="Spectral,Georgia,serif" font-size="9" font-weight="400" fill="rgba(201,144,30,0.75)" letter-spacing="3">
+            <textPath href="#arc-bot" startOffset="14%">SÃO PAULO · SETEMBRO 2026</textPath>
+          </text>
+        </svg>
+        <div class="badge-date">4 a 13 de Setembro · Anhembi · SP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bienal {
+    position: relative;
+    background: linear-gradient(135deg, #0a0500 0%, #1a0a00 45%, #080e1c 100%);
+    border-top: 1px solid rgba(201,144,30,0.45);
+    border-bottom: 1px solid rgba(201,144,30,0.45);
+    padding: clamp(55px, 8vw, 100px) 0;
+    overflow: hidden;
+  }
+
+  /* Brilho decorativo no canto */
+  .bienal::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,144,30,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bienal-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(34px, 6vw, 89px);
+    align-items: center;
+  }
+
+  .bienal-tag {
+    display: inline-block;
+    font-family: var(--f-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: var(--sp-3);
+  }
+
+  .bienal-titulo {
+    font-family: var(--f-head);
+    font-size: clamp(1.6rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.12;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--sp-3);
+  }
+
+  .bienal-titulo em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .bienal-sub {
+    font-family: var(--f-display);
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.48);
+    line-height: 1.78;
+    max-width: 54ch;
+    margin-bottom: var(--sp-4);
+  }
+
+  .bienal-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--amber);
+    border-bottom: 1px solid rgba(201,144,30,0.45);
+    padding-bottom: 3px;
+    transition: color var(--dur), border-color var(--dur);
+  }
+
+  .bienal-cta:hover {
+    color: #e6a83a;
+    border-color: rgba(201,144,30,0.8);
+  }
+
+  .bienal-cta svg {
+    width: 15px; height: 15px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: transform var(--dur);
+  }
+
+  .bienal-cta:hover svg { transform: translateX(4px); }
+
+  /* Emblema */
+  .bienal-badge {
+    flex-shrink: 0;
+  }
+
+  .badge-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,144,30,0.25);
+    border-radius: 4px;
+    padding: 28px 32px;
+  }
+
+  .badge-svg {
+    width: 160px;
+    height: 160px;
+  }
+
+  .badge-date {
+    font-family: var(--f-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .bienal-inner {
+      grid-template-columns: 1fr;
+    }
+    .bienal-badge {
+      justify-self: start;
+    }
+    .badge-frame {
+      flex-direction: row;
+      padding: 18px 24px;
+    }
+    .badge-svg { width: 100px; height: 100px; }
+  }
+
+  @media (max-width: 480px) {
+    .badge-frame { flex-direction: column; }
+  }
+</style>

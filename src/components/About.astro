@@ -1,31 +1,53 @@
 ---
 ---
-
 <section class="about" id="sobre">
   <div class="container about-wrap">
-    <div class="about-photo-col reveal">
-      <div class="about-photo-frame">
+
+    <!-- Visual: painel escuro com composição tipográfica -->
+    <div class="about-visual reveal" aria-hidden="true">
+      <div class="av-bg">
         <img
-          src="/images/about-photo.webp"
-          alt="Equipe editorial da Filos Editora"
-          class="about-photo"
-          width="480"
-          height="580"
+          src="/images/hero-wings.jpg"
+          alt=""
+          class="av-photo"
+          width="960"
+          height="640"
           loading="lazy"
           decoding="async"
         />
       </div>
-      <p class="meta about-caption">A equipe editorial da Filos</p>
+      <div class="av-overlay">
+        <span class="av-quote">&ldquo;Utilizar a literatura como ponte para conectar pessoas, gerar oportunidades e construir um impacto positivo que ultrapassa fronteiras.&rdquo;</span>
+        <div class="av-stats">
+          <div class="avs">
+            <span class="avs-n">24</span>
+            <span class="avs-l">estados percorridos</span>
+          </div>
+          <div class="avs">
+            <span class="avs-n">12<sup>+</sup></span>
+            <span class="avs-l">países de atuação</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="about-text-col reveal" style="transition-delay:.1s">
-      <h2>Parceiros editoriais<br />de quem escreve sério</h2>
+    <div class="about-text reveal" style="transition-delay:.1s">
+      <span class="about-eyebrow">Dando Asas à Imaginação</span>
+      <h2>Literatura como<br />ponte para o mundo</h2>
 
-      <p class="prose about-lead">A Filos Editora nasceu da convicção de que todo autor merece uma publicação à altura da sua história. Somos um time de especialistas editoriais dedicados a transformar manuscritos em obras que chegam ao mundo com qualidade, identidade e presença.</p>
+      <p class="prose about-lead">A Filos Editora nasceu da convicção de que todo autor merece uma publicação à altura da sua história. Através do projeto "Dando Asas à Imaginação", já percorremos 24 estados do Brasil e 12 países, desenvolvendo oficinas, ações culturais e incentivo à leitura.</p>
 
-      <p class="prose">Trabalhamos com autores de todas as áreas, do romance à pesquisa acadêmica, oferecendo uma jornada editorial completa, do design da capa ao lançamento digital. Cada livro que publicamos recebe atenção individual e tratamento profissional.</p>
+      <p class="prose">Levamos literatura a comunidades em favelas, quilombos, APAEs, Fundações CASA, hospitais, escolas públicas e organizações sociais. Cada livro publicado é também um ato de impacto social.</p>
 
-      <p class="about-note">Não somos uma plataforma de autopublicação automatizada. Distribuímos em mais de 40 plataformas globais, com ISBN, DOI e 98% de satisfação dos nossos autores.</p>
+      <div class="about-inclusao">
+        <p class="inclusao-titulo">Inclusão permanente</p>
+        <ul class="inclusao-lista">
+          <li>Jovens e crianças em vulnerabilidade social</li>
+          <li>Comunidades indígenas e quilombolas</li>
+          <li>APAEs e casas de acolhimento</li>
+          <li>Escolas públicas e hospitais</li>
+        </ul>
+      </div>
 
       <a
         href="https://wa.me/5581999999999?text=Olá!%20Quero%20conhecer%20melhor%20a%20Filos%20Editora."
@@ -37,6 +59,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
       </a>
     </div>
+
   </div>
 </section>
 
@@ -45,82 +68,174 @@
     background: var(--ink-8);
     border-top: 2px solid var(--amber);
     border-bottom: 1px solid var(--line);
-    padding: clamp(34px, 3.4vw, 49px) 0;
+    padding: clamp(55px, 7vw, 100px) 0;
     overflow: hidden;
   }
 
   .about-wrap {
     display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: clamp(34px, 7vw, 89px);
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(34px, 6vw, 80px);
     align-items: center;
   }
 
-  /* Moldura na proporção exata da área opaca da imagem (482×504):
-     corta apenas o fundo transparente, nunca a pessoa. */
-  .about-photo-frame {
+  /* ── Visual ── */
+  .about-visual {
     position: relative;
-    width: 100%;
-    aspect-ratio: 482 / 504;
+    aspect-ratio: 4 / 5;
+    border-radius: 2px;
     overflow: hidden;
-    mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
   }
 
-  .about-photo {
+  .av-bg {
     position: absolute;
-    width: calc(100% * 600 / 482);
-    max-width: none;
-    height: auto;
-    left: calc(-100% * 75 / 482);
-    top: calc(-100% * 95 / 504);
-    filter: drop-shadow(0 21px 42px rgba(0,0,0,.18));
+    inset: 0;
   }
 
-  .about-caption {
-    margin-top: var(--sp-2);
-    text-align: center;
+  .av-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: brightness(0.38) saturate(0.7);
+    display: block;
   }
 
-  .about-text-col h2 { margin-bottom: var(--sp-4); }
+  .av-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(to top, rgba(8,14,28,0.9) 0%, rgba(8,14,28,0.3) 50%, transparent 100%);
+  }
 
-  .about-text-col .prose { margin-bottom: var(--sp-3); }
+  .av-quote {
+    font-family: var(--f-head);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    display: block;
+  }
 
-  /* capitular editorial no parágrafo de abertura */
+  .av-stats {
+    display: flex;
+    gap: 24px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 20px;
+  }
+
+  .avs {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .avs-n {
+    font-family: var(--f-display);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .avs-n sup {
+    font-size: 0.55em;
+    vertical-align: super;
+  }
+
+  .avs-l {
+    font-family: var(--f-display);
+    font-size: 0.67rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.38);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Texto ── */
+  .about-eyebrow {
+    display: inline-block;
+    font-family: var(--f-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: var(--sp-2);
+  }
+
+  .about-text h2 {
+    margin-bottom: var(--sp-4);
+    color: var(--ink-0);
+  }
+
+  .about-text .prose {
+    margin-bottom: var(--sp-3);
+    color: var(--ink-2);
+  }
+
   .about-lead::first-letter {
     font-family: var(--f-display);
     font-weight: 600;
-    font-size: 3.4em;
+    font-size: 3.2em;
     line-height: 0.82;
     float: left;
     padding: 5px 12px 0 0;
     color: var(--tone);
   }
 
-  /* nota editorial, recuada como citação */
-  .about-note {
-    font-style: italic;
-    color: var(--ink-1);
-    font-size: 1.02rem;
-    line-height: 1.78;
-    margin: var(--sp-4) 0;
-    padding-left: var(--sp-4);
-    max-width: 52ch;
+  .about-inclusao {
+    margin: var(--sp-3) 0 var(--sp-4);
+    padding-left: var(--sp-3);
+    border-left: 2px solid var(--amber);
   }
 
-  .about-note::before {
-    content: '※';
+  .inclusao-titulo {
+    font-family: var(--f-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-1);
+    margin-bottom: 12px;
+  }
+
+  .inclusao-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .inclusao-lista li {
+    font-family: var(--f-display);
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.45;
+  }
+
+  .inclusao-lista li::before {
+    content: '';
     display: block;
-    color: var(--ink-3);
-    font-style: normal;
-    margin-bottom: 5px;
-    margin-left: calc(-1 * var(--sp-4));
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
   }
 
   .about-cta { margin-top: var(--sp-2); }
 
   @media (max-width: 900px) {
     .about-wrap { grid-template-columns: 1fr; }
-    .about-photo-col { display: none; }
+    .about-visual { aspect-ratio: 16 / 9; }
   }
 </style>

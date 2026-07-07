@@ -1,81 +1,72 @@
 ---
-const glyphs = [
-  { ch: '¶', top: '8%',  left: '4%',  size: '7rem',  dur: '52s', delay: '0s'   },
-  { ch: '§', top: '62%', left: '12%', size: '5rem',  dur: '64s', delay: '-18s' },
-  { ch: '❧', top: '24%', left: '38%', size: '9rem',  dur: '74s', delay: '-40s' },
-  { ch: '&', top: '74%', left: '46%', size: '6rem',  dur: '58s', delay: '-9s'  },
-  { ch: 'ﬁ', top: '12%', left: '72%', size: '8rem',  dur: '68s', delay: '-30s' },
-  { ch: '✻', top: '55%', left: '85%', size: '4.5rem',dur: '47s', delay: '-22s' },
-  { ch: '„', top: '40%', left: '60%', size: '10rem', dur: '80s', delay: '-55s' },
-];
 ---
 <section class="hero" id="inicio">
-  <!-- Animação de fundo: glifos editoriais à deriva -->
-  <div class="hero-bg" aria-hidden="true">
-    {glyphs.map(g => (
-      <span
-        class="glyph"
-        style={`top:${g.top}; left:${g.left}; font-size:${g.size}; animation-duration:${g.dur}; animation-delay:${g.delay};`}
-      >{g.ch}</span>
-    ))}
+  <!-- Imagem de fundo: asa + livros -->
+  <div class="hero-img" aria-hidden="true">
+    <img
+      src="/images/hero-wings.jpg"
+      alt=""
+      class="hero-bg-photo"
+      width="1920"
+      height="1080"
+      loading="eager"
+      decoding="async"
+    />
   </div>
 
-  <div class="container hero-inner">
-    <div class="hero-text">
-      <p class="meta hero-kicker">Casa editorial para quem escreve sério</p>
+  <!-- Glifos flutuantes sutis sobre o overlay -->
+  <div class="hero-glyphs" aria-hidden="true">
+    <span class="glyph" style="top:12%;left:6%;font-size:6rem;animation-duration:62s;animation-delay:0s">¶</span>
+    <span class="glyph" style="top:68%;left:8%;font-size:4rem;animation-duration:54s;animation-delay:-20s">§</span>
+    <span class="glyph" style="top:20%;left:88%;font-size:5rem;animation-duration:70s;animation-delay:-35s">❧</span>
+    <span class="glyph" style="top:75%;left:82%;font-size:3.5rem;animation-duration:48s;animation-delay:-12s">✻</span>
+  </div>
 
-      <h1>
-        Do manuscrito<br />
-        ao livro<br />
-        <span class="hero-tone">publicado.</span>
-      </h1>
+  <!-- Conteúdo principal -->
+  <div class="container hero-content">
+    <p class="meta hero-kicker">Casa editorial para quem escreve sério</p>
 
-      <p class="prose hero-sub">
-        Design editorial, ISBN, DOI e distribuição em mais de 40 plataformas
-        globais, tudo em um único parceiro editorial.
-      </p>
+    <h1 class="hero-h1">
+      Dando asas<br />
+      <em class="hero-em">à imaginação</em>
+    </h1>
 
-      <div class="hero-actions">
-        <a
-          href="https://wa.me/5581999999999?text=Olá%2C%20quero%20publicar%20meu%20livro%20com%20a%20Filos!"
-          class="btn-fill"
-          target="_blank"
-          rel="noopener"
-        >
-          Publicar meu livro
-          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-        </a>
-        <a href="#servicos" class="link-line">Ver serviços</a>
-      </div>
+    <p class="prose hero-sub">
+      Empresa brasileira que conecta literatura, tecnologia e impacto social.
+      Do manuscrito ao livro publicado globalmente, em um único parceiro editorial.
+    </p>
 
-      <div class="hero-badges" aria-label="Diferenciais Filos Editora">
-        <div class="hero-badge">
-          <span class="badge-num">+40</span>
-          <span class="badge-label">plataformas globais</span>
-        </div>
-        <div class="hero-badge">
-          <span class="badge-num">100%</span>
-          <span class="badge-label">ISBN &amp; DOI garantidos</span>
-        </div>
-        <div class="hero-badge">
-          <span class="badge-num">98%</span>
-          <span class="badge-label">autores satisfeitos</span>
-        </div>
-      </div>
+    <div class="hero-actions">
+      <a
+        href="https://wa.me/5581999999999?text=Olá%2C%20quero%20publicar%20meu%20livro%20com%20a%20Filos!"
+        class="btn-fill hero-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        Publicar meu livro
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </a>
+      <a href="#servicos" class="hero-link">Ver serviços</a>
     </div>
+  </div>
 
-    <div class="hero-visual">
-      <div class="hero-frame">
-        <img
-          src="/images/hero-photo.webp"
-          alt="Autor segurando livro publicado pela Filos Editora"
-          class="hero-photo"
-          width="560"
-          height="680"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
+  <!-- Faixa de números -->
+  <div class="hero-stats" aria-label="Filos em números">
+    <div class="hstat">
+      <span class="hstat-n">5.000<sup>+</sup></span>
+      <span class="hstat-l">Títulos Publicados</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-n">24</span>
+      <span class="hstat-l">Estados do Brasil</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-n">12<sup>+</sup></span>
+      <span class="hstat-l">Países Alcançados</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-n">15<sup>+</sup></span>
+      <span class="hstat-l">Prefeituras Parceiras</span>
     </div>
   </div>
 </section>
@@ -84,17 +75,44 @@ const glyphs = [
   .hero {
     position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100svh;
     overflow: hidden;
-    background: #111111;
-    border-bottom: none;
     margin-top: -74px;
     padding-top: 74px;
   }
 
-  /* ── fundo animado ── */
-  .hero-bg {
+  /* ── Imagem de fundo ── */
+  .hero-img {
     position: absolute;
     inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    filter: brightness(0.45) saturate(0.8);
+  }
+
+  /* overlay adicional para garantir legibilidade */
+  .hero-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(8,14,28,0.55) 0%, rgba(8,14,28,0.2) 40%, rgba(8,14,28,0.65) 75%, rgba(8,14,28,0.88) 100%);
+  }
+
+  /* ── Glifos ── */
+  .hero-glyphs {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     pointer-events: none;
     overflow: hidden;
   }
@@ -103,7 +121,7 @@ const glyphs = [
     position: absolute;
     font-family: 'Spectral', Georgia, 'Times New Roman', serif;
     color: #fff;
-    opacity: 0.05;
+    opacity: 0.04;
     line-height: 1;
     will-change: transform;
     animation-name: drift;
@@ -113,50 +131,54 @@ const glyphs = [
   }
 
   @keyframes drift {
-    0%   { transform: translate(0, 0) rotate(-4deg); }
-    50%  { transform: translate(2.6vw, -3.5vh) rotate(3deg); }
-    100% { transform: translate(-1.8vw, 3vh) rotate(-2deg); }
+    0%   { transform: translate(0, 0) rotate(-3deg); }
+    50%  { transform: translate(2vw, -2.5vh) rotate(2deg); }
+    100% { transform: translate(-1.5vw, 2.5vh) rotate(-1.5deg); }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .glyph { animation: none; }
   }
 
-  /* ── grade ── */
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1.16fr 0.84fr;
-    align-items: end;
-    width: 100%;
+  /* ── Conteúdo ── */
+  .hero-content {
     position: relative;
-    z-index: 1;
-  }
-
-  .hero-text {
-    align-self: center;
-    padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: clamp(48px, 8vh, 96px);
+    padding-bottom: clamp(48px, 6vh, 80px);
+    max-width: 820px;
   }
 
   .hero-kicker {
     margin-bottom: var(--sp-3);
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
   }
 
-  .hero-text h1 {
-    margin-bottom: var(--sp-4);
-    font-size: clamp(2.6rem, 5vw, 4.8rem);
+  .hero-h1 {
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    font-weight: 300;
     color: #fff;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--sp-4);
   }
 
-  .hero-tone {
+  .hero-em {
     color: var(--amber);
     font-style: italic;
   }
 
   .hero-sub {
-    max-width: 46ch;
+    max-width: 52ch;
+    color: rgba(255,255,255,0.7);
     margin-bottom: var(--sp-4);
-    color: rgba(255,255,255,0.72);
+    font-size: 1.0625rem;
+    line-height: 1.78;
   }
 
   .hero-actions {
@@ -164,120 +186,93 @@ const glyphs = [
     align-items: center;
     gap: var(--sp-4);
     flex-wrap: wrap;
-    margin-bottom: var(--sp-5);
   }
 
-  /* botão branco sobre navy */
-  .hero-text .btn-fill {
-    background: #fff;
-    color: var(--navy);
+  .hero-cta {
+    background: var(--amber);
+    color: #fff;
   }
-  .hero-text .btn-fill:hover {
-    background: rgba(255,255,255,0.88);
+
+  .hero-cta:hover {
+    background: #b8820d;
     transform: translateY(-1px);
   }
 
-  /* link branco sobre navy */
-  .hero-text .link-line {
-    color: rgba(255,255,255,0.8);
-    border-bottom-color: rgba(255,255,255,0.3);
+  .hero-link {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 3px;
+    transition: color var(--dur), border-color var(--dur);
   }
-  .hero-text .link-line:hover {
+
+  .hero-link:hover {
     color: #fff;
-    border-bottom-color: rgba(255,255,255,0.7);
+    border-bottom-color: rgba(255,255,255,0.65);
   }
 
-  .hero-badges {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding-top: var(--sp-3);
-    border-top: 1px solid rgba(255,255,255,0.12);
+  /* ── Faixa de stats ── */
+  .hero-stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgba(8, 14, 28, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
 
-  .hero-badge {
+  .hstat {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    padding: 10px 16px;
-    min-width: 90px;
+    align-items: center;
+    text-align: center;
+    padding: clamp(20px, 3vh, 32px) clamp(12px, 2vw, 24px);
+    border-right: 1px solid rgba(255,255,255,0.08);
   }
 
-  .badge-num {
+  .hstat:last-child { border-right: none; }
+
+  .hstat-n {
     font-family: var(--f-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
     font-weight: 700;
-    font-size: 1.25rem;
-    line-height: 1;
     color: var(--amber);
-    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
   }
 
-  .badge-label {
+  .hstat-n sup {
+    font-size: 0.55em;
+    vertical-align: super;
+    font-weight: 600;
+  }
+
+  .hstat-l {
     font-family: var(--f-display);
-    font-size: 0.72rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.3;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    line-height: 1.3;
   }
 
-  /* ── foto: assentada na base da seção ── */
-  .hero-visual {
-    align-self: end;
-    min-width: 0;
-  }
-
-  /* Moldura na proporção da área opaca da imagem (368×502):
-     corta só o fundo transparente; o retrato fica mais alto que largo.
-     margin-top = 25% da altura da moldura (502/368 da largura),
-     mantendo o hero em 1.25× a altura da foto. */
-  .hero-frame {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 368 / 502;
-    overflow: hidden;
-    margin-top: calc(25% * 502 / 368);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 80%, transparent 100%);
-  }
-
-  .hero-photo {
-    position: absolute;
-    width: calc(100% * 600 / 368);
-    max-width: none;
-    height: auto;
-    left: calc(-100% * 127 / 368);
-    top: calc(-100% * 97 / 502);
-    filter: drop-shadow(0 28px 56px rgba(0,0,0,.55));
-  }
-
-  /* ── responsivo ── */
+  /* ── Responsivo ── */
   @media (max-width: 900px) {
-    .hero { min-height: unset; }
-
-    .hero-inner {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-text {
-      order: 1;
-      padding: var(--sp-5) 0 var(--sp-4);
-    }
-
-    .hero-visual {
-      order: 2;
-      height: auto;
-      justify-content: center;
-    }
-
-    .hero-frame { margin-top: 0; }
+    .hero-content { max-width: 100%; }
+    .hero-h1 { font-size: clamp(2.6rem, 9vw, 4.2rem); }
   }
 
-  @media (max-width: 480px) {
-    .hero-actions { align-items: flex-start; flex-direction: column; gap: var(--sp-3); }
+  @media (max-width: 600px) {
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .hstat:nth-child(2) { border-right: none; }
+    .hstat:nth-child(3),
+    .hstat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: var(--sp-3); }
   }
 </style>
