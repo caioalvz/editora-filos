@@ -1,0 +1,144 @@
+---
+const veiculos = [
+  {
+    nome: 'Globo',
+    svg: `<circle cx="28" cy="19" r="16" stroke="currentColor" stroke-width="2" fill="none"/><ellipse cx="28" cy="19" rx="7" ry="16" stroke="currentColor" stroke-width="1.2" fill="none"/><line x1="12" y1="19" x2="44" y2="19" stroke="currentColor" stroke-width="1.2"/><path d="M14 11 Q28 8 42 11" stroke="currentColor" stroke-width="1" fill="none"/><path d="M14 27 Q28 30 42 27" stroke="currentColor" stroke-width="1" fill="none"/>`,
+    vw: 56, vh: 38,
+  },
+  {
+    nome: 'SBT',
+    svg: `<rect x="4" y="6" width="48" height="26" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><text x="28" y="23" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="14" font-weight="900" fill="currentColor" letter-spacing="1">SBT</text>`,
+    vw: 56, vh: 38,
+  },
+  {
+    nome: 'Record',
+    svg: `<circle cx="28" cy="17" r="14" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="28" cy="17" r="7" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="28" cy="17" r="2.5" fill="currentColor"/>`,
+    vw: 56, vh: 38,
+  },
+  {
+    nome: 'Band',
+    svg: `<path d="M8 5 L8 29 L30 29 Q46 29 46 17 Q46 5 30 5 Z" stroke="currentColor" stroke-width="2" fill="none"/><line x1="8" y1="17" x2="32" y2="17" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>`,
+    vw: 56, vh: 38,
+  },
+  {
+    nome: 'TV Cultura',
+    svg: `<polygon points="32,3 52,13 52,29 32,38 12,29 12,13" stroke="currentColor" stroke-width="2" fill="none"/><text x="32" y="25" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="7.5" fill="currentColor" letter-spacing="0.5">CULTURA</text>`,
+    vw: 64, vh: 42,
+  },
+  {
+    nome: 'Podcasts',
+    svg: `<rect x="22" y="3" width="12" height="20" rx="6" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 17 Q12 30 28 30 Q44 30 44 17" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><line x1="28" y1="30" x2="28" y2="37" stroke="currentColor" stroke-width="2"/><line x1="22" y1="37" x2="34" y2="37" stroke="currentColor" stroke-width="2"/>`,
+    vw: 56, vh: 42,
+  },
+  {
+    nome: 'Rádio do Cairo',
+    svg: `<path d="M8 25 Q8 8 32 8 Q56 8 56 25" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M14 25 Q14 13 32 13 Q50 13 50 25" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 25 Q20 18 32 18 Q44 18 44 25" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/><circle cx="32" cy="25" r="3" fill="currentColor"/>`,
+    vw: 64, vh: 38,
+  },
+  {
+    nome: 'Emissoras Africanas',
+    svg: `<path d="M22 4 Q30 2 34 6 Q40 4 44 10 Q48 17 44 26 Q40 34 32 38 Q24 36 18 30 Q12 22 14 14 Q16 6 22 4Z" stroke="currentColor" stroke-width="1.8" fill="none"/>`,
+    vw: 56, vh: 42,
+  },
+  {
+    nome: 'Rádios & Jornais',
+    svg: `<rect x="4" y="8" width="48" height="28" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="10" y1="15" x2="46" y2="15" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="21" x2="38" y2="21" stroke="currentColor" stroke-width="1" opacity="0.6"/><line x1="10" y1="26" x2="34" y2="26" stroke="currentColor" stroke-width="1" opacity="0.6"/>`,
+    vw: 56, vh: 42,
+  },
+];
+---
+
+<section class="midia">
+  <div class="container midia-inner">
+    <header class="midia-head reveal">
+      <h2 class="midia-titulo">A Filos na <em>mídia</em></h2>
+      <p class="midia-sub">Presença nos maiores veículos do Brasil e do mundo</p>
+    </header>
+
+    <div class="midia-logos" aria-label="Veículos de mídia">
+      {veiculos.map((v, i) => (
+        <div class="midia-item reveal" style={`transition-delay:${i * 0.06}s`} title={v.nome}>
+          <svg
+            viewBox={`0 0 ${v.vw} ${v.vh}`}
+            width={v.vw}
+            height={v.vh}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            aria-hidden="true"
+            set:html={v.svg}
+          />
+          <span class="midia-nome">{v.nome}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .midia {
+    background: var(--navy);
+    padding: clamp(55px, 7vw, 89px) 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .midia-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(32px, 4vw, 55px);
+    text-align: center;
+  }
+
+  .midia-titulo {
+    font-family: var(--f-head);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 10px;
+  }
+
+  .midia-titulo em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .midia-sub {
+    font-family: var(--f-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .midia-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(24px, 4vw, 55px) clamp(32px, 5vw, 72px);
+    width: 100%;
+  }
+
+  .midia-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.45);
+    transition: color var(--dur) var(--ease-out);
+    cursor: default;
+  }
+
+  .midia-item:hover { color: rgba(255,255,255,0.85); }
+
+  .midia-nome {
+    font-family: var(--f-display);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+</style>

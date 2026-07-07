@@ -1,0 +1,159 @@
+---
+const paises = [
+  {
+    flag: '🇧🇷',
+    nome: 'Brasil',
+    status: null,
+    desc: 'Sede e origem. Presente em 24 estados com projetos editoriais, sociais e culturais que impactam comunidades de norte a sul do país.',
+  },
+  {
+    flag: '🇦🇴',
+    nome: 'Angola',
+    status: null,
+    desc: 'Filial de serviços editoriais na província de Benguela, com projetos educacionais voltados a crianças da comunidade local e presença em emissoras africanas.',
+  },
+  {
+    flag: '🇨🇺',
+    nome: 'Cuba',
+    status: 'Em breve',
+    desc: 'Nova unidade de serviços editoriais em implantação, expandindo a missão da Filos para mais um país e reforçando o compromisso com a literatura em língua portuguesa.',
+  },
+];
+---
+
+<section class="internacional" id="internacional">
+  <div class="container">
+
+    <header class="int-head reveal">
+      <h2>Uma editora brasileira<br />com <em>alcance global</em></h2>
+      <p class="prose int-sub">
+        Levamos literatura, projetos sociais e oportunidades editoriais além
+        das fronteiras. Presente em três países e crescendo.
+      </p>
+    </header>
+
+    <div class="int-grid">
+      {paises.map((p, i) => (
+        <div class={`int-item reveal${p.status ? ' int-breve' : ''}`} style={`transition-delay:${i * 0.1}s`}>
+          <span class="int-flag" aria-hidden="true">{p.flag}</span>
+          <div class="int-body">
+            <div class="int-pais-wrap">
+              <span class="int-pais">{p.nome}</span>
+              {p.status && <span class="int-badge">{p.status}</span>}
+            </div>
+            <p class="int-desc">{p.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .internacional {
+    background: var(--ink-9);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(55px, 8vw, 100px) 0;
+  }
+
+  .int-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 5vw, 89px);
+    align-items: start;
+    margin-bottom: clamp(42px, 6vw, 80px);
+  }
+
+  .int-head h2 {
+    font-size: clamp(1.85rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    letter-spacing: -0.012em;
+    color: var(--ink-0);
+  }
+
+  .int-head h2 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .int-sub {
+    font-size: 1rem;
+    color: var(--ink-2);
+    padding-top: 8px;
+    max-width: 44ch;
+  }
+
+  /* ── Grid de países ── */
+  .int-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--line);
+  }
+
+  .int-item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: clamp(24px, 3.5vw, 42px);
+    border-right: 1px solid var(--line);
+    transition: background var(--dur) var(--ease-out);
+  }
+
+  .int-item:last-child { border-right: none; }
+
+  .int-item:hover { background: var(--ink-8); }
+
+  .int-breve { opacity: 0.65; }
+  .int-breve:hover { opacity: 1; }
+
+  .int-flag {
+    font-size: 2.2rem;
+    line-height: 1;
+    display: block;
+  }
+
+  .int-pais-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .int-pais {
+    font-family: var(--f-head);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: var(--ink-0);
+  }
+
+  .int-badge {
+    font-family: var(--f-display);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    padding: 3px 8px;
+  }
+
+  .int-desc {
+    font-family: var(--f-display);
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    line-height: 1.75;
+    max-width: none;
+  }
+
+  @media (max-width: 860px) {
+    .int-head { grid-template-columns: 1fr; }
+    .int-grid { grid-template-columns: 1fr; }
+    .int-item { border-right: none; border-bottom: 1px solid var(--line); }
+    .int-item:last-child { border-bottom: none; }
+  }
+</style>

@@ -1,0 +1,185 @@
+---
+const awards = [
+  {
+    year: '2021',
+    name: 'Prêmio Apontador',
+    desc: 'Celebra iniciativas que apontam novos caminhos para a literatura e para a democratização do acesso à leitura no Brasil.',
+  },
+  {
+    year: '2022',
+    name: 'Paladino Literário',
+    desc: 'Reconhecimento de excelência no cenário literário nacional, concedido às editoras que mais se destacam em qualidade editorial e impacto cultural.',
+  },
+  {
+    year: '2023',
+    name: 'Melhor Editora',
+    desc: 'Eleita Melhor Editora do ano, reconhecendo qualidade, inovação e compromisso com autores e leitores em toda a cadeia editorial.',
+  },
+];
+---
+
+<section class="premiacoes" id="premiacoes">
+  <div class="container">
+
+    <header class="premiacoes-head reveal">
+      <h2>Premiados por quem<br /><em>entende de literatura</em></h2>
+    </header>
+
+    <!-- Lista de prêmios -->
+    <div class="awards-list" role="list">
+      {awards.map((a, i) => (
+        <div class="award-row reveal" style={`transition-delay:${i * 0.08}s`} role="listitem">
+          <span class="award-year">{a.year}</span>
+          <div class="award-body">
+            <h3 class="award-name">{a.name}</h3>
+            <p class="award-desc">{a.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Destaque: editais federais -->
+    <div class="editais reveal">
+      <div class="editais-label">Editais Culturais Federais</div>
+      <div class="editais-inner">
+        <div class="editais-titulo">
+          <span class="editais-badge">Lei Paulo Gustavo</span>
+          <span class="editais-badge">Aldir Blanc</span>
+        </div>
+        <p class="editais-desc">
+          Contemplada pelos dois principais editais culturais do governo federal, reconhecendo
+          o impacto social genuíno dos projetos da Filos em comunidades vulneráveis, escolas
+          públicas e organizações sociais em todo o país.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .premiacoes {
+    background: var(--ink-8);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(55px, 8vw, 100px) 0;
+  }
+
+  .premiacoes-head {
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+
+  .premiacoes-head h2 {
+    font-size: clamp(1.85rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    letter-spacing: -0.012em;
+    color: var(--ink-0);
+  }
+
+  .premiacoes-head h2 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  /* ── Lista de prêmios ── */
+  .awards-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
+    margin-bottom: clamp(32px, 4vw, 55px);
+  }
+
+  .award-row {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: clamp(16px, 3vw, 42px);
+    padding: clamp(20px, 3vw, 34px) 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+
+  .award-year {
+    font-family: var(--f-head);
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--ink-3);
+    padding-top: 4px;
+    letter-spacing: 0.01em;
+  }
+
+  .award-name {
+    font-family: var(--f-head);
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    color: var(--ink-0);
+    margin-bottom: 10px;
+  }
+
+  .award-desc {
+    font-family: var(--f-display);
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    line-height: 1.72;
+    max-width: 70ch;
+  }
+
+  /* ── Editais federais ── */
+  .editais {
+    background: var(--navy);
+    border-radius: 2px;
+    padding: clamp(24px, 4vw, 42px) clamp(24px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(24px, 4vw, 55px);
+    align-items: start;
+  }
+
+  .editais-label {
+    font-family: var(--f-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    padding: 4px 0;
+  }
+
+  .editais-inner { min-width: 0; }
+
+  .editais-titulo {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .editais-badge {
+    font-family: var(--f-display);
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--amber);
+    background: rgba(201,144,30,0.12);
+    border: 1px solid rgba(201,144,30,0.3);
+    border-radius: 2px;
+    padding: 5px 13px;
+    letter-spacing: 0.02em;
+  }
+
+  .editais-desc {
+    font-family: var(--f-display);
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    max-width: 68ch;
+  }
+
+  @media (max-width: 640px) {
+    .award-row { grid-template-columns: 1fr; gap: 8px; }
+    .award-year { padding-top: 0; }
+    .editais { grid-template-columns: 1fr; }
+    .editais-label { writing-mode: horizontal-tb; transform: none; }
+  }
+</style>
