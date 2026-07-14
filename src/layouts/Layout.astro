@@ -8,6 +8,8 @@ const {
   title = 'Filos Editora — Do Manuscrito ao Livro Publicado',
   description = 'Publicamos seu livro com design premium, ISBN, DOI e distribuição em +40 plataformas globais. Do manuscrito ao mercado editorial com um único parceiro.',
 } = Astro.props;
+
+const ogImage = `${Astro.url.origin}/images/hero-wings.jpg`;
 ---
 
 <!DOCTYPE html>
@@ -30,16 +32,16 @@ const {
   <meta property="og:description" content={description} />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="Filos Editora" />
-  <meta property="og:image" content="https://filoseditora.com.br/images/hero-wings.jpg" />
+  <meta property="og:image" content={ogImage} />
   <meta property="og:image:width" content="1920" />
   <meta property="og:image:height" content="1080" />
-  <meta property="og:image:alt" content="Menina com asas — Filos Editora" />
+  <meta property="og:image:alt" content="Menina com asas abertas entre livros — Filos Editora" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content="https://filoseditora.com.br/images/hero-wings.jpg" />
+  <meta name="twitter:image" content={ogImage} />
 
   <!-- Fonts: Spectral (títulos) + Manrope (UI e corpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
