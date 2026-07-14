@@ -1,53 +1,12 @@
 ---
+// Logos com src usam imagem real + filtro CSS (deposite em public/images/midia/).
+// Logos sem src usam SVG inline com currentColor.
 const veiculos = [
-  {
-    nome: 'TV Globo',
-    vw: 48, vh: 48,
-    svg: `
-      <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="2.5" fill="none"/>
-      <rect x="8" y="16" width="32" height="16" rx="8" stroke="currentColor" stroke-width="1.8" fill="none"/>
-      <circle cx="24" cy="24" r="5.5" fill="currentColor"/>
-    `,
-  },
-  {
-    nome: 'SBT',
-    vw: 56, vh: 56,
-    svg: `
-      <circle cx="28" cy="28" r="25" stroke="currentColor" stroke-width="2.2" fill="none"/>
-      <text x="28" y="38" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="23" font-weight="900" fill="currentColor">sbt</text>
-    `,
-  },
-  {
-    nome: 'Record',
-    vw: 56, vh: 68,
-    svg: `
-      <circle cx="28" cy="28" r="22" stroke="currentColor" stroke-width="2.2" fill="none"/>
-      <path d="M28,6 Q42,28 47,39" stroke="currentColor" stroke-width="1.5" fill="none"/>
-      <path d="M47,39 Q28,43 9,39" stroke="currentColor" stroke-width="1.5" fill="none"/>
-      <path d="M9,39 Q14,28 28,6" stroke="currentColor" stroke-width="1.5" fill="none"/>
-      <text x="28" y="62" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="9" font-weight="700" fill="currentColor" letter-spacing="2.5">RECORD</text>
-    `,
-  },
-  {
-    nome: 'Band',
-    vw: 64, vh: 68,
-    svg: `
-      <path d="M5,30 Q32,5 59,30" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <path d="M5,30 Q32,55 59,30" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <circle cx="32" cy="30" r="13" stroke="currentColor" stroke-width="1.8" fill="none"/>
-      <circle cx="32" cy="30" r="6" fill="currentColor"/>
-      <text x="32" y="63" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="9" font-weight="800" fill="currentColor" letter-spacing="3.5">BAND</text>
-    `,
-  },
-  {
-    nome: 'TV Cultura',
-    vw: 56, vh: 70,
-    svg: `
-      <path d="M27,2 L14,2 L14,26 L2,26 L2,46 Q2,51 7,51 L27,51 Z" fill="currentColor"/>
-      <path d="M29,2 L42,2 L42,26 L54,26 L54,46 Q54,51 49,51 L29,51 Z" fill="currentColor"/>
-      <text x="28" y="65" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="8.5" font-weight="700" fill="currentColor" letter-spacing="2.5">CULTURA</text>
-    `,
-  },
+  { nome: 'TV Globo',   src: '/images/midia/globo.png' },
+  { nome: 'SBT',        src: '/images/midia/sbt.png' },
+  { nome: 'Record',     src: '/images/midia/record.png' },
+  { nome: 'Band',       src: '/images/midia/band.png' },
+  { nome: 'TV Cultura', src: '/images/midia/cultura.png' },
   {
     nome: 'Podcasts',
     vw: 56, vh: 48,
@@ -77,20 +36,8 @@ const veiculos = [
     nome: 'Emissoras Africanas',
     vw: 46, vh: 56,
     svg: `
-      <path d="
-        M 12 3
-        L 24 2
-        L 36 5
-        C 40 10, 42 16, 40 22
-        C 42 26, 42 30, 38 36
-        L 34 44
-        C 30 52, 26 54, 23 52
-        C 18 50, 14 44, 12 36
-        C 8 30, 6 24, 8 18
-        C 10 10, 10 6, 12 18
-        C 10 14, 12 8, 12 3
-        Z
-      " stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <path d="M 12 3 L 24 2 L 36 5 C 40 10, 42 16, 40 22 C 42 26, 42 30, 38 36 L 34 44 C 30 52, 26 54, 23 52 C 18 50, 14 44, 12 36 C 8 30, 6 24, 8 18 C 10 10, 10 6, 12 3 Z"
+            stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
     `,
   },
   {
@@ -123,15 +70,26 @@ const veiculos = [
     <div class="midia-logos" aria-label="Veículos de mídia">
       {veiculos.map((v, i) => (
         <div class="midia-item reveal" style={`transition-delay:${i * 0.06}s`} title={v.nome}>
-          <svg
-            viewBox={`0 0 ${v.vw} ${v.vh}`}
-            height="48"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            aria-hidden="true"
-            style="display:block;width:auto;flex-shrink:0"
-            set:html={v.svg}
-          />
+          {'src' in v ? (
+            <img
+              src={v.src}
+              alt={v.nome}
+              class="midia-logo-img"
+              height="48"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <svg
+              viewBox={`0 0 ${v.vw} ${v.vh}`}
+              height="48"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              aria-hidden="true"
+              style="display:block;width:auto;flex-shrink:0"
+              set:html={v.svg}
+            />
+          )}
           <span class="midia-nome">{v.nome}</span>
         </div>
       ))}
@@ -197,6 +155,24 @@ const veiculos = [
   }
 
   .midia-item:hover { color: rgba(255,255,255,0.88); }
+
+  /* Logos via imagem real: invert+grayscale transforma fundo branco em
+     invisível (screen blend apaga preto no navy) e elementos escuros em brancos */
+  .midia-logo-img {
+    height: 52px;
+    width: auto;
+    max-width: 120px;
+    display: block;
+    flex-shrink: 0;
+    filter: invert(1) grayscale(1) contrast(5);
+    mix-blend-mode: lighten;
+    opacity: 0.45;
+    transition: opacity var(--dur) var(--ease-out);
+  }
+
+  .midia-item:hover .midia-logo-img {
+    opacity: 0.9;
+  }
 
   .midia-nome {
     font-family: var(--f-display);
