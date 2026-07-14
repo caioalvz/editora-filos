@@ -7,56 +7,12 @@ const veiculos = [
   { nome: 'Record',     src: '/images/midia/record.png' },
   { nome: 'Band',       src: '/images/midia/band.png' },
   { nome: 'TV Cultura', src: '/images/midia/cultura.png' },
-  {
-    nome: 'Podcasts',
-    vw: 56, vh: 48,
-    svg: `
-      <rect x="20" y="4" width="16" height="24" rx="8" stroke="currentColor" stroke-width="2" fill="none"/>
-      <path d="M10 22 Q10 38 28 38 Q46 38 46 22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <line x1="28" y1="38" x2="28" y2="44" stroke="currentColor" stroke-width="2"/>
-      <line x1="20" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="2"/>
-    `,
-  },
-  {
-    nome: 'Rádio do Cairo',
-    vw: 64, vh: 52,
-    svg: `
-      <path d="M32 10 L6 46 L58 46 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
-      <line x1="18" y1="34" x2="46" y2="34" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-      <line x1="24" y1="24" x2="40" y2="24" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
-      <path d="M26 7 Q22 3 26 10" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-      <path d="M38 7 Q42 3 38 10" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-      <path d="M22 5 Q16 0 22 8" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <path d="M42 5 Q48 0 42 8" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <circle cx="32" cy="10" r="2" fill="currentColor"/>
-      <text x="32" y="52" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="7" font-weight="600" fill="currentColor" letter-spacing="2">CAIRO</text>
-    `,
-  },
-  {
-    nome: 'Emissoras Africanas',
-    vw: 46, vh: 56,
-    svg: `
-      <path d="M 12 3 L 24 2 L 36 5 C 40 10, 42 16, 40 22 C 42 26, 42 30, 38 36 L 34 44 C 30 52, 26 54, 23 52 C 18 50, 14 44, 12 36 C 8 30, 6 24, 8 18 C 10 10, 10 6, 12 3 Z"
-            stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-    `,
-  },
-  {
-    nome: 'Rádios & Jornais',
-    vw: 56, vh: 48,
-    svg: `
-      <rect x="4" y="6" width="48" height="34" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/>
-      <line x1="4" y1="17" x2="52" y2="17" stroke="currentColor" stroke-width="1.5"/>
-      <line x1="28" y1="17" x2="28" y2="40" stroke="currentColor" stroke-width="1"/>
-      <line x1="8"  y1="22" x2="24" y2="22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="8"  y1="27" x2="24" y2="27" stroke="currentColor" stroke-width="1"   stroke-linecap="round" opacity="0.7"/>
-      <line x1="8"  y1="32" x2="21" y2="32" stroke="currentColor" stroke-width="1"   stroke-linecap="round" opacity="0.5"/>
-      <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="32" y1="27" x2="48" y2="27" stroke="currentColor" stroke-width="1"   stroke-linecap="round" opacity="0.7"/>
-      <line x1="32" y1="32" x2="45" y2="32" stroke="currentColor" stroke-width="1"   stroke-linecap="round" opacity="0.5"/>
-      <rect x="8" y="8" width="40" height="7" rx="1" fill="currentColor" opacity="0.18"/>
-      <text x="28" y="47" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="6" font-weight="600" fill="currentColor" letter-spacing="1" opacity="0.6">RÁDIOS &amp; JORNAIS</text>
-    `,
-  },
+  { nome: 'Podcasts',       src: '/images/midia/podcasts.png',
+    imgFilter: 'invert(1) contrast(2.5)' },
+  { nome: 'Rádio do Cairo', src: '/images/midia/cairo.png',
+    imgFilter: 'grayscale(1) invert(1) contrast(3)' },
+  { nome: 'Emissoras Africanas', src: '/images/midia/emissoras%20africanas.png' },
+  { nome: 'Rádios & Jornais',   src: '/images/midia/radios%20e%20jornais.png' },
 ];
 ---
 
@@ -78,6 +34,7 @@ const veiculos = [
               height="48"
               loading="lazy"
               decoding="async"
+              style={'imgFilter' in v ? `filter:${v.imgFilter};mix-blend-mode:lighten` : undefined}
             />
           ) : (
             <svg
@@ -163,14 +120,14 @@ const veiculos = [
     max-width: 120px;
     display: block;
     flex-shrink: 0;
-    filter: invert(1) grayscale(1) contrast(5);
+    filter: grayscale(1) invert(1) brightness(2);
     mix-blend-mode: lighten;
     opacity: 0.45;
     transition: opacity var(--dur) var(--ease-out);
   }
 
   :global(.midia-item:hover .midia-logo-img) {
-    opacity: 0.9;
+    opacity: 0.88;
   }
 
   .midia-nome {
