@@ -156,9 +156,8 @@ const veiculos = [
 
   .midia-item:hover { color: rgba(255,255,255,0.88); }
 
-  /* Logos via imagem real: invert+grayscale transforma fundo branco em
-     invisível (screen blend apaga preto no navy) e elementos escuros em brancos */
-  .midia-logo-img {
+  /* :global() necessário — Astro purga classes usadas em expressões ternárias */
+  :global(.midia-logo-img) {
     height: 52px;
     width: auto;
     max-width: 120px;
@@ -170,7 +169,7 @@ const veiculos = [
     transition: opacity var(--dur) var(--ease-out);
   }
 
-  .midia-item:hover .midia-logo-img {
+  :global(.midia-item:hover .midia-logo-img) {
     opacity: 0.9;
   }
 
