@@ -15,7 +15,7 @@
         Distrito Anhembi, em setembro de 2026.
       </p>
       <a
-        href="https://wa.me/5581999999999?text=Olá%2C%20quero%20saber%20mais%20sobre%20a%20Filos%20na%20Bienal!"
+        href="https://wa.me/5514999256318?text=Olá%2C%20quero%20saber%20mais%20sobre%20a%20Filos%20na%20Bienal!"
         class="bienal-cta"
         target="_blank"
         rel="noopener"
@@ -27,29 +27,15 @@
 
     <div class="bienal-badge reveal" style="transition-delay:.12s" aria-hidden="true">
       <div class="badge-frame">
-        <!-- Emblema Bienal SVG -->
-        <svg class="badge-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-          <!-- Círculo externo -->
-          <circle cx="80" cy="80" r="74" stroke="rgba(201,144,30,0.5)" stroke-width="1" fill="none"/>
-          <!-- Círculo interno -->
-          <circle cx="80" cy="80" r="62" stroke="rgba(201,144,30,0.3)" stroke-width="0.8" fill="none"/>
-          <!-- Livros estilizados -->
-          <rect x="54" y="60" width="12" height="40" rx="1" fill="rgba(201,144,30,0.7)"/>
-          <rect x="68" y="55" width="12" height="45" rx="1" fill="rgba(201,144,30,0.9)"/>
-          <rect x="82" y="62" width="12" height="38" rx="1" fill="rgba(201,144,30,0.6)"/>
-          <rect x="96" y="58" width="12" height="42" rx="1" fill="rgba(201,144,30,0.8)"/>
-          <!-- Asa superior -->
-          <path d="M80 45 C60 35, 35 40, 30 55 C45 48, 60 50, 80 55 C100 50, 115 48, 130 55 C125 40, 100 35, 80 45Z" fill="rgba(201,144,30,0.35)" stroke="rgba(201,144,30,0.6)" stroke-width="0.8"/>
-          <!-- Texto circular -->
-          <path id="arc-top" d="M 20,80 A 60,60 0 0,1 140,80" fill="none"/>
-          <text font-family="Spectral,Georgia,serif" font-size="9" font-weight="400" fill="rgba(201,144,30,0.9)" letter-spacing="3">
-            <textPath href="#arc-top" startOffset="15%">BIENAL INTERNACIONAL DO LIVRO</textPath>
-          </text>
-          <path id="arc-bot" d="M 30,95 A 55,55 0 0,0 130,95" fill="none"/>
-          <text font-family="Spectral,Georgia,serif" font-size="9" font-weight="400" fill="rgba(201,144,30,0.75)" letter-spacing="3">
-            <textPath href="#arc-bot" startOffset="14%">SÃO PAULO · SETEMBRO 2026</textPath>
-          </text>
-        </svg>
+        <img
+          src="/images/midia/bienal.avif"
+          alt="28ª Bienal Internacional do Livro de São Paulo"
+          class="badge-img"
+          width="380"
+          height="211"
+          loading="lazy"
+          decoding="async"
+        />
         <div class="badge-date">4 a 13 de Setembro · Anhembi · SP</div>
       </div>
     </div>
@@ -164,9 +150,12 @@
     padding: 28px 32px;
   }
 
-  .badge-svg {
-    width: 160px;
-    height: 160px;
+  .badge-img {
+    width: 200px;
+    height: auto;
+    display: block;
+    filter: grayscale(1) sepia(0.75) brightness(0.88) contrast(1.1);
+    border-radius: 2px;
   }
 
   .badge-date {
@@ -190,7 +179,7 @@
       flex-direction: row;
       padding: 18px 24px;
     }
-    .badge-svg { width: 100px; height: 100px; }
+    .badge-img { width: 140px; }
   }
 
   @media (max-width: 480px) {
