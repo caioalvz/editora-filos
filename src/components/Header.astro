@@ -66,18 +66,10 @@
     position: sticky;
     top: 0;
     z-index: 200;
-    background: transparent;
-    transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
-    border-bottom: 1px solid transparent;
-  }
-
-  /* Frosted dark glass when scrolled OR when menu is open */
-  header.scrolled,
-  header.menu-open {
-    background: rgba(13, 29, 48, 0.9);
+    background: rgba(8, 14, 24, 0.92);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .header-inner {
@@ -229,14 +221,9 @@
   const hamburger = document.getElementById('hamburger')!;
   const mobileNav = document.getElementById('mobile-nav')!;
 
-  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
   function openMenu() {
     mobileNav.classList.add('open');
     hamburger.classList.add('open');
-    header.classList.add('menu-open');
     hamburger.setAttribute('aria-expanded', 'true');
     mobileNav.setAttribute('aria-hidden', 'false');
     hamburger.setAttribute('aria-label', 'Fechar menu');
@@ -245,7 +232,6 @@
   function closeMenu() {
     mobileNav.classList.remove('open');
     hamburger.classList.remove('open');
-    header.classList.remove('menu-open');
     hamburger.setAttribute('aria-expanded', 'false');
     mobileNav.setAttribute('aria-hidden', 'true');
     hamburger.setAttribute('aria-label', 'Abrir menu');
