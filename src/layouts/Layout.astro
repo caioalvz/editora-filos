@@ -6,10 +6,16 @@ export interface Props {
 
 const {
   title = 'Filos Editora — Do Manuscrito ao Livro Publicado',
-  description = 'Publicamos seu livro com design premium, ISBN, DOI e distribuição em +40 plataformas globais. Do manuscrito ao mercado editorial com um único parceiro.',
+  description = 'Editora brasileira com design premium, ISBN, DOI e distribuição em +40 plataformas globais. Do manuscrito ao livro publicado.',
 } = Astro.props;
 
-const ogImage = `${Astro.url.origin}/images/hero-wings.jpg`;
+// Vercel exposes VERCEL_PROJECT_PRODUCTION_URL (stable) or VERCEL_URL (per-deploy).
+// Falls back to the configured site origin once the custom domain is live.
+const vercelHost =
+  import.meta.env.VERCEL_PROJECT_PRODUCTION_URL ??
+  import.meta.env.VERCEL_URL;
+const ogOrigin = vercelHost ? `https://${vercelHost}` : Astro.site!.origin;
+const ogImage = `${ogOrigin}/images/hero-wings.jpg`;
 ---
 
 <!DOCTYPE html>
