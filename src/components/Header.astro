@@ -32,28 +32,16 @@
         aria-expanded="false"
         aria-controls="mobile-nav"
       >
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- Full-screen overlay — self-contained with its own logo + close row -->
+<!-- Overlay sits below the header (z-index 180 < header 200) -->
 <nav id="mobile-nav" class="mobile-nav" aria-label="Menu mobile" aria-hidden="true">
-  <div class="mobile-nav-top container">
-    <a href="/" class="logo-link" aria-label="Filos Editora — página inicial">
-      <img src="/images/logo-white.webp" alt="Filos Editora" width="120" height="44" class="logo" />
-    </a>
-    <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
-      <svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22">
-        <line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
-
   <div class="mobile-nav-body container">
     <div class="mobile-links">
       <a href="#servicos"    class="mobile-link">Serviços</a>
@@ -76,14 +64,16 @@
 <style>
   header {
     position: sticky;
-    top: -1px; /* closes 1px subpixel gap at viewport top */
+    top: -1px;
     z-index: 200;
     background: transparent;
     transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
     border-bottom: 1px solid transparent;
   }
 
-  header.scrolled {
+  /* Frosted dark glass when scrolled OR when menu is open */
+  header.scrolled,
+  header.menu-open {
     background: rgba(13, 29, 48, 0.9);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
@@ -95,7 +85,7 @@
     align-items: center;
     gap: 21px;
     height: 74px;
-    padding-top: 1px; /* compensates for top: -1px */
+    padding-top: 1px;
   }
 
   .logo-link { display: flex; align-items: center; flex-shrink: 0; }
@@ -153,7 +143,7 @@
 
   .header-cta:hover svg { transform: translateX(3px); }
 
-  /* Hamburger */
+  /* Hamburger → × */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -166,20 +156,31 @@
     display: block;
     width: 22px;
     height: 1.5px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 1px;
+    transform-origin: center;
+    transition: transform 0.35s var(--ease-out), opacity 0.2s, width 0.25s var(--ease-out);
   }
 
-  /* Mobile nav overlay — covers full screen, self-contained */
+  /* × state */
+  .hamburger.open .bar-1 { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open .bar-2 { opacity: 0; width: 0; }
+  .hamburger.open .bar-3 { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile overlay — starts below the header row */
   .mobile-nav {
     position: fixed;
-    inset: 0;
-    z-index: 250;
+    top: 73px; /* sits just below the 74px header */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 180;
     background: rgba(8, 16, 28, 0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     opacity: 0;
     pointer-events: none;
@@ -193,33 +194,9 @@
     transform: none;
   }
 
-  /* Top row mirrors the header: logo left, close right */
-  .mobile-nav-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 74px;
-    flex-shrink: 0;
-  }
-
-  .mobile-close {
-    color: rgba(255, 255, 255, 0.6);
-    padding: 8px;
-    transition: color var(--dur);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .mobile-close:hover { color: #fff; }
-
-  /* Links body */
   .mobile-nav-body {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-bottom: 48px;
     gap: var(--sp-4);
   }
 
@@ -252,29 +229,32 @@
   const header    = document.getElementById('site-header')!;
   const hamburger = document.getElementById('hamburger')!;
   const mobileNav = document.getElementById('mobile-nav')!;
-  const mobileClose = document.getElementById('mobile-close')!;
 
-  // Scroll: frosted dark glass past 60px
   const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   function openMenu() {
     mobileNav.classList.add('open');
+    hamburger.classList.add('open');
+    header.classList.add('menu-open');
     hamburger.setAttribute('aria-expanded', 'true');
     mobileNav.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    hamburger.setAttribute('aria-label', 'Fechar menu');
   }
 
   function closeMenu() {
     mobileNav.classList.remove('open');
+    hamburger.classList.remove('open');
+    header.classList.remove('menu-open');
     hamburger.setAttribute('aria-expanded', 'false');
     mobileNav.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    hamburger.setAttribute('aria-label', 'Abrir menu');
   }
 
-  hamburger.addEventListener('click', openMenu);
-  mobileClose.addEventListener('click', closeMenu);
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.contains('open') ? closeMenu() : openMenu();
+  });
 
   document.querySelectorAll('.mobile-link, .mobile-cta').forEach(link => {
     link.addEventListener('click', closeMenu);
