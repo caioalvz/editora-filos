@@ -59,8 +59,18 @@ const ogImage = `${ogOrigin}/images/hero-wings.jpg`;
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
 
-  <!-- LCP: preload hero image -->
-  <link rel="preload" as="image" href="/images/hero-wings.webp" type="image/webp" fetchpriority="high" />
+  <!-- LCP: preload hero image — cada breakpoint carrega a fonte correta -->
+  <link rel="preload" as="image" href="/images/hero-wings-mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/hero-wings.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
+
+  <!-- Fontes críticas above-the-fold (hashes estáveis enquanto @fontsource não for atualizado) -->
+  {import.meta.env.PROD && (
+    <>
+      <link rel="preload" as="font" type="font/woff2" href="/_astro/manrope-latin-wght-normal.DHIcAJRg.woff2" crossorigin="anonymous" />
+      <link rel="preload" as="font" type="font/woff2" href="/_astro/spectral-latin-300-normal.Csl9mA3s.woff2" crossorigin="anonymous" />
+      <link rel="preload" as="font" type="font/woff2" href="/_astro/spectral-latin-300-italic.naRpDz_b.woff2" crossorigin="anonymous" />
+    </>
+  )}
 
   <style is:global>
     /* ════════════════════════════════════════════════
