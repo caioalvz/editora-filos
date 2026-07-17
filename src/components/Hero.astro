@@ -3,15 +3,24 @@
 <section class="hero" id="inicio">
   <!-- Imagem de fundo: asa + livros -->
   <div class="hero-img" aria-hidden="true">
-    <img
-      src="/images/hero-wings.jpg"
-      alt="Menina com asas abertas entre livros — Filos Editora"
-      class="hero-bg-photo"
-      width="1920"
-      height="1080"
-      loading="eager"
-      decoding="async"
-    />
+    <picture>
+      <source
+        media="(max-width: 768px)"
+        srcset="/images/hero-wings-mobile.webp"
+        type="image/webp"
+      />
+      <source srcset="/images/hero-wings.webp" type="image/webp" />
+      <img
+        src="/images/hero-wings.jpg"
+        alt="Menina com asas abertas entre livros — Filos Editora"
+        class="hero-bg-photo"
+        width="900"
+        height="1200"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
   </div>
 
   <!-- Glifos flutuantes sutis sobre o overlay -->

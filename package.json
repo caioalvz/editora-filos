@@ -12,6 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/manrope": "^5.2.8",
+    "@fontsource/spectral": "^5.2.8",
     "astro": "^6.4.5",
     "gsap": "^3.15.0"
   }
