@@ -1,0 +1,191 @@
+---
+const genres = [
+  'Ficção & Romance',
+  'Poesia',
+  'Biografias & Memórias',
+  'Auto-ajuda',
+  'Psicologia',
+  'Contos & Crônicas',
+  'Educação',
+  'Espiritualidade',
+  'Direito',
+  'Inteligência artificial',
+  'Clássicos',
+  'Infantojuvenil',
+];
+---
+
+<section class="catalogo" id="catalogo">
+  <div class="container">
+    <div class="catalogo-inner">
+
+      <div class="catalogo-text reveal">
+        <p class="meta cat-kicker">Livraria Filos Editora</p>
+        <h2>Conheça as obras<br />que publicamos</h2>
+        <p class="prose cat-body">
+          Cada manuscrito confiado à Filos torna-se uma obra presente em mais de 40
+          plataformas globais — Amazon, Apple Books, Google Books, Kobo e dezenas de
+          outras. Livros físicos com impressão sob demanda e entrega nacional; ebooks
+          disponíveis para leitores no mundo inteiro.
+        </p>
+        <a
+          href="https://filoseditora.com.br/"
+          class="btn-fill cat-btn"
+          target="_blank"
+          rel="noopener"
+        >
+          Visitar a livraria
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </a>
+        <p class="meta cat-note">Livros físicos e ebooks &middot; Entrega nacional e internacional</p>
+      </div>
+
+      <div class="catalogo-shelf reveal" aria-hidden="true" style="transition-delay:.18s">
+        <p class="meta genres-label">Gêneros disponíveis</p>
+        <ul class="genre-grid">
+          {genres.map(g => <li class="genre-chip">{g}</li>)}
+        </ul>
+        <div class="shelf-foot">
+          <span class="shelf-stat"><strong>40+</strong> plataformas</span>
+          <span class="shelf-divider" aria-hidden="true"></span>
+          <span class="shelf-stat"><strong>100%</strong> direitos do autor</span>
+          <span class="shelf-divider" aria-hidden="true"></span>
+          <span class="shelf-stat">Físico <em>&amp;</em> digital</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .catalogo {
+    background: var(--ink-9);
+    border-top: 3px solid var(--amber);
+    padding: clamp(72px, 11vw, 130px) 0;
+    overflow: hidden;
+  }
+
+  .catalogo-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(40px, 8vw, 100px);
+    align-items: center;
+  }
+
+  /* ── left: texto ── */
+  .cat-kicker {
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-style: normal;
+    margin-bottom: var(--sp-2);
+  }
+
+  .catalogo-text h2 {
+    margin-bottom: var(--sp-3);
+  }
+
+  .cat-body {
+    margin-bottom: var(--sp-4);
+    max-width: 46ch;
+  }
+
+  .cat-btn {
+    margin-bottom: var(--sp-3);
+  }
+
+  .cat-note {
+    font-size: 0.8rem;
+    color: var(--ink-3);
+  }
+
+  /* ── right: prateleira de gêneros ── */
+  .genres-label {
+    font-style: normal;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--ink-5);
+    margin-bottom: var(--sp-2);
+  }
+
+  .genre-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: var(--sp-4);
+  }
+
+  .genre-chip {
+    font-family: var(--f-display);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    padding: 6px 14px;
+    transition: color var(--dur), border-color var(--dur), background var(--dur);
+    cursor: default;
+  }
+
+  .genre-chip:hover {
+    color: var(--ink-0);
+    border-color: var(--amber);
+    background: var(--amber-mute);
+  }
+
+  /* ── rodapé com stats ── */
+  .shelf-foot {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: var(--sp-3);
+    border-top: 1px solid var(--line);
+  }
+
+  .shelf-stat {
+    font-family: var(--f-display);
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  .shelf-stat strong {
+    color: var(--ink-0);
+    font-weight: 700;
+  }
+
+  .shelf-stat em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  .shelf-divider {
+    display: block;
+    width: 1px;
+    height: 18px;
+    background: var(--line-strong);
+    flex-shrink: 0;
+  }
+
+  /* ── responsive ── */
+  @media (max-width: 860px) {
+    .catalogo-inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--sp-5);
+    }
+
+    .cat-body { max-width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    .shelf-foot {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .shelf-divider { display: none; }
+  }
+</style>
