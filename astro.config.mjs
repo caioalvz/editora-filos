@@ -2,4 +2,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   output: 'static',
   site: 'https://filoseditora.com.br',
+  build: {
+    inlineStylesheets: 'always',
+  },
 });
