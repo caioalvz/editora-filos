@@ -301,6 +301,14 @@ const ogImage = `${ogOrigin}/images/hero-wings.jpg`;
       { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
     );
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Connect unlabeled sections to their first heading for a11y and agent discoverability
+    document.querySelectorAll('section:not([aria-label]):not([aria-labelledby])').forEach(section => {
+      const heading = section.querySelector('h1, h2, h3');
+      if (!heading) return;
+      if (!heading.id) heading.id = (section.id ? section.id + '-heading' : 'section-' + Math.random().toString(36).slice(2, 7));
+      section.setAttribute('aria-labelledby', heading.id);
+    });
   </script>
 </body>
 </html>
