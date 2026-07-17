@@ -258,9 +258,39 @@ const ogImage = `${ogOrigin}/images/hero-wings.jpg`;
       outline: 2px solid var(--tone);
       outline-offset: 3px;
     }
+
+    /* ════════ SKIP LINK ════════ */
+    .skip-link {
+      position: fixed;
+      top: -100%;
+      left: 16px;
+      z-index: 9999;
+      background: var(--tone);
+      color: var(--ink-9);
+      font-family: var(--f-display);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 12px 20px;
+      border-radius: 2px;
+      transition: top 0.15s;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* ════════ VISUALMENTE OCULTO (acessível) ════════ */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
   <slot />
 
   <script>

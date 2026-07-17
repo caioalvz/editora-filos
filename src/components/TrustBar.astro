@@ -54,8 +54,8 @@ const logos = [
 <div class="trust-strip">
   <div class="trust-inner container">
     <span class="trust-label">+40 plataformas</span>
-    <div class="trust-track-wrap" aria-label="Plataformas de distribuição parceiras">
-      <div class="trust-track">
+    <div class="trust-track-wrap" role="region" aria-label="Plataformas de distribuição parceiras">
+      <div class="trust-track" aria-hidden="true">
         {logos.map(l => (
           <span class="trust-logo" title={l.name}>
             <svg

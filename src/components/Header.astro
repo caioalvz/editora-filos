@@ -41,7 +41,7 @@
 </header>
 
 <!-- Overlay sits below the header (z-index 180 < header 200) -->
-<nav id="mobile-nav" class="mobile-nav" aria-label="Menu mobile" aria-hidden="true">
+<nav id="mobile-nav" class="mobile-nav" aria-label="Menu mobile" aria-hidden="true" inert>
   <div class="mobile-nav-body container">
     <div class="mobile-links">
       <a href="#servicos"    class="mobile-link">Serviços</a>
@@ -226,6 +226,7 @@
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     mobileNav.setAttribute('aria-hidden', 'false');
+    mobileNav.removeAttribute('inert');
     hamburger.setAttribute('aria-label', 'Fechar menu');
   }
 
@@ -234,6 +235,7 @@
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
     mobileNav.setAttribute('aria-hidden', 'true');
+    mobileNav.setAttribute('inert', '');
     hamburger.setAttribute('aria-label', 'Abrir menu');
   }
 
