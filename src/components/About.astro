@@ -6,15 +6,19 @@
     <!-- Visual: painel escuro com composição tipográfica -->
     <div class="about-visual reveal" aria-hidden="true">
       <div class="av-bg">
-        <img
-          src="/images/hero-wings.jpg"
-          alt=""
-          class="av-photo"
-          width="960"
-          height="640"
-          loading="lazy"
-          decoding="async"
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcset="/images/hero-wings-mobile.webp" type="image/webp" />
+          <source srcset="/images/hero-wings.webp" type="image/webp" />
+          <img
+            src="/images/hero-wings.jpg"
+            alt=""
+            class="av-photo"
+            width="900"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div class="av-overlay">
         <span class="av-quote">&ldquo;Utilizar a literatura como ponte para conectar pessoas, gerar oportunidades e construir um impacto positivo que ultrapassa fronteiras.&rdquo;</span>

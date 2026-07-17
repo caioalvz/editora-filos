@@ -1,18 +1,17 @@
 ---
-// Logos com src usam imagem real + filtro CSS (deposite em public/images/midia/).
-// Logos sem src usam SVG inline com currentColor.
+// Logos WebP (2× display, gerados via sharp). width/height = dimensões de exibição 1×.
 const veiculos = [
-  { nome: 'TV Globo',   src: '/images/midia/globo.png' },
-  { nome: 'SBT',        src: '/images/midia/sbt.png' },
-  { nome: 'Record',     src: '/images/midia/record.png' },
-  { nome: 'Band',       src: '/images/midia/band.png' },
-  { nome: 'TV Cultura', src: '/images/midia/cultura.png' },
-  { nome: 'Podcasts',       src: '/images/midia/podcasts.png',
+  { nome: 'TV Globo',           src: '/images/midia/globo.webp',              w: 73, h: 48 },
+  { nome: 'SBT',                src: '/images/midia/sbt.webp',                w: 48, h: 48 },
+  { nome: 'Record',             src: '/images/midia/record.webp',             w: 50, h: 48 },
+  { nome: 'Band',               src: '/images/midia/band.webp',               w: 52, h: 48 },
+  { nome: 'TV Cultura',         src: '/images/midia/cultura.webp',            w: 50, h: 48 },
+  { nome: 'Podcasts',           src: '/images/midia/podcasts.webp',           w: 48, h: 48,
     imgFilter: 'invert(1) contrast(2.5)' },
-  { nome: 'Rádio do Cairo', src: '/images/midia/cairo.png',
+  { nome: 'Rádio do Cairo',     src: '/images/midia/cairo.webp',              w: 48, h: 48,
     imgFilter: 'grayscale(1) invert(1) contrast(3)' },
-  { nome: 'Emissoras Africanas', src: '/images/midia/emissoras%20africanas.png' },
-  { nome: 'Rádios & Jornais',   src: '/images/midia/radios%20e%20jornais.png' },
+  { nome: 'Emissoras Africanas',src: '/images/midia/emissoras-africanas.webp',w: 48, h: 48 },
+  { nome: 'Rádios & Jornais',   src: '/images/midia/radios-jornais.webp',    w: 48, h: 48 },
 ];
 ---
 
@@ -31,7 +30,8 @@ const veiculos = [
               src={v.src}
               alt={v.nome}
               class="midia-logo-img"
-              height="48"
+              width={v.w}
+              height={v.h}
               loading="lazy"
               decoding="async"
               style={'imgFilter' in v ? `filter:${v.imgFilter};mix-blend-mode:lighten` : undefined}

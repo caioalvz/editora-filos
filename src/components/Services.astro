@@ -505,220 +505,163 @@ const services = [
 
 <!-- ─── SCRIPT ───────────────────────────────────────────── -->
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const TOTAL = 4;
-  let current = 0;
-  let animating = false;
-
-  const PHASE_COLORS = ['#0d344c', '#6b1a26', '#8a7210', '#0e3d2a'];
-
-  const openBook  = document.getElementById('open-book')!;
-  const bScene    = document.getElementById('book-scene')!;
-  const bSticky   = document.getElementById('book-sticky')!;
-  const bTurning  = document.getElementById('b-turning') as HTMLElement;
-  const turnFront = document.getElementById('turn-front') as HTMLElement;
-  const turnBack  = document.getElementById('turn-back') as HTMLElement;
-
-  const lps  = Array.from(document.querySelectorAll<HTMLElement>('[data-lp]'));
-  const rps  = Array.from(document.querySelectorAll<HTMLElement>('[data-rp]'));
-  const dots = Array.from(document.querySelectorAll<HTMLElement>('[data-go]'));
-
-  /* ── Utilitários de clone ─────────────────────────────── */
-
-  // Clona o .lp inteiro (div + filhos com data-astro-cid)
-  function cloneLP(idx: number): HTMLElement {
-    const el = lps[idx].cloneNode(true) as HTMLElement;
-    el.classList.add('lp-on');
-    el.removeAttribute('data-lp');
-    el.style.cssText = `position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transform:none;background:${PHASE_COLORS[idx]};`;
-    return el;
-  }
-
-  // Clona o .rp inteiro
-  function cloneRP(idx: number): HTMLElement {
-    const el = rps[idx].cloneNode(true) as HTMLElement;
-    el.classList.add('rp-on');
-    el.removeAttribute('data-rp');
-    el.style.cssText = 'position:absolute;inset:0;opacity:1;transform:none;';
-    el.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
-    return el;
-  }
-
-  /* ── Estiliza uma face do elemento girando ─────────────── */
-  function styleFace(
-    face: HTMLElement,
-    bg: string,
-    faceTransform: string,
-    extraFlex = false,
-  ) {
-    face.style.position = 'absolute';
-    face.style.inset = '0';
-    face.style.overflow = 'hidden';
-    face.style.background = bg;
-    face.style.transform = faceTransform;
-    face.style.backfaceVisibility = 'hidden';
-    (face.style as any).webkitBackfaceVisibility = 'hidden';
-    if (extraFlex) {
-      face.style.display = 'flex';
-      face.style.flexDirection = 'column';
-      face.style.alignItems = 'center';
-      face.style.justifyContent = 'center';
-    } else {
-      face.style.display = 'block';
-    }
-  }
-
-  /* ── Atualiza estado estático pós-animação ─────────────── */
-  function commitSwap(from: number, next: number) {
-    lps[from].classList.remove('lp-on');
-    lps[next].classList.add('lp-on');
-    rps[from].classList.remove('rp-on');
-    rps[next].classList.add('rp-on');
-    // Restaura opacidade da página que estava "escondida"
-    lps[from].style.opacity = '';
-    rps[from].style.opacity = '';
-    dots.forEach((d, i) => {
-      d.classList.toggle('dot-on', i === next);
-      d.setAttribute('aria-selected', String(i === next));
-    });
-    current = next;
-    animating = false;
-  }
-
-  /* ── Animação principal ───────────────────────────────── */
-  function goTo(next: number, dir: 1 | -1 = 1) {
-    if (animating || next === current || next < 0 || next >= TOTAL) return;
-    animating = true;
-    const from = current;
-
-    if (dir === 1) {
-      /*
-       * AVANÇAR (1 → 2, 2 → 3 …)
-       * A página DIREITA vira para a esquerda (como folear um livro para frente).
-       * transform-origin: left center (borda da lombada)
-       * rotateY: 0 → +180  (pai e face-traseira no mesmo sentido → texto correto)
-       * Frente: conteúdo atual da direita (rp[from])
-       * Verso:  número do próximo capítulo (lp[next]) — pré-rotacionado +180 para ficar oculto no início
-       */
-      Object.assign(bTurning.style, {
-        left: '50%',
-        right: '0',
-        width: '',
-        transformOrigin: 'left center',
-        borderRadius: '0 4px 4px 0',
-      });
-
-      // Revela a próxima página direita ANTES da animação (já estava lá, sob a página girando)
-      rps[next].classList.add('rp-on');
-      // Esconde a atual (coberta pelo front face do bTurning, mas oculta para evitar flash nos 90°)
-      rps[from].style.opacity = '0';
-
-      turnFront.innerHTML = '';
-      turnFront.appendChild(cloneRP(from));
-      styleFace(turnFront, '#faf8f4', 'none');
-
-      turnBack.innerHTML = '';
-      turnBack.appendChild(cloneLP(next));
-      styleFace(turnBack, PHASE_COLORS[next], 'rotateY(180deg)', true);
-
-      gsap.set(bTurning, { rotateY: 0, display: 'block' });
-      gsap.to(bTurning, {
-        rotateY: 180,
-        duration: 0.82,
-        ease: 'power2.inOut',
-        onComplete() {
-          // Snapa conteúdo estático instantaneamente ANTES de ocultar o flip
-          commitSwap(from, next);
-          gsap.set(bTurning, { display: 'none', rotateY: 0 });
-        },
-      });
-
-    } else {
-      /*
-       * VOLTAR (2 → 1, 3 → 2 …)
-       * A página ESQUERDA vira para a direita (como folhear de volta).
-       * transform-origin: right center (borda da lombada)
-       * rotateY: 0 → -180  (e face-traseira pré-rotacionada -180 → texto correto)
-       * Frente: número do capítulo atual (lp[from])
-       * Verso:  conteúdo do capítulo anterior (rp[next])
-       */
-      Object.assign(bTurning.style, {
-        left: '0',
-        right: '50%',
-        width: '',
-        transformOrigin: 'right center',
-        borderRadius: '4px 0 0 4px',
-      });
-
-      // Revela lp[next] ANTES da animação — já estava lá, sob a página que levanta
-      lps[next].classList.add('lp-on');
-      // Esconde lp[from] — está coberto pelo front face do bTurning, mas oculta para os 90°
-      lps[from].style.opacity = '0';
-      // rp[from] permanece visível à direita — será coberto pelo bTurning ao completar a virada
-      // rp[next] NÃO é revelado antes: chega na face traseira da página girando
-
-      turnFront.innerHTML = '';
-      turnFront.appendChild(cloneLP(from));
-      styleFace(turnFront, PHASE_COLORS[from], 'none', true);
-
-      turnBack.innerHTML = '';
-      turnBack.appendChild(cloneRP(next));
-      styleFace(turnBack, '#faf8f4', 'rotateY(-180deg)');
-
-      gsap.set(bTurning, { rotateY: 0, display: 'block' });
-      gsap.to(bTurning, {
-        rotateY: -180,
-        duration: 0.82,
-        ease: 'power2.inOut',
-        onComplete() {
-          commitSwap(from, next);
-          gsap.set(bTurning, { display: 'none', rotateY: 0 });
-        },
-      });
-    }
-  }
-
-  /* ── ScrollTrigger ────────────────────────────────────── */
+  // Mobile uses .book-mob (pure CSS) — no GSAP needed there
   if (window.matchMedia('(min-width: 900px)').matches) {
-    const spacer  = document.getElementById('book-scroll-spacer')!;
-    const PER_PH  = window.innerHeight * 0.88;
+    const TOTAL = 4;
+    let current = 0;
+    let animating = false;
+    const PHASE_COLORS = ['#0d344c', '#6b1a26', '#8a7210', '#0e3d2a'];
 
-    // 3 transições × PER_PH de scroll (fase 0 já está visível ao entrar)
-    spacer.style.height = `${(TOTAL - 1) * PER_PH}px`;
+    const openBook  = document.getElementById('open-book')!;
+    const bScene    = document.getElementById('book-scene')!;
+    const bTurning  = document.getElementById('b-turning') as HTMLElement;
+    const turnFront = document.getElementById('turn-front') as HTMLElement;
+    const turnBack  = document.getElementById('turn-back') as HTMLElement;
+    const lps  = Array.from(document.querySelectorAll<HTMLElement>('[data-lp]'));
+    const rps  = Array.from(document.querySelectorAll<HTMLElement>('[data-rp]'));
+    const dots = Array.from(document.querySelectorAll<HTMLElement>('[data-go]'));
 
-    ScrollTrigger.create({
-      trigger: bScene,
-      start: 'top top+=74',
-      end: () => `+=${(TOTAL - 1) * PER_PH}`,
-      scrub: false,
-      onUpdate(self) {
-        // progress 0→1 mapeia para fases 0→3
-        const target = Math.min(
-          Math.floor(self.progress * TOTAL),
-          TOTAL - 1,
-        );
-        const dir: 1 | -1 = target > current ? 1 : -1;
-        if (target !== current && !animating) goTo(target, dir);
-      },
+    // Forward reference — replaced by the real impl once GSAP loads
+    let goTo = (_next: number, _dir: 1 | -1 = 1) => {};
+
+    /* ── Lazy-load GSAP ──────────────────────────────────── */
+    async function initGsap() {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+      gsap.registerPlugin(ScrollTrigger);
+
+      function cloneLP(idx: number): HTMLElement {
+        const el = lps[idx].cloneNode(true) as HTMLElement;
+        el.classList.add('lp-on');
+        el.removeAttribute('data-lp');
+        el.style.cssText = `position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transform:none;background:${PHASE_COLORS[idx]};`;
+        return el;
+      }
+
+      function cloneRP(idx: number): HTMLElement {
+        const el = rps[idx].cloneNode(true) as HTMLElement;
+        el.classList.add('rp-on');
+        el.removeAttribute('data-rp');
+        el.style.cssText = 'position:absolute;inset:0;opacity:1;transform:none;';
+        el.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
+        return el;
+      }
+
+      function styleFace(face: HTMLElement, bg: string, faceTransform: string, extraFlex = false) {
+        face.style.position = 'absolute';
+        face.style.inset = '0';
+        face.style.overflow = 'hidden';
+        face.style.background = bg;
+        face.style.transform = faceTransform;
+        face.style.backfaceVisibility = 'hidden';
+        (face.style as any).webkitBackfaceVisibility = 'hidden';
+        if (extraFlex) {
+          face.style.display = 'flex';
+          face.style.flexDirection = 'column';
+          face.style.alignItems = 'center';
+          face.style.justifyContent = 'center';
+        } else {
+          face.style.display = 'block';
+        }
+      }
+
+      function commitSwap(from: number, next: number) {
+        lps[from].classList.remove('lp-on');
+        lps[next].classList.add('lp-on');
+        rps[from].classList.remove('rp-on');
+        rps[next].classList.add('rp-on');
+        lps[from].style.opacity = '';
+        rps[from].style.opacity = '';
+        dots.forEach((d, i) => {
+          d.classList.toggle('dot-on', i === next);
+          d.setAttribute('aria-selected', String(i === next));
+        });
+        current = next;
+        animating = false;
+      }
+
+      goTo = function(next: number, dir: 1 | -1 = 1) {
+        if (animating || next === current || next < 0 || next >= TOTAL) return;
+        animating = true;
+        const from = current;
+
+        if (dir === 1) {
+          Object.assign(bTurning.style, {
+            left: '50%', right: '0', width: '',
+            transformOrigin: 'left center', borderRadius: '0 4px 4px 0',
+          });
+          rps[next].classList.add('rp-on');
+          rps[from].style.opacity = '0';
+          turnFront.innerHTML = '';
+          turnFront.appendChild(cloneRP(from));
+          styleFace(turnFront, '#faf8f4', 'none');
+          turnBack.innerHTML = '';
+          turnBack.appendChild(cloneLP(next));
+          styleFace(turnBack, PHASE_COLORS[next], 'rotateY(180deg)', true);
+          gsap.set(bTurning, { rotateY: 0, display: 'block' });
+          gsap.to(bTurning, {
+            rotateY: 180, duration: 0.82, ease: 'power2.inOut',
+            onComplete() { commitSwap(from, next); gsap.set(bTurning, { display: 'none', rotateY: 0 }); },
+          });
+        } else {
+          Object.assign(bTurning.style, {
+            left: '0', right: '50%', width: '',
+            transformOrigin: 'right center', borderRadius: '4px 0 0 4px',
+          });
+          lps[next].classList.add('lp-on');
+          lps[from].style.opacity = '0';
+          turnFront.innerHTML = '';
+          turnFront.appendChild(cloneLP(from));
+          styleFace(turnFront, PHASE_COLORS[from], 'none', true);
+          turnBack.innerHTML = '';
+          turnBack.appendChild(cloneRP(next));
+          styleFace(turnBack, '#faf8f4', 'rotateY(-180deg)');
+          gsap.set(bTurning, { rotateY: 0, display: 'block' });
+          gsap.to(bTurning, {
+            rotateY: -180, duration: 0.82, ease: 'power2.inOut',
+            onComplete() { commitSwap(from, next); gsap.set(bTurning, { display: 'none', rotateY: 0 }); },
+          });
+        }
+      };
+
+      const spacer = document.getElementById('book-scroll-spacer')!;
+      const PER_PH = window.innerHeight * 0.88;
+      spacer.style.height = `${(TOTAL - 1) * PER_PH}px`;
+
+      ScrollTrigger.create({
+        trigger: bScene,
+        start: 'top top+=74',
+        end: () => `+=${(TOTAL - 1) * PER_PH}`,
+        scrub: false,
+        onUpdate(self) {
+          const target = Math.min(Math.floor(self.progress * TOTAL), TOTAL - 1);
+          const dir: 1 | -1 = target > current ? 1 : -1;
+          if (target !== current && !animating) goTo(target, dir);
+        },
+      });
+    }
+
+    /* ── Dots & keyboard (work via goTo forward-ref) ──────── */
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const target = Number(dot.getAttribute('data-go'));
+        goTo(target, target > current ? 1 : -1);
+      });
     });
+
+    openBook.setAttribute('tabindex', '0');
+    openBook.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goTo(current + 1, 1);
+      if (e.key === 'ArrowLeft')  goTo(current - 1, -1);
+    });
+
+    /* ── Trigger GSAP load when section is 400px away ─────── */
+    const lazyIo = new IntersectionObserver(
+      entries => { if (entries[0].isIntersecting) { lazyIo.disconnect(); initGsap(); } },
+      { rootMargin: '400px' }
+    );
+    lazyIo.observe(bScene);
   }
-
-  /* ── Dots ─────────────────────────────────────────────── */
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const target = Number(dot.getAttribute('data-go'));
-      goTo(target, target > current ? 1 : -1);
-    });
-  });
-
-  /* ── Teclado ──────────────────────────────────────────── */
-  openBook.setAttribute('tabindex', '0');
-  openBook.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') goTo(current + 1, 1);
-    if (e.key === 'ArrowLeft')  goTo(current - 1, -1);
-  });
 </script>
