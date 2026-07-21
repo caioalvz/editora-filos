@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Claude Code skill internals and session data
+.claude/skills/
+.impeccable/
