@@ -29,3 +29,10 @@ pnpm-debug.log*
 
 # IDE settings
 .vscode/
+
+# Windows
+Thumbs.db
+
+# Tool-generated project docs
+DESIGN.md
+PRODUCT.md
