@@ -24,5 +24,8 @@ pnpm-debug.log*
 .idea/
 
 # Claude Code skill internals and session data
-.claude/skills/
+.claude/
 .impeccable/
+
+# IDE settings
+.vscode/
