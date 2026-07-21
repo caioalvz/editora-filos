@@ -27,7 +27,7 @@ A Filos Editora oferece um processo editorial completo para autores que querem p
 
 ## Livraria e Catálogo de Obras
 
-- [Livraria Filos](https://loja.editorafilos.com.br/): Catálogo completo de livros físicos e ebooks dos autores publicados pela Filos. Entrega nacional e internacional.
+- [Livraria Filos](https://loja.filoseditora.com.br/): Catálogo completo de livros físicos e ebooks dos autores publicados pela Filos. Entrega nacional e internacional.
 
 Gêneros disponíveis: Ficção e Romance, Poesia, Biografias e Memórias, Auto-ajuda, Psicologia, Contos e Crônicas, Educação, Espiritualidade, Direito, Inteligência Artificial, Clássicos, Infantojuvenil.
 
